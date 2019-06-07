@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,BaaS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、什么是 BaaS在说 LeanCloud 之前，先了解一下 BaaS。 BaaS（后端即服务：Backend as a Service）公司为移动应用开发者提供整合云后端的边界服务。 如果你是一个前端开发，可以把这样的平台当做自己的服务器，来存储数据等。这样在不懂后端技术的情况下，依然可以请求数据，渲染到页面上，不必写入一堆假的据来学习一些技术和框架。我的理解是这样的，就像 bootstrap">
+<meta name="keywords" content="JavaScript,BaaS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeanCloud使用">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/LeanCloud使用/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、什么是 BaaS在说 LeanCloud 之前，先了解一下 BaaS。 BaaS（后端即服务：Backend as a Service）公司为移动应用开发者提供整合云后端的边界服务。 如果你是一个前端开发，可以把这样的平台当做自己的服务器，来存储数据等。这样在不懂后端技术的情况下，依然可以请求数据，渲染到页面上，不必写入一堆假的据来学习一些技术和框架。我的理解是这样的，就像 bootstrap">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-6d89f80b428ce04e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-5a6137b669a60a16.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-323d69f25e64bfb9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-c3db86a32bdaa4ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-ab149e8492cc6136.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-cc5206a2913f3649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-6c6defc811de0a47.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-fd7c777fe6705329.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:08:39.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeanCloud使用">
+<meta name="twitter:description" content="一、什么是 BaaS在说 LeanCloud 之前，先了解一下 BaaS。 BaaS（后端即服务：Backend as a Service）公司为移动应用开发者提供整合云后端的边界服务。 如果你是一个前端开发，可以把这样的平台当做自己的服务器，来存储数据等。这样在不懂后端技术的情况下，依然可以请求数据，渲染到页面上，不必写入一堆假的据来学习一些技术和框架。我的理解是这样的，就像 bootstrap">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9373308-6d89f80b428ce04e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/02/LeanCloud使用/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>LeanCloud使用 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/LeanCloud使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeanCloud使用</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、什么是-BaaS"><a href="#一、什么是-BaaS" class="headerlink" title="一、什么是 BaaS"></a>一、什么是 BaaS</h3><p>在说 LeanCloud 之前，先了解一下 BaaS。</p>
+<p>BaaS（后端即服务：Backend as a Service）公司为移动应用开发者提供整合云后端的边界服务。</p>
+<p>如果你是一个前端开发，可以把这样的平台当做自己的服务器，来存储数据等。这样在不懂后端技术的情况下，依然可以请求数据，渲染到页面上，不必写入一堆假的据来学习一些技术和框架。我的理解是这样的，就像 bootstrap 为后端程序员提供了一个样式框架可以让他们不去纠结样式问题，BaaS 为前端程序员提供了一个服务平台，可以不需要掌握后端技术就可以对数据进行操作，实现对数据的增删改查操作。</p>
+<p>这样的平台有很多：AppCan、Firebase、StackMob、End.js、LeanCloud 等，我用 LeanCloud 来体验一下这样的服务平台。</p>
+<h3 id="二、LeanCloud"><a href="#二、LeanCloud" class="headerlink" title="二、LeanCloud"></a>二、LeanCloud</h3><h4 id="1、什么是-LeanCloud"><a href="#1、什么是-LeanCloud" class="headerlink" title="1、什么是 LeanCloud"></a>1、什么是 LeanCloud</h4><p><a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a> 是国内的移动应用一站式云服务。LeanCloud 提供了数据存储、实时消息、统计分析以及多种扩展组件，全面涵盖移动应用开发的需求，支持 iOS、Android、Web 等多平台。它帮助开发者摆脱后端开发负担以专注于产品创新，同时缩短开发周期、节省开发投入、快速进入市场。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-6d89f80b428ce04e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>注册步骤略过。登录成功后，进入控制台，可以点击快速入门，先看一下对应的开发语言平台的使用指南。然后去创建应用，步骤略过，创建成功后会在控制台显示。点击右上角设置图标，默认显示如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-5a6137b669a60a16.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>点击设置可以查看该应用的 App ID 和 App Key，之后会用到。左侧的 Class 就相当于数据库中的表，可以新建与删除，点击对应的表，可以操作数据。在正式使用开发之前，可以点击导航上的 Demos 去下载一些示例研究一下，我找了一个比较简单的示例 <a href="https://github.com/leancloud/leantodo-vue/" target="_blank" rel="noopener">LeanTodo (Vue)</a>，使用 JavaScript 存储 SDK 与 Vue.js 实现的 LeanTodo 应用。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-323d69f25e64bfb9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>下载之后可以将 app.js 中的 appId 和 appKey 修改为自己应用的值，然后在本地服务中打开页面，做一些操作。例如注册一个用户，添加几条待办事项。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-c3db86a32bdaa4ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt><br><img src="http://upload-images.jianshu.io/upload_images/9373308-ab149e8492cc6136.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>操作后，去 LeanCloud 上查看数据库的变化情况。可以看到已添加了一个用户，和两条事项数据。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-cc5206a2913f3649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>以上对 LeanCloud 有了一个基本的了解，下面通过 <a href="https://leancloud.cn/docs/sdk_setup-js.html" target="_blank" rel="noopener">官方文档</a> 来进一步的学习 LeanCloud。</p>
+<h4 id="2、LeanCloud-使用"><a href="#2、LeanCloud-使用" class="headerlink" title="2、LeanCloud 使用"></a>2、LeanCloud 使用</h4><p>了解了 LeanCloud 之后，我们来看一下如何在自己的项目中使用 LeanCloud。</p>
+<h5 id="2-1、初始化"><a href="#2-1、初始化" class="headerlink" title="2.1、初始化"></a>2.1、初始化</h5><p>首先安装 JavaScript SDK，在项目中执行下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install leancloud-storage --save</span><br></pre></td></tr></table></figure>
+
+<p>也可以直接在页面中通过 script 标签引入 SDK：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;//cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>初始化 AV 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 初始化一个 AV 对象</span><br><span class="line">var APP_ID = &apos;******&apos;;</span><br><span class="line">var APP_KEY = &apos;******&apos;;</span><br><span class="line">AV.init(&#123;</span><br><span class="line">    appId: APP_ID,</span><br><span class="line">    appKey: APP_KEY</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 如果初始化成功，window 就会有一个 AV 对象</span><br><span class="line">console.log(window.AV); // &#123;_config: &#123;…&#125;, _sharedConfig: &#123;…&#125;, _getAVPath: ƒ, _installationId: null, _getInstallationId: ƒ,…&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2、添加数据"><a href="#2-2、添加数据" class="headerlink" title="2.2、添加数据"></a>2.2、添加数据</h5><p>为了避免一刷新页面就去请求数据，我将业务逻辑都写到了点击事件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class=&quot;addBtn&quot;&gt;添加数据&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// 添加数据</span><br><span class="line">// 创建表（如果在 LeanCloud 中没有手动创建表，以下代码会自动创建表并添加数据）</span><br><span class="line">var ObjectTest = AV.Object.extend(&apos;ObjectTest&apos;);</span><br><span class="line">var object = new ObjectTest();</span><br><span class="line">var addBtn = document.querySelector(&quot;.addBtn&quot;);</span><br><span class="line">addBtn.onclick = function () &#123;</span><br><span class="line">    object.save(&#123;</span><br><span class="line">        message1: &quot;Hello&quot;,</span><br><span class="line">        message2: &quot;LeanCloud&quot;</span><br><span class="line">    &#125;).then(function (object) &#123;</span><br><span class="line">        console.log(&quot;数据添加成功！&quot;)</span><br><span class="line">    &#125;, function (error) &#123;</span><br><span class="line">        console.log(error);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>点击按钮后，如果请求成功，在 LeanCloud 中就会看到已经创建好了一个名为“ObjectTest” 的表，并且添加了一条数据：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-6c6defc811de0a47.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以多添加几条数据做下边的测试。</p>
+<h5 id="2-3、查询数据"><a href="#2-3、查询数据" class="headerlink" title="2.3、查询数据"></a>2.3、查询数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class=&quot;queryBtn&quot;&gt;查询数据&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">var query = new AV.Query(&apos;ObjectTest&apos;);</span><br><span class="line">var queryBtn = document.querySelector(&quot;.queryBtn&quot;);</span><br><span class="line">queryBtn.onclick = function () &#123;</span><br><span class="line">    query.find().then(function (results) &#123;</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;, function (error) &#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>点击按钮后，可以在控制台看到添加的数据：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-fd7c777fe6705329.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="期待您的关注！"><a href="#期待您的关注！" class="headerlink" title="期待您的关注！"></a>期待您的关注！</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/BaaS/" rel="tag"># BaaS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/推荐您使用Markdown来编辑文章/" rel="next" title="推荐您使用Markdown来编辑文章">
+                <i class="fa fa-chevron-left"></i> 推荐您使用Markdown来编辑文章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/02/jQuery_无缝滚动轮播效果插件封装/" rel="prev" title="jQuery_无缝滚动轮播效果插件封装">
+                jQuery_无缝滚动轮播效果插件封装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、什么是-BaaS"><span class="nav-text">一、什么是 BaaS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、LeanCloud"><span class="nav-text">二、LeanCloud</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、什么是-LeanCloud"><span class="nav-text">1、什么是 LeanCloud</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、LeanCloud-使用"><span class="nav-text">2、LeanCloud 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1、初始化"><span class="nav-text">2.1、初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2、添加数据"><span class="nav-text">2.2、添加数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3、查询数据"><span class="nav-text">2.3、查询数据</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期待您的关注！"><span class="nav-text">期待您的关注！</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

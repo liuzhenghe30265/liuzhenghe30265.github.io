@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Node.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="下面开始用 Node.js 进行 Web 开发。  我是通过《Node.js开发指南》这本书来学习 Node.js Web 开发的，书中使用的 Express 框架是 2.5.8，而我的是 4.14.1，所以遇到了许多问题，在文章中我都有提到并讲解。 ☞GitHub 地址 一、快速开始1、建立项目《Node.js开发指南》中建立项目的方式是：express -t ejs microblog，但是">
+<meta name="keywords" content="JavaScript,Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12Node.jsWeb开发博客网站">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/12Node.jsWeb开发博客网站/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="下面开始用 Node.js 进行 Web 开发。  我是通过《Node.js开发指南》这本书来学习 Node.js Web 开发的，书中使用的 Express 框架是 2.5.8，而我的是 4.14.1，所以遇到了许多问题，在文章中我都有提到并讲解。 ☞GitHub 地址 一、快速开始1、建立项目《Node.js开发指南》中建立项目的方式是：express -t ejs microblog，但是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-837b0889ba7b2bbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e98e4d1e5e4cf736.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9c7e73a8a3866126.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-84472c9afb7d62d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a8ec532e494e258c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7fd59dfd399b84a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b753ecdebd024c4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-3462decbd816ac73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7a83739066f3e2bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b4d2c851304a918c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a22188cbc8993a8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d202b0db3708047f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-db0b11e83c768fef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-359262eea0c6ac07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-2af35ff8f89b11f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-16f565ef3404b30e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-2b3edd44ff8c97bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-44cdca8f05c3fa0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5428a4c9296d1fd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-092658fa904172c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-942c2cd4d5336615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b923537099e493a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4958f0e2f7878f73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-01bdf505c6ba6549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9f244ac331480e01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a2d9b40881dcbeca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-8edd2dfb04c014b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a57830b2b5d2310c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7a2186d364d7271d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-64c9fff2e2683bb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:04:42.110Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="12Node.jsWeb开发博客网站">
+<meta name="twitter:description" content="下面开始用 Node.js 进行 Web 开发。  我是通过《Node.js开发指南》这本书来学习 Node.js Web 开发的，书中使用的 Express 框架是 2.5.8，而我的是 4.14.1，所以遇到了许多问题，在文章中我都有提到并讲解。 ☞GitHub 地址 一、快速开始1、建立项目《Node.js开发指南》中建立项目的方式是：express -t ejs microblog，但是">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-837b0889ba7b2bbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/02/12Node.jsWeb开发博客网站/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>12Node.jsWeb开发博客网站 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/12Node.jsWeb开发博客网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">12Node.jsWeb开发博客网站</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>下面开始用 Node.js 进行 Web 开发。</p>
+</blockquote>
+<p>我是通过《Node.js开发指南》这本书来学习 Node.js Web 开发的，书中使用的 Express 框架是 2.5.8，而我的是 4.14.1，所以遇到了许多问题，在文章中我都有提到并讲解。</p>
+<p>☞<a href="https://github.com/he30265/Node.js_Learning/tree/master/12WebApp/NodeJSBlog" target="_blank" rel="noopener">GitHub 地址</a></p>
+<h3 id="一、快速开始"><a href="#一、快速开始" class="headerlink" title="一、快速开始"></a>一、快速开始</h3><h4 id="1、建立项目"><a href="#1、建立项目" class="headerlink" title="1、建立项目"></a>1、建立项目</h4><p>《Node.js开发指南》中建立项目的方式是：express -t ejs microblog，但是这种方式对于高版本的 Express 新建的标签替换引擎并不是 .ejs，而是 .jade，如果要使用 .ejs 我们可以通过下面命令建立网站基本结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express -e NodeJSBlog</span><br></pre></td></tr></table></figure>
+
+<p>执行命令后在当前目录下出现了一些文件，并且下边提示我们通过 npm install 安装依赖。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-837b0889ba7b2bbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e98e4d1e5e4cf736.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9c7e73a8a3866126.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>在 npm install 之后，打开 NodeJSBlog 目录下的 package.json，可以看到已安装的包及对应的版本号。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-84472c9afb7d62d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="2、启动服务器"><a href="#2、启动服务器" class="headerlink" title="2、启动服务器"></a>2、启动服务器</h4><p>注意，我们之前开启 Node.js 服务器，都是执行 node xxx.js，然后去浏览器访问即可，但是 Express 4.x 以上就不是这种方式了，应该是 npm start，端口配置在 bin/www 中。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a8ec532e494e258c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7fd59dfd399b84a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>启动成功访问 localhost:3000/。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b753ecdebd024c4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="3、项目结构"><a href="#3、项目结构" class="headerlink" title="3、项目结构"></a>3、项目结构</h4><p>我们看一下 express 在 NodeJSBlog 这个目录下都生成了哪些文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-3462decbd816ac73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h5 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var path = require(&apos;path&apos;);</span><br><span class="line">var favicon = require(&apos;serve-favicon&apos;);</span><br><span class="line">var logger = require(&apos;morgan&apos;);</span><br><span class="line">var cookieParser = require(&apos;cookie-parser&apos;);</span><br><span class="line">var bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line"></span><br><span class="line">var index = require(&apos;./routes/index&apos;);</span><br><span class="line">var users = require(&apos;./routes/users&apos;);</span><br><span class="line"></span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">// view engine setup</span><br><span class="line">app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));</span><br><span class="line">app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br><span class="line"></span><br><span class="line">// uncomment after placing your favicon in /public</span><br><span class="line">//app.use(favicon(path.join(__dirname, &apos;public&apos;, &apos;favicon.ico&apos;)));</span><br><span class="line">app.use(logger(&apos;dev&apos;));</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;));</span><br><span class="line">app.use(cookieParser());</span><br><span class="line">app.use(express.static(path.join(__dirname, &apos;public&apos;)));</span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;, index);</span><br><span class="line">app.use(&apos;/users&apos;, users);</span><br><span class="line"></span><br><span class="line">// catch 404 and forward to error handler</span><br><span class="line">app.use(function(req, res, next) &#123;</span><br><span class="line">  var err = new Error(&apos;Not Found&apos;);</span><br><span class="line">  err.status = 404;</span><br><span class="line">  next(err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// error handler</span><br><span class="line">app.use(function(err, req, res, next) &#123;</span><br><span class="line">  // set locals, only providing error in development</span><br><span class="line">  res.locals.message = err.message;</span><br><span class="line">  res.locals.error = req.app.get(&apos;env&apos;) === &apos;development&apos; ? err : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  // render the error page</span><br><span class="line">  res.status(err.status || 500);</span><br><span class="line">  res.render(&apos;error&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = app;</span><br></pre></td></tr></table></figure>
+
+<p>app.js 是项目的入口，首先引入了一系列我们所需要的模块，然后引入了 routes 目录下的两个本地模块，它的功能是为指定路径组织返回内容，相当于 MVC 架构中的控制器。</p>
+<p>接下来是视图引擎设置， app.set() 是 Express 的参数设置工具，接受一个键（key）和一个值（value），可用的参数如下所示：</p>
+<ul>
+<li>basepath：基础地址，通常用于 res.redirect() 跳转。</li>
+<li>views：视图文件的目录，存放模板文件。</li>
+<li>view engine：视图模板引擎。</li>
+<li>view options：全局视图参数对象。</li>
+<li>view cache：启用视图缓存。</li>
+<li>case sensitive routes：路径区分大小写。</li>
+<li>strict routing：严格路径，启用后不会忽略路径末尾的“ / ”。</li>
+<li>jsonp callback：开启透明的 JSONP 支持</li>
+</ul>
+<p>Express 依赖于 connect，提供了大量的中间件，可以通过 app.use() 启用</p>
+<h5 id="routes-index-js"><a href="#routes-index-js" class="headerlink" title="routes/index.js"></a>routes/index.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var router = express.Router();</span><br><span class="line"></span><br><span class="line">/* GET home page. */</span><br><span class="line">router.get(&apos;/&apos;, function(req, res, next) &#123;</span><br><span class="line">  res.render(&apos;index&apos;, &#123; title: &apos;Express&apos; &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = router;</span><br></pre></td></tr></table></figure>
+
+<p>routes/index.js 是路由文件，相当于控制器，用于组织展示的内容，app.js 中通过 app.get(‘/‘, routes.index); 将“ / ”路径映射到 exports.index 函数下，其中只有一个语句 res.render(‘index’, { title: ‘Express’ })，功能是调用模板解析引擎，翻译名为 index 的模板，并传入一个对象作为参数，这个对象只有一个属性，即 title: ‘Express’。</p>
+<h5 id="views-index-ejs"><a href="#views-index-ejs" class="headerlink" title="views/index.ejs"></a>views/index.ejs</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&apos;stylesheet&apos; href=&apos;/stylesheets/style.css&apos; /&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>index.ejs 是模板文件，即 routes/index.js 中调用的模板，内容是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>它的基础是 HTML 语言，其中包含了形如 &lt;%= title %&gt; 的标签，功能是显示引用的变量，即 res.render 函数第二个参数传入的对象的属性。</p>
+<h5 id="补充-include"><a href="#补充-include" class="headerlink" title="补充 include"></a>补充 include</h5><p>在书中 views 目录下是有 layout.ejs 的，它可以让所有模板去继承它，&lt;%- body %&gt; 中是独特的内容，其他部分是共有的，可以看作是页面框架。</p>
+<p>书中 layout.ejs：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;</span><br><span class="line">        &lt;%= title %&gt;</span><br><span class="line">    &lt;/title&gt;</span><br><span class="line">    &lt;link rel=&apos;stylesheet&apos; href=&apos;/stylesheets/style.css&apos; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%- body %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是 Express 4.x 就没有 layout.ejs 了，解决方法：</p>
+<p>官方推荐了 include 方式，它不仅能实现 layout 的功能，还是将 view 的那些可复用的 html 片段提取成模块，在需要使用的地方直接用 &lt;% include xxx %&gt;。</p>
+<p>例如先在 views 目录下新建一个 public_file.ejs ，在里面添加需要引用的公共文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&apos;stylesheet&apos; href=&apos;/stylesheets/style.css&apos; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后修改一下 index.ejs，使用 &lt;% include listitem %&gt; 方式引用上边公共文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;</span><br><span class="line">    &lt;% include public_file %&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>重启服务，访问 localhost:3000/，可以看到 style.css 文件正常引用。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7a83739066f3e2bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>每一次修改我们都需要重启服务才能看到修改后的结果，您可以看我的<a href="https://www.jianshu.com/p/07ed5c977838" target="_blank" rel="noopener">《Node.js 应用程序自动重启》</a>这篇文章去安装 supervisor 或 nodemon 两个插件来实现应用程序自动重启。</p>
+<h3 id="二、路由控制"><a href="#二、路由控制" class="headerlink" title="二、路由控制"></a>二、路由控制</h3><h4 id="1、创建页面路由"><a href="#1、创建页面路由" class="headerlink" title="1、创建页面路由"></a>1、创建页面路由</h4><p>简单说一下新增一个页面的流程。</p>
+<p>首先在 views 目录下新建一个模板，例如 hello.ejs：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b4d2c851304a918c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后打开 index.js 文件，添加页面路由信息：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a22188cbc8993a8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>访问 localhost:3000/hello。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d202b0db3708047f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>补充：在《Node.js开发指南》这本书中，还需要向 app.js 文件中添加页面路由信息，但在 Express 4.x 中是不需要的。</p>
+<h4 id="2、路径匹配"><a href="#2、路径匹配" class="headerlink" title="2、路径匹配"></a>2、路径匹配</h4><p>上面的例子是为固定的路径设置路由规则，Express 还支持更高级的路径匹配模式，例如我们想要展示一个用户的个人页面，路径为 /user/[username]，可以用下面的方法定义路由<br>规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.get(&apos;/user/:username&apos;, function(req, res, next) &#123;</span><br><span class="line">    res.send(&apos;user: &apos; + req.params.username);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>重启项目，访问 localhost:3000/user/LiuZhenghe。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-db0b11e83c768fef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>注意：调用模板解析引擎，用 res.render()，只是向页面发送数据，用 res.send()。</p>
+<p>路径规则 /user/:username 会被自动编译为正则表达式，类似于 /user/([^/]+)/? 这样的形式，路径参数可以在响应函数中通过 req.params 的属性访问。</p>
+<p>路径规则同样支持 JavaScript 正则表达式，例如 app.get(/user/([^/]+)/?,callback)，这样的好处在于可以定义更加复杂的路径规则，而不同之处是匹配的参数是匿名的，因此需要通过 req.params[0]、req.params[1] 这样的形式访问。</p>
+<h4 id="3、REST-风格的路由规则"><a href="#3、REST-风格的路由规则" class="headerlink" title="3、REST 风格的路由规则"></a>3、REST 风格的路由规则</h4><p>Express 支持 REST 风格的请求方式，在介绍之前我们先说明一下什么是 REST。</p>
+<p>REST 的意思是表征状态转移（Representational State Transfer），它是一种基于 HTTP 协议的网络应用的接口风格，充分利用 HTTP 的方法实现统一风格接口的服务。</p>
+<p>HTTP 协议定义了以下 8 种标准的方法：</p>
+<ul>
+<li>GET：请求获取指定资源。</li>
+<li>HEAD：请求指定资源的响应头。</li>
+<li>POST：向指定资源提交数据。</li>
+<li>PUT：请求服务器存储一个资源。</li>
+<li>DELETE：请求服务器删除指定资源。</li>
+<li>TRACE：回显服务器收到的请求，主要用于测试或诊断。</li>
+<li>CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。</li>
+<li>OPTIONS：返回服务器支持的HTTP请求方法。</li>
+</ul>
+<p>其中我们经常用到的是 GET、POST、PUT 和 DELETE 方法，根据 REST 设计模式，这4种方法通常分别用于实现以下功能。</p>
+<ul>
+<li>GET：获取</li>
+<li>POST：新增</li>
+<li>PUT：更新</li>
+<li>DELETE：删除</li>
+</ul>
+<p>这是因为这 4 种方法有不同的特点，按照定义，它们的特点如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>请求方式</th>
+<th>安全</th>
+<th>幂等</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<p>所谓安全是指没有副作用，即请求不会对资源产生变动，连续访问多次所获得的结果不受访问者的影响，而幂等指的是重复请求多次与一次请求的效果是一样的，比如获取和更新操作是幂等的，这与新增不同，删除也是幂等的，即重复删除一个资源，和删除一次是一样的。</p>
+<p>Express 对每种 HTTP 请求方法都设计了不同的路由绑定函数，例如前面例子全部是 app.get，表示为该路径绑定了 GET 请求，向这个路径发起其他方式的请求不会被响应。</p>
+<p>下表是 Express 支持的所有 HTTP 请求的绑定函数。</p>
+<table>
+<thead>
+<tr>
+<th>请求方式</th>
+<th>绑定函数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>app.get(path, callback)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>app.post(path, callback)</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>app.put(path, callback)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>app.delete(path, callback)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>app.patch(path, callback)</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>app.trace(path, callback)</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>app.connect(path, callback)</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>app.options(path, callback)</td>
+</tr>
+<tr>
+<td>所有方法</td>
+<td>app.all(path, callback)</td>
+</tr>
+</tbody></table>
+<p>例如我们要绑定某个路径的 POST 请求，则可以用 app.post(path, callback) 的<br>方法，需要注意的是 app.all 函数，它支持把所有的请求方式绑定到同一个响应函数，是一个非常灵活的函数，在后面我们可以看到许多功能都可以通过它来实现。</p>
+<h4 id="4、控制权转移"><a href="#4、控制权转移" class="headerlink" title="4、控制权转移"></a>4、控制权转移</h4><p>Express 支持同一路径绑定多个路由响应函数，例如：</p>
+<p>index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line">/* 路径匹配模式 */</span><br><span class="line">router.all(&apos;/user/:username&apos;, function(req, res, next) &#123;</span><br><span class="line">    res.send(&apos;all methods captured&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&apos;/user/:username&apos;, function(req, res, next) &#123;</span><br><span class="line">    res.send(&apos;user: &apos; + req.params.username);</span><br><span class="line">&#125;);</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
+
+<p>当再次访问 localhost:3000/user/LiuZhenghe 时，发现页面被第一条路由规则捕获。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-359262eea0c6ac07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>原因是 Express 在处理路由规则时，会优先匹配先定义的路由规则，因此后面相同的规则被屏蔽。</p>
+<p>Express 提供了路由控制权转移的方法，即回调函数的第三个参数 next，通过调用<br>next()，会将路由控制权转移给后面的规则，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line">/* 路径匹配模式 */</span><br><span class="line">router.all(&apos;/user/:username&apos;, function(req, res, next) &#123;</span><br><span class="line">    console.log(&apos;all methods captured&apos;);</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&apos;/user/:username&apos;, function(req, res, next) &#123;</span><br><span class="line">    res.send(&apos;user: &apos; + req.params.username);</span><br><span class="line">&#125;);</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
+
+<p>此时刷新页面，在控制台可以看到“all methods captured”，浏览器显示了 user: LiuZhenghe。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-2af35ff8f89b11f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>这是一个非常有用的工具，可以让我们轻易地实现中间件，而且还能提高代码的复用程度，例如我们针对一个用户查询信息和修改信息的操作，分别对应了 GET 和 PUT 操作，而两者共有的一个步骤是检查用户名是否合法，因此可以通过 next() 方法实现。</p>
+<h3 id="三、模板引擎"><a href="#三、模板引擎" class="headerlink" title="三、模板引擎"></a>三、模板引擎</h3><p>模板引擎也就是视图，视图决定了用户最终能看到什么，这里我们用 ejs 为例介绍模板引擎的使用方法。</p>
+<h4 id="1、使用模板引擎"><a href="#1、使用模板引擎" class="headerlink" title="1、使用模板引擎"></a>1、使用模板引擎</h4><p>在 app.js 中，以下两句设置了模板引擎和页面模板的位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));</span><br><span class="line">app.set(&apos;view engine&apos;, &apos;ejs&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>在 index.js 中通过 res.render() 调用模板，res.render() 的功能是调用模板引擎，并将其产生的页面直接返回给客户端，它接受两个参数，第一个是模板的名称，即 views 目录下的模板文件名，不包含文件的扩展名；第二个参数是传递给模板的数据，用于模板翻译。</p>
+<p>ejs 的标签系统非常简单，它只有以下 3 种标签：</p>
+<ul>
+<li>&lt;% code %&gt;：JavaScript 代码。</li>
+<li>&lt;%= code %&gt;：显示替换过 HTML 特殊字符的内容。</li>
+<li>&lt;%- code %&gt;：显示原始 HTML 内容。</li>
+</ul>
+<p>我们可以用它们实现页面模板系统能实现的任何内容。</p>
+<h4 id="2、片段视图"><a href="#2、片段视图" class="headerlink" title="2、片段视图"></a>2、片段视图</h4><p>《Node.js开发指南》中所讲的片段视图（partials）在 Express 4.x 中已经不支持了，在上面项目结构分析那一节中我曾补充过 include，这里再次介绍一下它的用法。</p>
+<p>官方推荐了 include 方式，它不仅能实现 layout 的功能，还是将 view 的那些可复用的 html 片段提取成模块，在需要使用的地方直接用 &lt;% include xxx %&gt;，看下面这个例子：</p>
+<p>首先在 index.js 中新增以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 片断视图</span><br><span class="line">router.get(&apos;/list&apos;, function(reg, res) &#123;</span><br><span class="line">    res.render(&apos;list&apos;, &#123;</span><br><span class="line">        title: &quot;List&quot;,</span><br><span class="line">        items: [2019, &apos;Node.js&apos;, &apos;NodeJSBlog&apos;, &apos;Express&apos;]</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后新建 list.ejs 文件并添加以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;% items.forEach(function(listitem)&#123; %&gt;</span><br><span class="line">&lt;% include listitem %&gt;</span><br><span class="line">&lt;% &#125;) %&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同时新建 listitem.ejs 文件并添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;&lt;%= listitem %&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>访问 localhost:3000/list，可以看到以下内容：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-16f565ef3404b30e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="四、开始建立博客网站"><a href="#四、开始建立博客网站" class="headerlink" title="四、开始建立博客网站"></a>四、开始建立博客网站</h3><h4 id="1、功能分析"><a href="#1、功能分析" class="headerlink" title="1、功能分析"></a>1、功能分析</h4><p>博客网站首先应该有登录注册功能，然后是最核心的功能——信息发表，这个功能涉及到许多方面，包括数据库访问，前端显示等。</p>
+<p>一个完整的博客系统，应该有评论，收藏，转发等功能，处于本人目前的能力水平还不能都实现，先做一个博客网站的雏形吧。</p>
+<h4 id="2、路由规划"><a href="#2、路由规划" class="headerlink" title="2、路由规划"></a>2、路由规划</h4><p>根据功能设计，我们把路由按照以下方案规划:</p>
+<ul>
+<li>/：首页</li>
+<li>/u/[user]：用户的主页</li>
+<li>/post：发表信息</li>
+<li>/reg：用户注册</li>
+<li>/login：用户登录</li>
+<li>/logout：用户登出</li>
+</ul>
+<p>以上页面还可以根据用户状态细分，发表信息以及用户登出页面必须是已登录用户才能操作的功能，而用户注册和用户登入所面向的对象必须是未登入的用户，首页和用户主页则针对已登入和未登入的用户显示不同的内容。</p>
+<p>在 index.js 中添加以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">router.get(&apos;/&apos;, function(req, res) &#123;</span><br><span class="line">    res.render(&apos;index&apos;, &#123;</span><br><span class="line">        title: &apos;Express&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">router.get(&apos;/u/:user&apos;, function(req, res) &#123;&#125;);</span><br><span class="line">router.post(&apos;/post&apos;, function(req, res) &#123;&#125;);</span><br><span class="line">router.get(&apos;/reg&apos;, function(req, res) &#123;&#125;);</span><br><span class="line">router.post(&apos;/reg&apos;, function(req, res) &#123;&#125;);</span><br><span class="line">router.get(&apos;/login&apos;, function(req, res) &#123;&#125;);</span><br><span class="line">router.post(&apos;/login&apos;, function(req, res) &#123;&#125;);</span><br><span class="line">router.get(&apos;/logout&apos;, function(req, res) &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>其中 /post、/login 和 /reg 由于要接受表单信息，因此使用 router.post 注册路由，/login 和 /reg 还要显示用户注册时要填写的表单，所以要以 router.get 注册。</p>
+<h4 id="3、使用-Bootstrap"><a href="#3、使用-Bootstrap" class="headerlink" title="3、使用 Bootstrap"></a>3、使用 Bootstrap</h4><p>下载 jquery.js，bootstrap.css 和 bootstrap.js，放到 public 下对应的目录中。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-2b3edd44ff8c97bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>在 public_file.ejs 中引用，可以使用 include 方法给模板添加公共文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-44cdca8f05c3fa0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>去 <a href="https://v3.bootcss.com/" target="_blank" rel="noopener">Bootstrap官网</a> 查看并使用所需的模板或组件。</p>
+<p>下图是我从 Bootstrap 官网找的一个模板，并放到了 index.ejs 目录下并进行了简单地修改，并将页面公共部分（头尾部分）取出，用 include 方式来复用。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5428a4c9296d1fd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-092658fa904172c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="五、用户注册和登录"><a href="#五、用户注册和登录" class="headerlink" title="五、用户注册和登录"></a>五、用户注册和登录</h3><h4 id="1、访问数据库"><a href="#1、访问数据库" class="headerlink" title="1、访问数据库"></a>1、访问数据库</h4><p>我们选用 MongoDB 作为网站的数据库系统，它是一个开源的 NoSQL 数据库，相比<br>MySQL 那样的关系型数据库，它更为轻巧、灵活，非常适合在数据规模很大、事务性不强的场合下使用。</p>
+<h5 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h5><p>通过 npm 安装 mongodb。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongodb --save</span><br></pre></td></tr></table></figure>
+
+<p>补充：通过 –save 安装，包名和版本号将会出现在 package.json 中。</p>
+<p>接下来在项目主目录中创建 settings.js 文件，这个文件用于保存数据库的连接信息，我们将用到的数据库命名为 NodeJSBlog，数据库服务器在本地，因此 settings.js 文件的内容如下：</p>
+<p>settings.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    cookieSecret: &apos;NodeJSBlogbyvoid&apos;,</span><br><span class="line">    db: &apos;NodeJSBlog&apos;,</span><br><span class="line">    host: &apos;localhost&apos;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中，db 是数据库的名称，host 是数据库的地址，cookieSecret 用于 Cookie 加密与数据库无关，我们留作后用。</p>
+<p>接下来新建 models 目录，并在目录中创建 db.js：</p>
+<p>models/db.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var settings = require(&apos;../settings&apos;),</span><br><span class="line">    Db = require(&apos;mongodb&apos;).Db,</span><br><span class="line">    Connection = require(&apos;mongodb&apos;).Connection,</span><br><span class="line">    Server = require(&apos;mongodb&apos;).Server;</span><br><span class="line">module.exports = new Db(settings.db, new Server(settings.host, 27017, &#123;&#125;), &#123;</span><br><span class="line">    safe: true</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码通过 module.exports 输出了创建的数据库连接，在后面的小节中我们会用到这个模块，由于模块只会被加载一次，以后我们在其他文件中使用时均为这一个实例。</p>
+<h4 id="2、会话支持"><a href="#2、会话支持" class="headerlink" title="2、会话支持"></a>2、会话支持</h4><p>《Node.js开发指南》中对会话支持是这样描述的：</p>
+<p>会话是一种持久的网络协议，用于完成服务器和客户端之间的一些交互行为。会话是一个比连接粒度更大的概念，一次会话可能包含多次连接，每次连接都被认为是会话的一次操作。在网络应用开发中，有必要实现会话以帮助用户交互。例如网上购物的场景，用户浏览了多个页面，购买了一些物品，这些请求在多次连接中完成。许多应用层网络协议都是由会话支持的，如 FTP、Telnet 等，而 HTTP 协议是无状态的，本身不支持会话，因此在没有额外手段的帮助下，前面场景中服务器不知道用户购买了什么。</p>
+<p>为了在无状态的 HTTP 协议之上实现会话，Cookie 诞生了。Cookie 是一些存储在客户端的信息，每次连接的时候由浏览器向服务器递交，服务器也向浏览器发起存储 Cookie 的请求，依靠这样的手段服务器可以识别客户端。我们通常意义上的 HTTP 会话功能就是这样实现的。具体来说，浏览器首次向服务器发起请求时，服务器生成一个唯一标识符并发送给客户端浏览器，浏览器将这个唯一标识符存储在 Cookie 中，以后每次再发起请求，客户端浏览器都会向服务器传送这个唯一标识符，服务器通过这个唯一标识符来识别用户。</p>
+<p>对于开发者来说，我们无须关心浏览器端的存储，需要关注的仅仅是如何通过这个唯一标识符来识别用户。很多服务端脚本语言都有会话功能，如 PHP，把每个唯一标识符存储到文件中。Express 也提供了会话中间件，默认情况下是把用户信息存储在内存中，但我们既然已经有了 MongoDB，不妨把会话信息存储在数据库中，便于持久维护。</p>
+<p>但是如果你的 Express 版本是 4.x，按照书中接下来的内容编写代码，就会出各种问题，下面我来说一下 Express 4.x 中的会话支持。</p>
+<p>在 Express 4.x 中我们需要自己安装 express-session 包，然后添加引用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var session = require(&apos;express-session&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>然后再引用 connect-mongo 包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var MongoStore = require(&apos;connect-mongo&apos;)(session);</span><br></pre></td></tr></table></figure>
+
+<p>最终在 app.js 中新增的内容就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var settings = require(&apos;./settings&apos;);</span><br><span class="line">var session = require(&apos;express-session&apos;);</span><br><span class="line">var MongoStore = require(&apos;connect-mongo&apos;)(session);</span><br><span class="line">app.use(session(&#123;</span><br><span class="line">    secret: settings.cookieSecret,</span><br><span class="line">    store: new MongoStore(&#123;</span><br><span class="line">        db: settings.db,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>但是此时程序会报错：’Connection strategy not found’：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-942c2cd4d5336615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>从网上查找到该问题之后找到了解决办法，打开 package.json 文件，将 connect-mongo 的版本改为 0.8.2，然后执行 npm install 即可解决。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b923537099e493a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4958f0e2f7878f73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果程序没有报错，那么就成功了，你可以使用 mongo.exe 或可视化工具来查看数据库是否新建成功。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-01bdf505c6ba6549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9f244ac331480e01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="3、注册和登录"><a href="#3、注册和登录" class="headerlink" title="3、注册和登录"></a>3、注册和登录</h4><h5 id="3-1、注册"><a href="#3-1、注册" class="headerlink" title="3.1、注册"></a>3.1、注册</h5><p>通过可视化工具或 mongodb 终端新建一个用户表 users。</p>
+<p><strong>注册页面：</strong></p>
+<p>首先添加注册页面的模板 views/reg.ejs，并添加表单结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;bs-example&quot; data-example-id=&quot;basic-forms&quot;&gt;</span><br><span class="line">        &lt;form&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;label for=&quot;username&quot;&gt;用户名&lt;/label&gt;</span><br><span class="line">                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;username&quot; placeholder=&quot;请输入用户名&quot;&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;label for=&quot;password&quot;&gt;密码&lt;/label&gt;</span><br><span class="line">                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;password&quot; placeholder=&quot;请输入密码&quot;&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;label for=&quot;password_repeat&quot;&gt;再次输入密码&lt;/label&gt;</span><br><span class="line">                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;password_repeat&quot; placeholder=&quot;再次输入密码&quot;&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;注册&lt;/button&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后打开 index.js 添加注册页面的路由信息：</p>
+<p>index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.get(&apos;/reg&apos;, function(req, res) &#123;</span><br><span class="line">    res.render(&apos;reg&apos;, &#123;</span><br><span class="line">        title: &apos;用户注册&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后访问 localhost:3000/reg。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a2d9b40881dcbeca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><strong>注册响应：</strong></p>
+<p>在书中使用了 flash，但是最新版本的 Express 已经不支持 flash 了，你需要先通过 npm 安装 connect-flash。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-8edd2dfb04c014b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后在 app.js 中添加如下代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var flash = require(&apos;connect-flash&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>在 routes/index.js 中添加 /reg 的 POST 响应函数：</p>
+<p>routes/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">// 注册响应</span><br><span class="line">var crypto = require(&apos;crypto&apos;);</span><br><span class="line">var User = require(&apos;../models/user.js&apos;);</span><br><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">const DB_CONN_STR=&apos;mongodb://localhost:27017/users&apos;;</span><br><span class="line">router.post(&apos;/reg&apos;, function(req, res) &#123;</span><br><span class="line">    let newUser = &#123;</span><br><span class="line">        username: req.body.username,</span><br><span class="line">        password: req.body.password,</span><br><span class="line">        password_repeat: req.body.password_repeat</span><br><span class="line">    &#125;;</span><br><span class="line">    let addStr = [&#123;</span><br><span class="line">        username: newUser.username,</span><br><span class="line">        password: newUser.password</span><br><span class="line">    &#125;];</span><br><span class="line">    MongoClient.connect(DB_CONN_STR, function(err, db) &#123;</span><br><span class="line">        db.collection(&apos;users&apos;).findOne(&#123;</span><br><span class="line">            username: newUser.username</span><br><span class="line">        &#125;, function(err, result) &#123;</span><br><span class="line">            if (!result) &#123;</span><br><span class="line">                if (newUser.password === newUser.password_repeat) &#123;</span><br><span class="line">                    MongoClient.connect(DB_CONN_STR, function(err, db) &#123;</span><br><span class="line">                        req.session.error = &apos;注册成功，请登录！&apos;;</span><br><span class="line">                        db.collection(&apos;users&apos;).insert(addStr);</span><br><span class="line">                        db.close();</span><br><span class="line">                        return res.redirect(&apos;/login&apos;);</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    req.session.error = &apos;两次密码不一致！&apos;;</span><br><span class="line">                    return res.redirect(&apos;/register&apos;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                req.session.error = &apos;用户名已存在！&apos;;</span><br><span class="line">                return res.redirect(&apos;/register&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>req.body 就是 POST 请求信息解析过后的对象，例如我们要访问用户传递的 password 域的值，只需访问 req.body[‘password’] 即可。</li>
+<li>req.flash 是 Express 提供的一个奇妙的工具，通过它保存的变量只会在用户当前和下一次的请求中被访问，之后会被清除，通过它我们可以很方便地实现页面的通知和错误信息显示功能。</li>
+<li>res.redirect 是重定向功能，通过它会向用户返回一个 303 See Other 状态，通知浏览器转向相应页面。</li>
+<li>crypto 是 Node.js 的一个核心模块，功能是加密并生成各种散列，使用它之前首先要声明 var crypto = require(‘crypto’)，我们代码中使用它计算了密码的散列值。</li>
+<li>User 是我们设计的用户对象，在后面我们会详细介绍，这里先假设它的接口都是可用的，使用前需要通过 var User = require(‘../models/user.js’) 引用。</li>
+<li>User.get 的功能是通过用户名获取已知用户，在这里我们判断用户名是否已经存在，User.save 可以将用户对象的修改写入数据库。</li>
+<li>通过 req.session.user = newUser 向会话对象写入了当前用户的信息，在后面我们会通过它判断用户是否已经登录。</li>
+</ul>
+<p><strong>用户模型</strong></p>
+<p>在前面的代码中，我们直接使用了 User 对象，User 是一个描述数据的对象，即 MVC 架构中的模型，前面我们使用了许多视图和控制器，这是第一次接触到模型。与视图和控制器不同，模型是真正与数据打交道的工具，没有模型，网站就只是一个外壳，不能发挥真实的作用，因此它是框架中最根本的部分。现在就让我们来实现 User 模型吧。</p>
+<p>在 models 目录中创建 user.js 的文件，内容如下:</p>
+<p>models/user.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">var mongodb = require(&apos;./db&apos;);</span><br><span class="line"></span><br><span class="line">function User(user) &#123;</span><br><span class="line">    this.name = user.name;</span><br><span class="line">    this.password = user.password;</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = User;</span><br><span class="line">User.prototype.save = function save(callback) &#123;</span><br><span class="line">    // 存入 Mongodb 的文档</span><br><span class="line">    var user = &#123;</span><br><span class="line">        name: this.name,</span><br><span class="line">        password: this.password,</span><br><span class="line">    &#125;;</span><br><span class="line">    mongodb.open(function(err, db) &#123;</span><br><span class="line">        if (err) &#123;</span><br><span class="line">            return callback(err);</span><br><span class="line">        &#125;</span><br><span class="line">        // 读取 users 集合</span><br><span class="line">        db.collection(&apos;users&apos;, function(err, collection) &#123;</span><br><span class="line">            if (err) &#123;</span><br><span class="line">                mongodb.close();</span><br><span class="line">                return callback(err);</span><br><span class="line">            &#125;</span><br><span class="line">            // 为 name 属性添加索引</span><br><span class="line">            collection.ensureIndex(&apos;name&apos;, &#123;</span><br><span class="line">                unique: true</span><br><span class="line">            &#125;);</span><br><span class="line">            // 写入 user 文档</span><br><span class="line">            collection.insert(user, &#123;</span><br><span class="line">                safe: true</span><br><span class="line">            &#125;, function(err, user) &#123;</span><br><span class="line">                mongodb.close();</span><br><span class="line">                callback(err, user);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">User.get = function get(username, callback) &#123;</span><br><span class="line">    mongodb.open(function(err, db) &#123;</span><br><span class="line">        if (err) &#123;</span><br><span class="line">            return callback(err);</span><br><span class="line">        &#125;</span><br><span class="line">        // 读取 users 集合</span><br><span class="line">        db.collection(&apos;users&apos;, function(err, collection) &#123;</span><br><span class="line">            if (err) &#123;</span><br><span class="line">                mongodb.close();</span><br><span class="line">                return callback(err);</span><br><span class="line">            &#125;</span><br><span class="line">            // 查找 name 属性为 username 的文档</span><br><span class="line">            collection.findOne(&#123;</span><br><span class="line">                name: username</span><br><span class="line">            &#125;, function(err, doc) &#123;</span><br><span class="line">                mongodb.close();</span><br><span class="line">                if (doc) &#123;</span><br><span class="line">                    // 封装文档为 User 对象</span><br><span class="line">                    var user = new User(doc);</span><br><span class="line">                    callback(err, user);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    callback(err, null);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码实现了两个接口，User.prototype.save 和 User.get，前者是对象实例的方法，用于将用户对象的数据保存到数据库中，后者是对象构造函数的方法，用于从数据库中查找指定的用户。</p>
+<p><strong>视图交互</strong></p>
+<p>现在几乎已经万事俱备，只差视图的支持了。为了实现不同登录状态下页面呈现不同内容的功能，我们需要创建动态视图助手，通过它我们才能在视图中访问会话中的用户数据，同时为了显示错误和成功的信息，也要在动态视图助手中增加响应的函数。</p>
+<p>在书中，在 app.js 中添加的视图交互代码是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">app.dynamicHelpers(&#123;</span><br><span class="line">    user: function(req, res) &#123;</span><br><span class="line">        return req.session.user;</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function(req, res) &#123;</span><br><span class="line">        var err = req.flash(&apos;error&apos;);</span><br><span class="line">        if (err.length)</span><br><span class="line">            return err;</span><br><span class="line">        else</span><br><span class="line">            return null;</span><br><span class="line">    &#125;,</span><br><span class="line">    success: function(req, res) &#123;</span><br><span class="line">        var succ = req.flash(&apos;success&apos;);</span><br><span class="line">        if (succ.length)</span><br><span class="line">            return succ;</span><br><span class="line">        else</span><br><span class="line">            return null;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>但是在 Express 4.x 中会报错“app.dynamicHelpers is not a function<br>”，此处应该添加：</p>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.use(flash());</span><br><span class="line">app.use(function(req, res, next) &#123;</span><br><span class="line">    res.locals.user = req.session.user;</span><br><span class="line">    res.locals.post = req.session.post;</span><br><span class="line">    var error = req.flash(&apos;error&apos;);</span><br><span class="line">    res.locals.error = error.length ? error : null;</span><br><span class="line">    var success = req.flash(&apos;success&apos;);</span><br><span class="line">    res.locals.success = success.length ? success : null;</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意，这段代码不要放的太靠后，应该放到路由控制代码之前。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a57830b2b5d2310c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>接下来修改公共导航部分。</p>
+<p>header.ejs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav class=&quot;navbar navbar-inverse&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;navbar-header&quot;&gt;</span><br><span class="line">            &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbar&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;navbar&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;sr-only&quot;&gt;&lt;/span&gt;</span><br><span class="line">                &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span><br><span class="line">                &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span><br><span class="line">                &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span><br><span class="line">            &lt;/button&gt;</span><br><span class="line">            &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;NodeJS Blog&lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;navbar&quot; class=&quot;navbar-collapse collapse&quot;&gt;</span><br><span class="line">            &lt;form class=&quot;navbar-form navbar-right&quot;&gt;</span><br><span class="line">                &lt;% if (!user) &#123; %&gt;</span><br><span class="line">                &lt;a href=&quot;/login&quot; type=&quot;submit&quot; class=&quot;btn btn-success&quot;&gt;登录&lt;/a&gt;</span><br><span class="line">                &lt;a href=&quot;/reg&quot; type=&quot;submit&quot; class=&quot;btn btn-success&quot;&gt;注册&lt;/a&gt;</span><br><span class="line">                &lt;% &#125; else &#123; %&gt;</span><br><span class="line">                &lt;a href=&quot;&quot; type=&quot;submit&quot; class=&quot;btn&quot;&gt;注销&lt;/a&gt;</span><br><span class="line">                &lt;% &#125; %&gt;</span><br><span class="line">            &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后打开注册页，输入用户名、密码，点击注册按钮，发现又遇到坑了…“db.collection is not a function”。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7a2186d364d7271d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>引起这个错误的原因是你通过 npm 安装的 mongodb 的版本和你 Node.js 操作数据的 api 版本不一致，查看了一下 package.json，发现 mongodb 的版本是 3.1.13。</p>
+<p>解决方法，下载低版本 mongodb，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;mongodb&quot;: &quot;^2.2.33&quot;,</span><br></pre></td></tr></table></figure>
+
+<p>npm install 安装。</p>
+<p>未完待续……</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-64c9fff2e2683bb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="期待您的关注！"><a href="#期待您的关注！" class="headerlink" title="期待您的关注！"></a>期待您的关注！</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/jQuery_渐隐式轮播效果插件封装/" rel="next" title="jQuery_渐隐式轮播效果插件封装">
+                <i class="fa fa-chevron-left"></i> jQuery_渐隐式轮播效果插件封装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/02/jQuery_封装插件/" rel="prev" title="jQuery_封装插件">
+                jQuery_封装插件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、快速开始"><span class="nav-text">一、快速开始</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、建立项目"><span class="nav-text">1、建立项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、启动服务器"><span class="nav-text">2、启动服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、项目结构"><span class="nav-text">3、项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#app-js"><span class="nav-text">app.js</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#routes-index-js"><span class="nav-text">routes/index.js</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#views-index-ejs"><span class="nav-text">views/index.ejs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#补充-include"><span class="nav-text">补充 include</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、路由控制"><span class="nav-text">二、路由控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、创建页面路由"><span class="nav-text">1、创建页面路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、路径匹配"><span class="nav-text">2、路径匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、REST-风格的路由规则"><span class="nav-text">3、REST 风格的路由规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、控制权转移"><span class="nav-text">4、控制权转移</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、模板引擎"><span class="nav-text">三、模板引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、使用模板引擎"><span class="nav-text">1、使用模板引擎</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、片段视图"><span class="nav-text">2、片段视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、开始建立博客网站"><span class="nav-text">四、开始建立博客网站</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、功能分析"><span class="nav-text">1、功能分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、路由规划"><span class="nav-text">2、路由规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、使用-Bootstrap"><span class="nav-text">3、使用 Bootstrap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、用户注册和登录"><span class="nav-text">五、用户注册和登录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、访问数据库"><span class="nav-text">1、访问数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连接数据库"><span class="nav-text">连接数据库</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、会话支持"><span class="nav-text">2、会话支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、注册和登录"><span class="nav-text">3、注册和登录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1、注册"><span class="nav-text">3.1、注册</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期待您的关注！"><span class="nav-text">期待您的关注！</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

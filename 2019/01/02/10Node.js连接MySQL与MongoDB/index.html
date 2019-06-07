@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Node.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本篇文章讲解了 Node.js 连接 MySQL 与 MongoDB，并实现基本的增删改查功能。  这里对安装 MySQL 与 MongoDB 等软件工具不做讲解。 一、MySQL1、设计表首先通过可视化工具进行表的设计，然后添加几条测试数据：   2、安装 Node.js 连接 MySQL 的包1npm i mysql -d  3、连接 MySQLMySQL.js 12345678910111">
+<meta name="keywords" content="JavaScript,Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10Node.js连接MySQL与MongoDB">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/10Node.js连接MySQL与MongoDB/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="本篇文章讲解了 Node.js 连接 MySQL 与 MongoDB，并实现基本的增删改查功能。  这里对安装 MySQL 与 MongoDB 等软件工具不做讲解。 一、MySQL1、设计表首先通过可视化工具进行表的设计，然后添加几条测试数据：   2、安装 Node.js 连接 MySQL 的包1npm i mysql -d  3、连接 MySQLMySQL.js 12345678910111">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-56b069f4ee3b12f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7cb5dbe2e4caa659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-aa32d3ae237bbfba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6cf818b8e0365e24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d0db5d55188cacc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-69d1cb5d11ea3da5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f513bd8f11359ff0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-30949f36365dbc62.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5abdd95b80f3f9d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b877ffe44ebe94ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5081621371c7729d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-c236d47539f0906d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4367b34470483ed6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-ca64b64df2f1fc94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-0b19d21e991a0e78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5882dc36c7456157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-0c3121cf68bd7d18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-88ef2b65237155b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-944c3a3c8a93093f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-fb61afb02d597c90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-aab524400e478e3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-36082e742968c87e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a80d6b80bcdca5c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-ddc2f0e5219d118b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-46f8ecb683474ca2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-8c6fccfd8cb5f8f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-c772cbd9db0cb424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f32cddf2f0f02718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-2820df65175db273.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9cb83b6077f5ab44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e80e65a320f7de9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-64c9fff2e2683bb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:05:05.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10Node.js连接MySQL与MongoDB">
+<meta name="twitter:description" content="本篇文章讲解了 Node.js 连接 MySQL 与 MongoDB，并实现基本的增删改查功能。  这里对安装 MySQL 与 MongoDB 等软件工具不做讲解。 一、MySQL1、设计表首先通过可视化工具进行表的设计，然后添加几条测试数据：   2、安装 Node.js 连接 MySQL 的包1npm i mysql -d  3、连接 MySQLMySQL.js 12345678910111">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-56b069f4ee3b12f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/02/10Node.js连接MySQL与MongoDB/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>10Node.js连接MySQL与MongoDB | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/10Node.js连接MySQL与MongoDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10Node.js连接MySQL与MongoDB</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本篇文章讲解了 Node.js 连接 MySQL 与 MongoDB，并实现基本的增删改查功能。</p>
+</blockquote>
+<p>这里对安装 MySQL 与 MongoDB 等软件工具不做讲解。</p>
+<h3 id="一、MySQL"><a href="#一、MySQL" class="headerlink" title="一、MySQL"></a>一、MySQL</h3><h4 id="1、设计表"><a href="#1、设计表" class="headerlink" title="1、设计表"></a>1、设计表</h4><p>首先通过可视化工具进行表的设计，然后添加几条测试数据：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-56b069f4ee3b12f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7cb5dbe2e4caa659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="i"></p>
+<h4 id="2、安装-Node-js-连接-MySQL-的包"><a href="#2、安装-Node-js-连接-MySQL-的包" class="headerlink" title="2、安装 Node.js 连接 MySQL 的包"></a>2、安装 Node.js 连接 MySQL 的包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i mysql -d</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、连接-MySQL"><a href="#3、连接-MySQL" class="headerlink" title="3、连接 MySQL"></a>3、连接 MySQL</h4><p>MySQL.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 引入 mysql 包</span><br><span class="line">const mysql = require(&apos;mysql&apos;);</span><br><span class="line">// mysql 连接信息</span><br><span class="line">let connection = mysql.createConnection(&#123;</span><br><span class="line">    host: &apos;localhost&apos;,</span><br><span class="line">    user: &apos;root&apos;,</span><br><span class="line">    password: &apos;root&apos;,</span><br><span class="line">    database: &apos;test&apos;,</span><br><span class="line">    port: 3306</span><br><span class="line">&#125;);</span><br><span class="line">// 开始链接</span><br><span class="line">connection.connect();</span><br><span class="line"></span><br><span class="line">// 查询 info_test 表</span><br><span class="line">connection.query(&apos;SELECT * FROM info_test&apos;, (error, results, fields) =&gt; &#123;</span><br><span class="line">    if (error) throw error;</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br><span class="line">// 终止连接</span><br><span class="line">connection.end();</span><br></pre></td></tr></table></figure>
+
+<p>执行 node MySQL.js，连接成功界面如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-aa32d3ae237bbfba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>接下来就该实现增删改查的功能了。</p>
+<h4 id="4、数据库操作：增删改查"><a href="#4、数据库操作：增删改查" class="headerlink" title="4、数据库操作：增删改查"></a>4、数据库操作：增删改查</h4><h5 id="4-1、增"><a href="#4-1、增" class="headerlink" title="4.1、增"></a>4.1、增</h5><p>add.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(&apos;mysql&apos;);</span><br><span class="line">let connection = mysql.createConnection(&#123;</span><br><span class="line">    host: &apos;localhost&apos;,</span><br><span class="line">    user: &apos;root&apos;,</span><br><span class="line">    password: &apos;root&apos;,</span><br><span class="line">    database: &apos;test&apos;,</span><br><span class="line">    port: 3306</span><br><span class="line">&#125;);</span><br><span class="line">connection.connect();</span><br><span class="line"></span><br><span class="line">// 设置 SQL 插入语句</span><br><span class="line">let addSql = &apos;INSERT INTO info_test(id,name,age) VALUES(0,?,?)&apos;;</span><br><span class="line">// 插入数据</span><br><span class="line">let addSqlParams = [&apos;zhao&apos;, &apos;18&apos;];</span><br><span class="line">// 链接 SQL 并实施语句</span><br><span class="line">connection.query(addSql, addSqlParams, (error, response) =&gt; &#123;</span><br><span class="line">    if (error) &#123;</span><br><span class="line">        console.log(&quot;新增失败！&quot;);</span><br><span class="line">        console.log(error);</span><br><span class="line">        return;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;新增成功！&quot;);</span><br><span class="line">        console.log(response);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">connection.end();</span><br></pre></td></tr></table></figure>
+
+<p>执行 node add.js</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6cf818b8e0365e24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>刷新 Navicat，会看到新添加了一条数据。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d0db5d55188cacc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h5 id="4-2、删"><a href="#4-2、删" class="headerlink" title="4.2、删"></a>4.2、删</h5><p>delete.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(&apos;mysql&apos;);</span><br><span class="line">let connection = mysql.createConnection(&#123;</span><br><span class="line">    host: &apos;localhost&apos;,</span><br><span class="line">    user: &apos;root&apos;,</span><br><span class="line">    password: &apos;root&apos;,</span><br><span class="line">    database: &apos;test&apos;,</span><br><span class="line">    port: 3306</span><br><span class="line">&#125;);</span><br><span class="line">connection.connect();</span><br><span class="line"></span><br><span class="line">// 设置 SQL 删除语句</span><br><span class="line">let delSql = &apos;DELETE FROM info_test where id=0&apos;;</span><br><span class="line">connection.query(delSql, (error, response) =&gt; &#123;</span><br><span class="line">    if (error) &#123;</span><br><span class="line">        console.log(&quot;删除失败！&quot;);</span><br><span class="line">        console.log(error);</span><br><span class="line">        return;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;删除成功！&quot;);</span><br><span class="line">        console.log(response);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">connection.end();</span><br></pre></td></tr></table></figure>
+
+<p>执行 node delete.js</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-69d1cb5d11ea3da5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>刷新 Navicat，会看到 id 为 0 的那条数据被删除了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f513bd8f11359ff0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h5 id="4-3、改"><a href="#4-3、改" class="headerlink" title="4.3、改"></a>4.3、改</h5><p>update.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(&apos;mysql&apos;);</span><br><span class="line">let connection = mysql.createConnection(&#123;</span><br><span class="line">    host: &apos;localhost&apos;,</span><br><span class="line">    user: &apos;root&apos;,</span><br><span class="line">    password: &apos;root&apos;,</span><br><span class="line">    database: &apos;test&apos;,</span><br><span class="line">    port: 3306</span><br><span class="line">&#125;);</span><br><span class="line">connection.connect();</span><br><span class="line"></span><br><span class="line">// 设置 SQL 修改语句</span><br><span class="line">let updateSql = &apos;UPDATE info_test SET name = ?,age = ? WHERE ID = ?&apos;;</span><br><span class="line">// 要修改的数据</span><br><span class="line">let updateSqlParams = [&apos;Wang&apos;, &apos;18&apos;, 1];</span><br><span class="line">connection.query(updateSql, updateSqlParams, (error, response) =&gt; &#123;</span><br><span class="line">    if (error) &#123;</span><br><span class="line">        console.log(&quot;删除失败！&quot;);</span><br><span class="line">        console.log(error);</span><br><span class="line">        return;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;删除成功！&quot;);</span><br><span class="line">        console.log(response);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">connection.end();</span><br></pre></td></tr></table></figure>
+
+<p>执行 node update.js</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-30949f36365dbc62.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>刷新 Navicat，会看到 id 为 1 的那条数据被修改了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5abdd95b80f3f9d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h5 id="4-4、查"><a href="#4-4、查" class="headerlink" title="4.4、查"></a>4.4、查</h5><p>read.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(&apos;mysql&apos;);</span><br><span class="line">let connection = mysql.createConnection(&#123;</span><br><span class="line">    host: &apos;localhost&apos;,</span><br><span class="line">    user: &apos;root&apos;,</span><br><span class="line">    password: &apos;root&apos;,</span><br><span class="line">    database: &apos;test&apos;,</span><br><span class="line">    port: 3306</span><br><span class="line">&#125;);</span><br><span class="line">connection.connect();</span><br><span class="line"></span><br><span class="line">// 设置 SQL 修改语句</span><br><span class="line">let readSql = &apos;SELECT * FROM info_test&apos;;</span><br><span class="line">connection.query(readSql, (error, response) =&gt; &#123;</span><br><span class="line">    if (error) &#123;</span><br><span class="line">        console.log(&quot;查询失败！&quot;);</span><br><span class="line">        console.log(error);</span><br><span class="line">        return;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&quot;查询成功！&quot;);</span><br><span class="line">        console.log(response);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">connection.end();</span><br></pre></td></tr></table></figure>
+
+<p>执行 node read.js</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b877ffe44ebe94ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="二、MongoDB"><a href="#二、MongoDB" class="headerlink" title="二、MongoDB"></a>二、MongoDB</h3><h4 id="1、安装-mongodb-包"><a href="#1、安装-mongodb-包" class="headerlink" title="1、安装 mongodb 包"></a>1、安装 mongodb 包</h4><p>npm install mongodb –save</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5081621371c7729d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="2、创建数据库"><a href="#2、创建数据库" class="headerlink" title="2、创建数据库"></a>2、创建数据库</h4><p>要在 MongoDB 中创建一个数据库，首先我们需要创建一个 MongoClient 对象，然后配置好指定的 URL 和 端口号。</p>
+<p>如果数据库不存在，MongoDB 将创建数据库并建立连接，例如我们创建一个 test 数据库：</p>
+<p>MongoDB.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line"></span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    console.log(&quot;数据库已创建!&quot;);</span><br><span class="line">    db.close();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-c236d47539f0906d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="3、创建集合"><a href="#3、创建集合" class="headerlink" title="3、创建集合"></a>3、创建集合</h4><p>我们可以使用 createCollection() 方法来创建集合：</p>
+<p>修改 MongoDB.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function (err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    console.log(&apos;数据库已创建&apos;);</span><br><span class="line">    var dbase = db.db(&quot;test&quot;);</span><br><span class="line">    dbase.createCollection(&apos;info_test&apos;, function (err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(&quot;创建集合 info_test!&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4367b34470483ed6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果你有 MongoDB 的可视化工具，例如：Studio 3T，那么你就可以看到刚刚创建的数据库 test 和 集合（表） info_test 了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-ca64b64df2f1fc94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4、数据库操作：增删改查-1"><a href="#4、数据库操作：增删改查-1" class="headerlink" title="4、数据库操作：增删改查"></a>4、数据库操作：增删改查</h4><p>与 MySQL 不同的是 MongoDB 会自动创建数据库和集合，所以使用前我们不需要手动去创建。</p>
+<h4 id="4-1、增-1"><a href="#4-1、增-1" class="headerlink" title="4.1、增"></a>4.1、增</h4><ul>
+<li>插入一条数据：insertOne()；</li>
+<li>插入多条数据：insertMany()。</li>
+</ul>
+<p>以下实例我们连接数据库 test 的 info_test 表，并插入一条数据，使用 insertOne()：</p>
+<p>add.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line"></span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    var user = &#123;</span><br><span class="line">        name: &quot;Liu&quot;,</span><br><span class="line">        age: &quot;24&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).insertOne(user, function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(&quot;数据插入成功！&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-0b19d21e991a0e78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5882dc36c7456157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果没有安装可视化工具，我们也可以打开 MongoDB 的客户端查看数据，如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-0c3121cf68bd7d18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>接下来我们使用 insertMany() 来插入多条数据。</p>
+<p>add.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    var user = [&#123;</span><br><span class="line">        name: &quot;Zhao&quot;,</span><br><span class="line">        age: &quot;25&quot;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: &quot;Sun&quot;,</span><br><span class="line">        age: &quot;18&quot;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: &quot;Du&quot;,</span><br><span class="line">        age: &quot;23&quot;</span><br><span class="line">    &#125;];</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).insertMany(user, function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(&quot;插入&quot; + res.insertedCount + &quot;条数据成功！&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-88ef2b65237155b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-944c3a3c8a93093f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4-2、删-1"><a href="#4-2、删-1" class="headerlink" title="4.2、删"></a>4.2、删</h4><ul>
+<li>删除一条数据：deleteOne()；</li>
+<li>删除多条数据：deleteMany()。</li>
+</ul>
+<p>将 name 为 “Sun” 的数据删除：</p>
+<p>delete.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 查询条件</span><br><span class="line">    var whereStr = &#123;</span><br><span class="line">        &quot;name&quot;: &quot;Sun&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).deleteOne(whereStr, function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(&quot;数据删除成功！&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-fb61afb02d597c90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-aab524400e478e3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>将 age 为 23 的数据都删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 查询条件</span><br><span class="line">    var whereStr = &#123;</span><br><span class="line">        age: &quot;23&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).deleteMany(whereStr, function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(res.result.n + &quot; 条文档被删除&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-36082e742968c87e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a80d6b80bcdca5c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4-3、改-1"><a href="#4-3、改-1" class="headerlink" title="4.3、改"></a>4.3、改</h4><ul>
+<li>修改一条数据：updateOne()；</li>
+<li>修改多条数据：updateMany()。</li>
+</ul>
+<p>将 name 为 Liu 的 age 值改为 18：</p>
+<p>update.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 查询条件</span><br><span class="line">    var whereStr = &#123;</span><br><span class="line">        &quot;name&quot;: &quot;Liu&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    // 修改为：</span><br><span class="line">    var updateStr = &#123;</span><br><span class="line">        $set: &#123;</span><br><span class="line">            &quot;age&quot;: &quot;18&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).updateOne(whereStr, updateStr, function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(&quot;数据修改成功！&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-ddc2f0e5219d118b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>修改多条数据，将 age 为 18 的数据 name 值改为 Wang：</p>
+<p>update.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 查询条件</span><br><span class="line">    var whereStr = &#123;</span><br><span class="line">        &quot;age&quot;: &quot;18&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    // 修改为：</span><br><span class="line">    var updateStr = &#123;</span><br><span class="line">        $set: &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Wang&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).updateMany(whereStr, updateStr, function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(res.result.nModified + &quot;条数据修改成功！&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-46f8ecb683474ca2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4-4、查-1"><a href="#4-4、查-1" class="headerlink" title="4.4、查"></a>4.4、查</h4><p>可以使用 find() 来查找数据, find() 可以返回匹配条件的所有数据，如果未指定条件，find() 返回集合中的所有数据。</p>
+<p>read.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 查询所有数据</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).find(&#123;&#125;).toArray(function(err, result) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(result);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-8c6fccfd8cb5f8f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>带条件查询，查询所有 age 为 18 的数据：</p>
+<p>update.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 查询条件</span><br><span class="line">    var whereStr = &#123;</span><br><span class="line">        &quot;age&quot;: &quot;18&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).find(whereStr).toArray(function(err, result) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(result);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-c772cbd9db0cb424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4-5、排序"><a href="#4-5、排序" class="headerlink" title="4.5、排序"></a>4.5、排序</h4><p>使用 sort() 方法，该方法接受一个参数，规定是升序(1)还是降序(-1)。</p>
+<p>例如按照 age 值从小到大排序：</p>
+<p>sort.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    // 排序条件</span><br><span class="line">    var mySort = &#123;</span><br><span class="line">        &quot;age&quot;: 1</span><br><span class="line">    &#125;</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).find().sort(mySort).toArray(function(err, result) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(result);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f32cddf2f0f02718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4-6、查询分页"><a href="#4-6、查询分页" class="headerlink" title="4.6、查询分页"></a>4.6、查询分页</h4><p>如果要设置指定的返回条数可以使用 limit() 方法，该方法只接受一个参数，指定了返回的条数。</p>
+<p>先来看一下 info_test 表中数据情况：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-2820df65175db273.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>limit.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).find().limit(2).toArray(function(err, result) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(result);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9cb83b6077f5ab44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果要指定跳过的条数，可以使用 skip() 方法。</p>
+<p>skip.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/test&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).find().skip(2).limit(2).toArray(function(err, result) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(result);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e80e65a320f7de9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4-7、连接操作"><a href="#4-7、连接操作" class="headerlink" title="4.7、连接操作"></a>4.7、连接操作</h4><p>mongoDB 不是一个关系型数据库，但我们可以使用 $lookup 来实现左连接。</p>
+<p>例如我们有两个集合数据分别为：</p>
+<p>集合1：orders</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123; _id: 1, product_id: 154, status: 1 &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>集合2：products</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123; _id: 154, name: &apos;笔记本电脑&apos; &#125;,</span><br><span class="line">  &#123; _id: 155, name: &apos;耳机&apos; &#125;,</span><br><span class="line">  &#123; _id: 156, name: &apos;台式电脑&apos; &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>$lookup 实现左连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/&quot;;</span><br><span class="line"></span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    dbo.collection(&apos;orders&apos;).aggregate([&#123;</span><br><span class="line">        $lookup: &#123;</span><br><span class="line">            from: &apos;products&apos;, // 右集合</span><br><span class="line">            localField: &apos;product_id&apos;, // 左集合 join 字段</span><br><span class="line">            foreignField: &apos;_id&apos;, // 右集合 join 字段</span><br><span class="line">            as: &apos;orderdetails&apos; // 新生成字段（类型array）</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;]).toArray(function(err, res) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        console.log(JSON.stringify(res));</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-8、删除集合"><a href="#4-8、删除集合" class="headerlink" title="4.8、删除集合"></a>4.8、删除集合</h4><p>我们可以使用 drop() 方法来删除集合：</p>
+<p>drop.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var MongoClient = require(&apos;mongodb&apos;).MongoClient;</span><br><span class="line">var url = &quot;mongodb://localhost:27017/&quot;;</span><br><span class="line">MongoClient.connect(url, function(err, db) &#123;</span><br><span class="line">    if (err) throw err;</span><br><span class="line">    var dbo = db.db(&quot;test&quot;);</span><br><span class="line">    dbo.collection(&quot;info_test&quot;).drop(function(err, delOK) &#123;</span><br><span class="line">        if (err) throw err;</span><br><span class="line">        if (delOK) console.log(&quot;集合删除成功！&quot;);</span><br><span class="line">        db.close();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-64c9fff2e2683bb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="期待您的关注！"><a href="#期待您的关注！" class="headerlink" title="期待您的关注！"></a>期待您的关注！</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/11Node.jsExpress框架/" rel="next" title="11Node.jsExpress框架">
+                <i class="fa fa-chevron-left"></i> 11Node.jsExpress框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/18/JavaScript_01从原型到原型链/" rel="prev" title="JavaScript_01从原型到原型链">
+                JavaScript_01从原型到原型链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、MySQL"><span class="nav-text">一、MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、设计表"><span class="nav-text">1、设计表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、安装-Node-js-连接-MySQL-的包"><span class="nav-text">2、安装 Node.js 连接 MySQL 的包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、连接-MySQL"><span class="nav-text">3、连接 MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、数据库操作：增删改查"><span class="nav-text">4、数据库操作：增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1、增"><span class="nav-text">4.1、增</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2、删"><span class="nav-text">4.2、删</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3、改"><span class="nav-text">4.3、改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4、查"><span class="nav-text">4.4、查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MongoDB"><span class="nav-text">二、MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装-mongodb-包"><span class="nav-text">1、安装 mongodb 包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、创建数据库"><span class="nav-text">2、创建数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、创建集合"><span class="nav-text">3、创建集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、数据库操作：增删改查-1"><span class="nav-text">4、数据库操作：增删改查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1、增-1"><span class="nav-text">4.1、增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2、删-1"><span class="nav-text">4.2、删</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3、改-1"><span class="nav-text">4.3、改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4、查-1"><span class="nav-text">4.4、查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5、排序"><span class="nav-text">4.5、排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6、查询分页"><span class="nav-text">4.6、查询分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7、连接操作"><span class="nav-text">4.7、连接操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-8、删除集合"><span class="nav-text">4.8、删除集合</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期待您的关注！"><span class="nav-text">期待您的关注！</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

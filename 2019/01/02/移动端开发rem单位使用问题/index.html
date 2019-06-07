@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="移动端,rem,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言  PC 端页面开发与移动端页面开发： PC 端页面开发需要考虑更多的兼容性问题，ie、谷歌、火狐等浏览器各自内核不同（ie 的天下）。   移动端页面开发基本不用考虑这种浏览器间的兼容问题，手机上的浏览器绝大部分是webkit内核的（webkit 的天下），但是需要考虑屏幕分辨率。   原生开发与移动端开发： 原生 app，在浏览体验上优于网页，需要依赖具体设备，一旦更换设备，需要重新下载">
+<meta name="keywords" content="移动端,rem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端开发rem单位使用问题">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/移动端开发rem单位使用问题/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="前言  PC 端页面开发与移动端页面开发： PC 端页面开发需要考虑更多的兼容性问题，ie、谷歌、火狐等浏览器各自内核不同（ie 的天下）。   移动端页面开发基本不用考虑这种浏览器间的兼容问题，手机上的浏览器绝大部分是webkit内核的（webkit 的天下），但是需要考虑屏幕分辨率。   原生开发与移动端开发： 原生 app，在浏览体验上优于网页，需要依赖具体设备，一旦更换设备，需要重新下载">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-c67f8de46e0c564f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6c08ff209e1f1a95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9f5d037a93345eea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-64c9fff2e2683bb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:12:35.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端开发rem单位使用问题">
+<meta name="twitter:description" content="前言  PC 端页面开发与移动端页面开发： PC 端页面开发需要考虑更多的兼容性问题，ie、谷歌、火狐等浏览器各自内核不同（ie 的天下）。   移动端页面开发基本不用考虑这种浏览器间的兼容问题，手机上的浏览器绝大部分是webkit内核的（webkit 的天下），但是需要考虑屏幕分辨率。   原生开发与移动端开发： 原生 app，在浏览体验上优于网页，需要依赖具体设备，一旦更换设备，需要重新下载">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-c67f8de46e0c564f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/02/移动端开发rem单位使用问题/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>移动端开发rem单位使用问题 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/移动端开发rem单位使用问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端开发rem单位使用问题</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>前言</p>
+</blockquote>
+<p><strong>PC 端页面开发与移动端页面开发：</strong></p>
+<p>PC 端页面开发需要考虑更多的兼容性问题，ie、谷歌、火狐等浏览器各自内核不同（ie 的天下）。  </p>
+<p>移动端页面开发基本不用考虑这种浏览器间的兼容问题，手机上的浏览器绝大部分是webkit内核的（webkit 的天下），但是需要考虑屏幕分辨率。  </p>
+<p><strong>原生开发与移动端开发：</strong></p>
+<p>原生 app，在浏览体验上优于网页，需要依赖具体设备，一旦更换设备，需要重新下载才能继续使用。  </p>
+<p>移动端开发，不需依赖具体设备。</p>
+<p><a href="https://github.com/he30265/rem" target="_blank" rel="noopener">GitHub地址</a></p>
+<h3 id="一、常用单位"><a href="#一、常用单位" class="headerlink" title="一、常用单位"></a>一、常用单位</h3><h4 id="px："><a href="#px：" class="headerlink" title="px："></a>px：</h4><p>相对长度单位,像素 px 是相对于显示器屏幕分辨率而言的。</p>
+<h4 id="："><a href="#：" class="headerlink" title="%："></a>%：</h4><p>根据父元素的倍数来计算。</p>
+<h4 id="em："><a href="#em：" class="headerlink" title="em："></a>em：</h4><p>根据父元素的 font-size 值来计算，如果没有给父元素设置 font-size ,就使用根元素的 font-size。</p>
+<p>例：当父元素的 font-size 为 20px 时，子元素:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">font-size: 1em =&gt; 20px</span><br><span class="line">font-size: 2em =&gt; 40px</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h4 id="rem："><a href="#rem：" class="headerlink" title="rem："></a>rem：</h4><p>根据根元素的 font-size 值来计算。</p>
+<p>不同于 em，父元素的 font-size 不管设置为多少，都不会影响到 rem 的值，只有根元素(html)能影响他的值。</p>
+<p>若根元素(html)没有设置 font-size，则值的计算方式与 em 相同。</p>
+<p>例：当根元素(html)的 font-size 为 10px 时，子元素:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">font-size: 1rem =&gt; 10px</span><br><span class="line">font-size: 2rem =&gt; 20px</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>再来一个例子：</p>
+<p>为了方便计算，我们改一下浏览器默认 font-size，浏览器默认 font-size 是 16px，16px = 100%，所以 1px = 6.25%，10px = 62.5%。</p>
+<p>此时我们将 html 元素也就是浏览器默认 font-size 设置为 62.5%，也就是 10px，如果用 rem 为单位，rem 值 = 元素 px  / 10。</p>
+<p>例如宽高都为 100px 的 div，使用 rem 为单位宽高便是 10rem。  </p>
+<h3 id="二、移动端适配方案"><a href="#二、移动端适配方案" class="headerlink" title="二、移动端适配方案"></a>二、移动端适配方案</h3><ul>
+<li>媒体查询。</li>
+<li>js 动态设置 html 的 font-size（rem 为单位）。</li>
+<li>淘宝提供的解决方案 flexible.js（rem 为单位）。</li>
+</ul>
+<h4 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h4><p>媒体查询。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>方法简单，成本低，移动和 PC 维护同一套代码。</li>
+<li>只用修改 css 文件。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>代码量大，维护不方便。</li>
+<li>为兼顾大屏或高清设备，会造成其他资源浪费，特别是加载图片资源。</li>
+<li>为了兼顾移动端和 PC 端各自响应式的展示效果，难免会损失各自特有的交互方式。</li>
+</ul>
+<h4 id="方式二："><a href="#方式二：" class="headerlink" title="方式二："></a>方式二：</h4><p>js 动态设置 html 的 font-size（rem 为单位）。</p>
+<p>1、设置 meta viewport 属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=240, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2、添加动态设置 html 的 font-size 的 js：</p>
+<p>rem.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(function(doc, win) &#123;</span><br><span class="line">  var docEl = doc.documentElement,</span><br><span class="line">    resizeEvt = &apos;orientationchange&apos; in window ? &apos;orientationchange&apos; : &apos;resize&apos;,</span><br><span class="line">    recalc = function() &#123;</span><br><span class="line">      var clientWidth = docEl.clientWidth;</span><br><span class="line">      if (!clientWidth) return;</span><br><span class="line">      if (clientWidth &gt;= 640) &#123;</span><br><span class="line">        docEl.style.fontSize = &apos;100px&apos;;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        docEl.style.fontSize = 100 * (clientWidth / 640) + &apos;px&apos;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  if (!doc.addEventListener) return;</span><br><span class="line">  win.addEventListener(resizeEvt, recalc, false);</span><br><span class="line">  doc.addEventListener(&apos;DOMContentLoaded&apos;, recalc, false);</span><br><span class="line">&#125;)(document, window);</span><br></pre></td></tr></table></figure>
+
+<p>在以下两处设置设计稿的宽度：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-c67f8de46e0c564f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>使用说明：例如设计稿的宽度是 640px，如果一个元素的实际宽高都为 200px，那么如果使用 rem 为单位，宽高便都为 2rem。</p>
+<p>rem = px / 100。</p>
+<p>参考实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=240, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;title&gt;rem 使用&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;rem.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">        &lt;p&gt;在 640px 的设计稿下：&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;width: 200px =&gt; 2rem&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;height: 200px =&gt; 2rem&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;font-size: 14px =&gt; 0.14rem&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.box &#123; font-size: .14rem; width: 2rem; height: 2rem; background-color: #cacaca; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式三："><a href="#方式三：" class="headerlink" title="方式三："></a>方式三：</h4><p>淘宝提供的解决方案 flexible.js，这个解决方案只解决苹果设备上的 dpr 为2和3的情况，不考虑安卓设备也不考 pad。</p>
+<p>1、设置 meta 标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta content=&quot;yes&quot; name=&quot;apple-mobile-web-app-capable&quot; /&gt;</span><br><span class="line">&lt;meta content=&quot;yes&quot; name=&quot;apple-touch-fullscreen&quot; /&gt;</span><br><span class="line">&lt;meta content=&quot;telephone=no,email=no&quot; name=&quot;format-detection&quot; /&gt;</span><br><span class="line">&lt;meta content=&quot;maximum-dpr=2&quot; name=&quot;flexible&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2、引入 flexible.js 文件。</p>
+<p><strong>计算方法:</strong></p>
+<p>元素的 rem 值 = 元素在设计稿中的 px 值 / （设计稿宽 / 10）。</p>
+<p>例：一个元素的宽高为 100px ，该元素宽高的 rem 值  = 100 / （ 640 / 10）= 1.5625 rem。</p>
+<p>这样的计算方式会比较浪费时间，如果使用 flexible.js 方式，我建议使用 sublime 插件：CSSREM（在我的文章 <a href="https://www.jianshu.com/p/eb6fbae40f1f" target="_blank" rel="noopener">代码编辑器Sublime_Text3的使用</a> 中有 sublime 插件安装方法），把 px 转换为 rem，或使用其他方式转换。</p>
+<p>CSSREM 插件安装成功后，依次打开 Preferences → Package Settings → cssrem → Settings-Default 去设置设计稿的宽。</p>
+<ul>
+<li>px_to_rem ：px 转 rem 的单位比例，默认为40，如果是640的设计稿，设置为64。</li>
+<li>max_rem_fraction_length：px 转 rem 的小数部分的最大长度，默认为6。</li>
+</ul>
+<p>在 .css 文件中（该插件仅在 .css 文件中生效），编写 px 值后会自动转换为 rem 的值。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6c08ff209e1f1a95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>参考实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta content=&quot;yes&quot; name=&quot;apple-mobile-web-app-capable&quot; /&gt;</span><br><span class="line">    &lt;meta content=&quot;yes&quot; name=&quot;apple-touch-fullscreen&quot; /&gt;</span><br><span class="line">    &lt;meta content=&quot;telephone=no,email=no&quot; name=&quot;format-detection&quot; /&gt;</span><br><span class="line">    &lt;meta content=&quot;maximum-dpr=2&quot; name=&quot;flexible&quot; /&gt;</span><br><span class="line">    &lt;title&gt;flexible 使用说明&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;flexible.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">    &lt;p&gt;在 640px 的设计稿下：&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;width: 200px =&gt; 3.125rem&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;height: 200px =&gt; 3.125rem&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;font-size: 14px =&gt; .21875rem&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.box &#123; font-size: .21875rem; width: 3.125rem; height: 3.125rem; background-color: #cacaca; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h3><p>关于 dpr(设备像素比)。</p>
+<p>dpr(设备像素比) = 物理像素 / 设备独立像素。</p>
+<p>在不同的屏幕上（普通屏幕 VS retina 屏幕），css 像素所呈现的大小（物理尺寸）是一致的，不同的是1个 css 像素所对应的物理像素个数是不一致的。</p>
+<p>在普通屏幕下，1个 css 像素 对应 1个物理像素（1:1），在retina 屏幕下，1个 css 像素对应 4个物理像素（1:4）。</p>
+<p>计算方式是在水平或垂直方向上，一个物理像素中可以放两个 css 像素，此时 dpr = 2 / 1 = 2。  </p>
+<p>例：在一个 dpr = 2 的设备中，如果一张图片的实际宽高都是 200px，在浏览器中设置宽高 200px 时，在手机中就会显示模糊，因为在 dpr = 2 的设备下，图片的宽高被扩展成了 400px，但是如果 css 把宽高设置为 100px， 在设备下宽高就会扩展为 200px,此时就为原图大小了。</p>
+<p>这就是为什么设计师做移动端时会出两倍宽度的设计稿，比如 320 的分辨率会出 640 的设计稿。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9f5d037a93345eea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-64c9fff2e2683bb1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="期待您的关注！"><a href="#期待您的关注！" class="headerlink" title="期待您的关注！"></a>期待您的关注！</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/移动端/" rel="tag"># 移动端</a>
+          
+            <a href="/tags/rem/" rel="tag"># rem</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/jQuery_二级三级导航下拉效果/" rel="next" title="jQuery_二级三级导航下拉效果">
+                <i class="fa fa-chevron-left"></i> jQuery_二级三级导航下拉效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/02/09Node.jsGET与POST请求/" rel="prev" title="09Node.jsGET与POST请求">
+                09Node.jsGET与POST请求 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、常用单位"><span class="nav-text">一、常用单位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#px："><span class="nav-text">px：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#："><span class="nav-text">%：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#em："><span class="nav-text">em：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rem："><span class="nav-text">rem：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、移动端适配方案"><span class="nav-text">二、移动端适配方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一："><span class="nav-text">方式一：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二："><span class="nav-text">方式二：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式三："><span class="nav-text">方式三：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、补充"><span class="nav-text">三、补充</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#期待您的关注！"><span class="nav-text">期待您的关注！</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
