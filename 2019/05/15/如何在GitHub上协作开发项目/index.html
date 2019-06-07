@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="GitHub,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、注册 GitHub 账户进入GitHub 注册页面，输入用户名，邮箱和密码，根据提示一步一步进行注册，最后还需要登录注册的邮箱验证电子邮件地址。  邮箱验证成功，页面显示如下：  点击“Start a project”创建一个项目，在“Repository name” 中输入仓库名字，可以叫做“用户名.github.io”，之后就可以通过这个名字直接访问该仓库下的代码了，可以将它作为你的个人网">
+<meta name="keywords" content="GitHub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在GitHub上协作开发项目">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/如何在GitHub上协作开发项目/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、注册 GitHub 账户进入GitHub 注册页面，输入用户名，邮箱和密码，根据提示一步一步进行注册，最后还需要登录注册的邮箱验证电子邮件地址。  邮箱验证成功，页面显示如下：  点击“Start a project”创建一个项目，在“Repository name” 中输入仓库名字，可以叫做“用户名.github.io”，之后就可以通过这个名字直接访问该仓库下的代码了，可以将它作为你的个人网">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f158e80c559f856c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e32c761e27ad2972.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6caa5c3bae6ba37c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-37964ea6a50966a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-cc9e7afbf65d14b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e730b3a8070be7f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-436ed268eb1ab452.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-3362a375c3dd2202.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d623efc28b542f5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-ac3735cc7f14c859.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-c513d4c776c71467.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-76cbe18669aa4049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-85381b554b0a137f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-30a050061768a087.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a3e0ef51bd1a1116.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-35b00d6f878bf4d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-af09c17b3f8ec453.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a20a62621e1e3974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-80b8a0d1690678d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9d8b3470387e43ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6db116600b0640fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4e8c50bd30caa0e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-06T09:24:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在GitHub上协作开发项目">
+<meta name="twitter:description" content="一、注册 GitHub 账户进入GitHub 注册页面，输入用户名，邮箱和密码，根据提示一步一步进行注册，最后还需要登录注册的邮箱验证电子邮件地址。  邮箱验证成功，页面显示如下：  点击“Start a project”创建一个项目，在“Repository name” 中输入仓库名字，可以叫做“用户名.github.io”，之后就可以通过这个名字直接访问该仓库下的代码了，可以将它作为你的个人网">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-f158e80c559f856c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/如何在GitHub上协作开发项目/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>如何在GitHub上协作开发项目 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/如何在GitHub上协作开发项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何在GitHub上协作开发项目</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T00:00:00+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、注册-GitHub-账户"><a href="#一、注册-GitHub-账户" class="headerlink" title="一、注册 GitHub 账户"></a>一、注册 GitHub 账户</h3><p>进入<a href="https://github.com/join?source=login" target="_blank" rel="noopener">GitHub 注册页面</a>，输入用户名，邮箱和密码，根据提示一步一步进行注册，最后还需要登录注册的邮箱验证电子邮件地址。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f158e80c559f856c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>邮箱验证成功，页面显示如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e32c761e27ad2972.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>点击“Start a project”创建一个项目，在“Repository name” 中输入仓库名字，可以叫做“用户名.github.io”，之后就可以通过这个名字直接访问该仓库下的代码了，可以将它作为你的个人网站。</p>
+<p>然后点击“Create repository”创建仓库，根据提示将本地的代码上传到仓库中。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6caa5c3bae6ba37c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>本地首先需要新建一个目录，名称和仓库名一致，例如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-37964ea6a50966a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后在目录中添加一些文件，可以添加一个 index.html，然后在里边添加一些内容</p>
+<p>在执行 GitHub 给出的命令执行前，先安装一下 git。</p>
+<h3 id="二、-使用-Git"><a href="#二、-使用-Git" class="headerlink" title="二、 使用 Git"></a>二、 使用 Git</h3><h4 id="1、安装-git"><a href="#1、安装-git" class="headerlink" title="1、安装 git"></a>1、安装 git</h4><p>首先去<a href="https://git-scm.com/" target="_blank" rel="noopener">git 官网</a>下载并安装 git，安装步骤略过。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-cc9e7afbf65d14b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>鼠标右键如上图，表示安装成功，然后点击 “Git Bash Here”，打开命令窗口。</p>
+<h4 id="2、在-GitHub-上添加-SSH-key"><a href="#2、在-GitHub-上添加-SSH-key" class="headerlink" title="2、在 GitHub 上添加 SSH key"></a>2、在 GitHub 上添加 SSH key</h4><p>首先需要检查你电脑是否已经有 SSH key，在命令窗口执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e730b3a8070be7f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>上图表示该电脑中并没有 SSH key（如果有，直接跳到第三步），接下来在这台电脑上添加一下 SSH key。执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>-t 指定密钥类型，默认是 rsa ，可以省略。<br>-C 设置注释文字，比如邮箱。<br>-f 指定密钥文件存储文件名。</p>
+<p>上代码省略了 -f 参数，因此，运行上面那条命令后会让你输入一个文件名，用于保存刚才生成的 SSH key 代码，可以不输文件名，直接回车，接着又会提示你输入两次密码（该密码是你 push 文件的时候要输入的密码，而不是 GitHub 管理者的密码），可以不输（push 的时候也就不用输入密码了），一路回车，如果出现下图内容，表示生成秘钥成功。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-436ed268eb1ab452.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-3362a375c3dd2202.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>补充：如果刚才设置了密码，怎么清除呢？，执行下边命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -p</span><br></pre></td></tr></table></figure>
+
+<p>先会提示你选择需要修改的私钥，回车就可以，然后让你输入就密码，输入后，会提示你输入新密码，直接回车不输，提示确认新密码，再次回车，此时密码就被清除掉了，以后 push 的时候就不需要输入密码了。</p>
+<h4 id="3、添加你的-SSH-key-到-GitHub-上面去"><a href="#3、添加你的-SSH-key-到-GitHub-上面去" class="headerlink" title="3、添加你的 SSH key 到 GitHub 上面去"></a>3、添加你的 SSH key 到 GitHub 上面去</h4><p>用编辑器打开 id_rsa.pub，复制里边的内容，然后打开 GitHub，登录你的账号，打开设置（右上角 Settings），点击右侧 SSH，然后点击“New SSH key”，添加刚复制的内容。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d623efc28b542f5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>下图表示添加成功：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-ac3735cc7f14c859.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="4、测试一下该-SSH-key"><a href="#4、测试一下该-SSH-key" class="headerlink" title="4、测试一下该 SSH key"></a>4、测试一下该 SSH key</h4><p>执行下面命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>然后输入 yes 回车，如果没有问题，你上面设置了密码，下一步就会让你输入密码，没有设置密码，就直接会显示出你的 GitHub 用户名，下图表示添加成功：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-c513d4c776c71467.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="三、上传项目"><a href="#三、上传项目" class="headerlink" title="三、上传项目"></a>三、上传项目</h3><p>在本地的项目目录下，执行 GitHub 仓库里给出的命令，第一次上传可能会需要你添加一下 GitHub 用户名和邮箱，然后需要输入用户名和密码，下图表示上传成功。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-76cbe18669aa4049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>打开 GitHub 中该仓库，发现只有一个 README 文件，这是因为上边通过 add 添加文件时只填了 README 文件，我们之后每次更新了项目，可以通过下面代码来上传：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;update&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>发现一个问题，我在生成 SSH key 的时候并没有设置密码，为什么 push 的时候还需要用户名密码？</p>
+<p>因为用的是 https 而不是 ssh，更新 origin 为 ssh 格式。HTTPS的格式为：<a href="https://github.com/用户名/仓库名.git，SSH的格式为：git@github.com:用户名/仓库名.git。" target="_blank" rel="noopener">https://github.com/用户名/仓库名.git，SSH的格式为：git@github.com:用户名/仓库名.git。</a></p>
+<p>设置一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote remove origin</span><br><span class="line">git remote add origin git@github.com:用户名/仓库名.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-85381b554b0a137f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此时，打开该仓库的 Settings，有一个 GitHub Pages 选项，通过这个地址，可以直接访问该项目的静态文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-30a050061768a087.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="四、在-GitHub-上协作开发项目"><a href="#四、在-GitHub-上协作开发项目" class="headerlink" title="四、在 GitHub 上协作开发项目"></a>四、在 GitHub 上协作开发项目</h3><h4 id="1、添加团队成员"><a href="#1、添加团队成员" class="headerlink" title="1、添加团队成员"></a>1、添加团队成员</h4><p>上面讲解了如何上传自己的项目到个人的 GitHub，当团队协作开发一个项目，如何运用 git 来进行版本控制呢？</p>
+<p>接下来还是用 liuzhenghe30265.github.io 项目来看一下如何协作开发。</p>
+<p>GitHub 打开该仓库，在 Settings → Collaborators 中添加一个团队成员，输入该成员的 GitHub 账户，例如我添加自己另一个 GitHub 账号 “he30265”。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a3e0ef51bd1a1116.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后登陆该成员账号绑定的邮箱，去同意合作。打开邮件，点击“View invitation”。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-35b00d6f878bf4d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此时打开 Settings → Collaborators 可以看到 he30265 这个成员添加成功了。 </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-af09c17b3f8ec453.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="2、协作成员修改项目"><a href="#2、协作成员修改项目" class="headerlink" title="2、协作成员修改项目"></a>2、协作成员修改项目</h4><p>在 he30265 的 PC 上，将这个项目 clone 下来：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a20a62621e1e3974.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后修改一下项目，例如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-80b8a0d1690678d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后通过命令将代码上传：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;update&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9d8b3470387e43ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此时代开这个项目的仓库，就可以看到 he30265 这个用户的更新信息了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6db116600b0640fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="2、本地项目更新"><a href="#2、本地项目更新" class="headerlink" title="2、本地项目更新"></a>2、本地项目更新</h4><p>回到 liuzhenghe30265.github.io 仓库的账户上，因为有成员修改了项目，所以先通过 git pull 将本地的代码更新一下，然后在进行项目的修改。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4e8c50bd30caa0e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/Ajax/" rel="next" title="Ajax">
+                <i class="fa fa-chevron-left"></i> Ajax
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/05/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、注册-GitHub-账户"><span class="nav-text">一、注册 GitHub 账户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-使用-Git"><span class="nav-text">二、 使用 Git</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装-git"><span class="nav-text">1、安装 git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、在-GitHub-上添加-SSH-key"><span class="nav-text">2、在 GitHub 上添加 SSH key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、添加你的-SSH-key-到-GitHub-上面去"><span class="nav-text">3、添加你的 SSH key 到 GitHub 上面去</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、测试一下该-SSH-key"><span class="nav-text">4、测试一下该 SSH key</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、上传项目"><span class="nav-text">三、上传项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、在-GitHub-上协作开发项目"><span class="nav-text">四、在 GitHub 上协作开发项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、添加团队成员"><span class="nav-text">1、添加团队成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、协作成员修改项目"><span class="nav-text">2、协作成员修改项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、本地项目更新"><span class="nav-text">2、本地项目更新</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

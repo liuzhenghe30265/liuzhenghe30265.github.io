@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="GitHub,Hexo,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本篇文章详细介绍了如何使用 Hexo 在 GitHub 上搭建个人博客网站。  文章中：  “hexo 目录” 指的是你安装 hexo 的主目录，例：  一、安装 Node.js去 nodejs官网下载程序。 安装步骤略过…   安装成功后打开 cmd,成功界面如下：  二、安装 Git去 Git官网下载程序。 安装步骤略过… 鼠标右键，成功界面如下：  三、注册 GitHub 账户，新建项目G">
+<meta name="keywords" content="GitHub,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo在GitHub上搭建个人博客网站">
+<meta property="og:url" content="http://yoursite.com/2018/04/06/使用Hexo在GitHub上搭建个人博客网站/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="本篇文章详细介绍了如何使用 Hexo 在 GitHub 上搭建个人博客网站。  文章中：  “hexo 目录” 指的是你安装 hexo 的主目录，例：  一、安装 Node.js去 nodejs官网下载程序。 安装步骤略过…   安装成功后打开 cmd,成功界面如下：  二、安装 Git去 Git官网下载程序。 安装步骤略过… 鼠标右键，成功界面如下：  三、注册 GitHub 账户，新建项目G">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-2a1d96f38ca65f3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-35469ade0378b7fa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-ac80ba2a19f0e068.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-e969e014e4aa7a74.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-8c7e003fe195627b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-360e363ec123a10e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-172a6015281f50d0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-25e90b3d2ff0f3fa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d206d5a2b6cca03a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4e0a8192229c8619.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-75466c62a033935a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-bb62550b721942f7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4d6bd9b61b6b4bf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e17305f6478bb271.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9ed2c8b60e27835c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-2e5b2f9a32c2b7f3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-df71e87fae561ca0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5ccbafa15b2c3803.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-30d7a03cbc8e04b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-634d79a4ecf54274.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-0fada9551e890ca5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-82495445f74e9d9c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7ff78a0ba8fce742.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f9e4b949519e9cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-35eb99d3108bfb3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-304b53dcec8c0f93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5ff671ab6dbb18b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-06T09:24:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Hexo在GitHub上搭建个人博客网站">
+<meta name="twitter:description" content="本篇文章详细介绍了如何使用 Hexo 在 GitHub 上搭建个人博客网站。  文章中：  “hexo 目录” 指的是你安装 hexo 的主目录，例：  一、安装 Node.js去 nodejs官网下载程序。 安装步骤略过…   安装成功后打开 cmd,成功界面如下：  二、安装 Git去 Git官网下载程序。 安装步骤略过… 鼠标右键，成功界面如下：  三、注册 GitHub 账户，新建项目G">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-2a1d96f38ca65f3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/06/使用Hexo在GitHub上搭建个人博客网站/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>使用Hexo在GitHub上搭建个人博客网站 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/06/使用Hexo在GitHub上搭建个人博客网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Hexo在GitHub上搭建个人博客网站</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-06T00:00:00+08:00">
+                2018-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本篇文章详细介绍了如何使用 Hexo 在 GitHub 上搭建个人博客网站。</p>
+</blockquote>
+<p>文章中： </p>
+<p>“hexo 目录” 指的是你安装 hexo 的主目录，例：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-2a1d96f38ca65f3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="一、安装-Node-js"><a href="#一、安装-Node-js" class="headerlink" title="一、安装 Node.js"></a>一、安装 Node.js</h3><p>去 <a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">nodejs官网</a>下载程序。</p>
+<p>安装步骤略过…  </p>
+<p>安装成功后打开 cmd,成功界面如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-35469ade0378b7fa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="二、安装-Git"><a href="#二、安装-Git" class="headerlink" title="二、安装 Git"></a>二、安装 Git</h3><p>去 <a href="https://www.git-scm.com/download/" target="_blank" rel="noopener">Git官网</a>下载程序。</p>
+<p>安装步骤略过…</p>
+<p>鼠标右键，成功界面如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-ac80ba2a19f0e068.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="三、注册-GitHub-账户，新建项目"><a href="#三、注册-GitHub-账户，新建项目" class="headerlink" title="三、注册 GitHub 账户，新建项目"></a>三、注册 GitHub 账户，新建项目</h3><p><a href="https://github.com/" target="_blank" rel="noopener">GitHub官网</a></p>
+<p>注册步骤略过…</p>
+<p>新建博客仓库，例如：he30265.github.io。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-e969e014e4aa7a74.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h3 id="四、安装-Hexo"><a href="#四、安装-Hexo" class="headerlink" title="四、安装 Hexo"></a>四、安装 Hexo</h3><p>1、创建文件夹，通过命令进入该文件夹（这个文件夹就是你的 hexo 目录）。</p>
+<p>例：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-8c7e003fe195627b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>2、输入 npm install hexo -g ,开始安装 Hexo</p>
+<p>若 npm 安装 hexo 失败，报如下错误:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm WARN deprecated swig@1.4.2: This package is no longer maintained</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：切换npm 源，使用淘宝的npm 源。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">cnpm install -g hexo</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-360e363ec123a10e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="五、检查是否安装成功"><a href="#五、检查是否安装成功" class="headerlink" title="五、检查是否安装成功"></a>五、检查是否安装成功</h3><p>输入 hexo -v, 检查 Hexo 是否成功安装。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-172a6015281f50d0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="六、初始化"><a href="#六、初始化" class="headerlink" title="六、初始化"></a>六、初始化</h3><p>输入 hexo init , 初始化该文件夹。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-25e90b3d2ff0f3fa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>出现 Start blogging with Hexo！，表示安装成功。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d206d5a2b6cca03a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="七、安装所需组件"><a href="#七、安装所需组件" class="headerlink" title="七、安装所需组件"></a>七、安装所需组件</h3><p>输入 npm install , 安装所需组件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4e0a8192229c8619.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="八、生成主题"><a href="#八、生成主题" class="headerlink" title="八、生成主题"></a>八、生成主题</h3><p>输入 hexo g , 生成主题。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-75466c62a033935a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="九、开启服务器"><a href="#九、开启服务器" class="headerlink" title="九、开启服务器"></a>九、开启服务器</h3><p>输入 hexo s , 开启服务器，访问该网址。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-bb62550b721942f7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果页面一直无法跳转，可能端口被占用。  </p>
+<p>ctrl+c 停止服务器。  </p>
+<p>输入 “hexo server -p 端口号” ,改变端口号。  </p>
+<p>显示下图页面，成功！  </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4d6bd9b61b6b4bf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="十、将-Hexo-与-Github-page-联系起来"><a href="#十、将-Hexo-与-Github-page-联系起来" class="headerlink" title="十、将 Hexo 与 Github page 联系起来"></a>十、将 Hexo 与 Github page 联系起来</h3><p>1、设置 Git 的 user name 和 email</p>
+<p>使用自己 Github 的 name 和 email。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e17305f6478bb271.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>2、输入 cd ~/.ssh，检查是否有 .ssh 的文件夹</p>
+<p>3、接着输入 ls，列出该文件下的内容，下图说明存在：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9ed2c8b60e27835c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>4、生成秘钥</p>
+<p>ssh-keygen -t rsa -C 加自己 Github 邮箱。</p>
+<p>连续三个回车，生成密钥，最后得到了两个文件：<br>id_rsa 和 id_rsa.pub（默认存储路径是：C:\Users\Administrator\ .ssh）。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-2e5b2f9a32c2b7f3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>5、添加秘钥</p>
+<p>添加密钥到 ssh-agent。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-df71e87fae561ca0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>6、添加生成的 SSH key 到 ssh-agent  </p>
+<p>再输入 ssh-add ~/.ssh/id_rsa ，添加生成的 SSH key 到 ssh-agent。  </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5ccbafa15b2c3803.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>7、登录 Github ,点击头像下的 settings ,添加 ssh</p>
+<p>点击左侧 SSH and GPG keys, 再点击右上角 New SSH key。  </p>
+<p>添加秘钥，将 id_rsa.pub 文件里的内容复制上去。  </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-30d7a03cbc8e04b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>8、测试添加 ssh 是否成功</p>
+<p>如果看到 Hi 后面是你的用户名，就说明成功了。  </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-634d79a4ecf54274.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>9、配置 Deployment</p>
+<p>在其文件夹中，找到_config.yml文件，修改repo值（在末尾）。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-0fada9551e890ca5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="十一、在-Github-仓库中添加-README-md-文件"><a href="#十一、在-Github-仓库中添加-README-md-文件" class="headerlink" title="十一、在 Github 仓库中添加 README.md 文件"></a>十一、在 Github 仓库中添加 README.md 文件</h3><p>文件夹下打开命令窗口并执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;# username.github.io&quot; &gt;&gt; README.md</span><br><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://github.com/***/***.github.io.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>以上代码在 Github 中新建仓库时会有显示，可直接复制。</p>
+<h3 id="十二、新建博客"><a href="#十二、新建博客" class="headerlink" title="十二、新建博客"></a>十二、新建博客</h3><p>文件夹下打开命令窗口并执行：  </p>
+<p>hexo new post “博客名”。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-82495445f74e9d9c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>依次打开 hexo 目录 → source → _posts，可以看到新建的文章。</p>
+<h3 id="十三、安装扩展"><a href="#十三、安装扩展" class="headerlink" title="十三、安装扩展"></a>十三、安装扩展</h3><p>在生成以及部署文章之前，需要安装一个扩展：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7ff78a0ba8fce742.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="十四、生成及部署"><a href="#十四、生成及部署" class="headerlink" title="十四、生成及部署"></a>十四、生成及部署</h3><p>每次修改配置或文章后，需要生成及部署，网站才会有更新。</p>
+<p>生成及部署命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+
+<p>线上地址即博客仓库名称，例如我的是 he30265.github.io。</p>
+<h3 id="十五、绑定阿里云域名"><a href="#十五、绑定阿里云域名" class="headerlink" title="十五、绑定阿里云域名"></a>十五、绑定阿里云域名</h3><p>ping 一下博客地址，得到 ip 地址。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f9e4b949519e9cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>打开阿里云，购买域名后，点击<a href="https://dns.console.aliyun.com/?spm=5176.100251.111252.25.670c4f15HL2k0i#/dns/domainList" target="_blank" rel="noopener">域名解析</a>，添加两条记录：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-35eb99d3108bfb3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后在 hexo 目录 下的 source 目录中添加 CNAME 文件（注：如果将 CNAME 添加到 public 目录下，在更新文章后，CNAME 文件会被删掉，GitHub Pages 也会失效），文件内添加购买的域名，例：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-304b53dcec8c0f93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后打开 GitHub Pages，在 Custom domain 中添加自己的域名，点击“Save”，绑定成功！</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5ff671ab6dbb18b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/06/hexo常用命令/" rel="next" title="hexo常用命令">
+                <i class="fa fa-chevron-left"></i> hexo常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/06/Hexo主题篇之Next/" rel="prev" title="Hexo主题篇之Next">
+                Hexo主题篇之Next <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、安装-Node-js"><span class="nav-text">一、安装 Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装-Git"><span class="nav-text">二、安装 Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、注册-GitHub-账户，新建项目"><span class="nav-text">三、注册 GitHub 账户，新建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、安装-Hexo"><span class="nav-text">四、安装 Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、检查是否安装成功"><span class="nav-text">五、检查是否安装成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、初始化"><span class="nav-text">六、初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、安装所需组件"><span class="nav-text">七、安装所需组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、生成主题"><span class="nav-text">八、生成主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、开启服务器"><span class="nav-text">九、开启服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、将-Hexo-与-Github-page-联系起来"><span class="nav-text">十、将 Hexo 与 Github page 联系起来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十一、在-Github-仓库中添加-README-md-文件"><span class="nav-text">十一、在 Github 仓库中添加 README.md 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十二、新建博客"><span class="nav-text">十二、新建博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十三、安装扩展"><span class="nav-text">十三、安装扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十四、生成及部署"><span class="nav-text">十四、生成及部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十五、绑定阿里云域名"><span class="nav-text">十五、绑定阿里云域名</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

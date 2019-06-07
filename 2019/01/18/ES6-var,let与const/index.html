@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,ES6,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="var，let 与 const   var 申明变量。 let 申明变量，更完美的 var。 const 申明常量（物理指针不可以更改的变量）。  在新的 javascript 规范 ES6 中，新增了 let 和 const 命令，let 用来声明变量，const 用来声明常量，用法类似于 var，但不同的是 let/const 所声明的变量/常量，只在当前代码块内有效。 什么是代码块？可以简">
+<meta name="keywords" content="JavaScript,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6-var,let与const">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/ES6-var,let与const/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="var，let 与 const   var 申明变量。 let 申明变量，更完美的 var。 const 申明常量（物理指针不可以更改的变量）。  在新的 javascript 规范 ES6 中，新增了 let 和 const 命令，let 用来声明变量，const 用来声明常量，用法类似于 var，但不同的是 let/const 所声明的变量/常量，只在当前代码块内有效。 什么是代码块？可以简">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b6766449595d8b66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-06T09:22:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6-var,let与const">
+<meta name="twitter:description" content="var，let 与 const   var 申明变量。 let 申明变量，更完美的 var。 const 申明常量（物理指针不可以更改的变量）。  在新的 javascript 规范 ES6 中，新增了 let 和 const 命令，let 用来声明变量，const 用来声明常量，用法类似于 var，但不同的是 let/const 所声明的变量/常量，只在当前代码块内有效。 什么是代码块？可以简">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-b6766449595d8b66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/18/ES6-var,let与const/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>ES6-var,let与const | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/ES6-var,let与const/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6-var,let与const</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T00:00:00+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>var，let 与 const</p>
+</blockquote>
+<ul>
+<li>var 申明变量。</li>
+<li>let 申明变量，更完美的 var。</li>
+<li>const 申明常量（物理指针不可以更改的变量）。</li>
+</ul>
+<p>在新的 javascript 规范 ES6 中，新增了 let 和 const 命令，let 用来声明变量，const 用来声明常量，用法类似于 var，但不同的是 let/const 所声明的变量/常量，只在当前代码块内有效。</p>
+<p>什么是代码块？可以简单地理解为包在 {} 内的代码，看下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // console.log(a); // undefined</span><br><span class="line">    // console.log(b); // can&apos;t access lexical declaration `b&apos; before initialization</span><br><span class="line">    // console.log(c); // c is not defined</span><br><span class="line">    var a = 1;</span><br><span class="line">    let b = 2;</span><br><span class="line">    const c = 3;</span><br><span class="line">    console.log(a); // 1</span><br><span class="line">    console.log(b); // 2</span><br><span class="line">    console.log(c); // 3</span><br><span class="line">&#125;;</span><br><span class="line">// console.log(a); // 1</span><br><span class="line">// console.log(b); // b is not defined</span><br><span class="line">// console.log(c); // c is not defined</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的代码可以看出，只有 var 存在变量提升，代码块中 var a; 被提升到上边，所以可以打印出 undefined。</p>
+<p>在代码块外，只有通过 var 申明的 a 可以打印出来，其他都是“is not defined”。</p>
+<p>所以目前可以得出两个结论：</p>
+<ul>
+<li>let 和 const 不会提升变量/常量。</li>
+<li>let 和 const 声明的变量/常量只在当前代码块内有效。</li>
+</ul>
+<h3 id="一、let"><a href="#一、let" class="headerlink" title="一、let"></a>一、let</h3><p>现在已经知道 let 声明变量，变量不会提升，那么在 for 循环中呢？看下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (var i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">    arr.push(function() &#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(arr);</span><br><span class="line">// 0: function ()</span><br><span class="line">// 1: function ()</span><br><span class="line">// 2: function ()</span><br><span class="line">// 3: function ()</span><br><span class="line">// 4: function ()</span><br><span class="line">console.log(i); // 5</span><br><span class="line">arr[0](); // 5</span><br><span class="line">arr[1](); // 5</span><br><span class="line">arr[2](); // 5</span><br><span class="line">arr[3](); // 5</span><br></pre></td></tr></table></figure>
+
+<p>为什么打印结果都是5？先打印一下 arr，可以看到是5个 function ()。</p>
+<p>所以在 for 循环中每次做的事情就是向 arr 中添加一个打印 i 的方法，但是函数并没有立刻执行，而这个 i 是通过 var i 来声明的，也就是说我们在 for 循环外部也是可以访问到的，在 for 循环外部打印 i，可以看到它的值就是5，所以当去执行函数的时候，打印的都是 5。</p>
+<p>下面我们用 ES5 的闭包来修改一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (var i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">    arr.push((</span><br><span class="line">        function(a) &#123;</span><br><span class="line">            return function() &#123;</span><br><span class="line">                console.log(a);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    )(i));</span><br><span class="line">&#125;;</span><br><span class="line">arr[0](); // 0</span><br><span class="line">arr[1](); // 1</span><br><span class="line">arr[2](); // 2</span><br><span class="line">arr[3](); // 3</span><br></pre></td></tr></table></figure>
+
+<p>这回的打印结果就是每次循环中的 i 值。</p>
+<p>再用 ES6 的方式来修改一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var arr = [];</span><br><span class="line">for (let i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">    arr.push(function() &#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(i);</span><br><span class="line">&#125;;</span><br><span class="line">// console.log(i);  // i is not defined</span><br><span class="line">arr[0](); // 0</span><br><span class="line">arr[1](); // 1</span><br><span class="line">arr[2](); // 2</span><br><span class="line">arr[3](); // 3</span><br></pre></td></tr></table></figure>
+
+<p>发现只是将第一段代码的 var 改为了 let，同样打印结果就是每次循环中的 i 值。</p>
+<p>这里需要注意一个问题，就是 let i = 0; 声明的位置，是在 for 的 () 内，那么就可以理解成，在 for 内部就定义了一个 i，并且使用 let 声明的，在 for 的外部是访问不到的，所以每次循环就相当于在当前循环的 i 值的前提下向数组 push 的。</p>
+<h3 id="二、const"><a href="#二、const" class="headerlink" title="二、const"></a>二、const</h3><p>const 除了不能改变物理指针的特性，其他特性与 let 相同。</p>
+<p>1、当声明普通数据类型的时候，一旦声明了，就不可以再改变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let a = 1;</span><br><span class="line">console.log(a); // 1</span><br><span class="line">a = 2;</span><br><span class="line">console.log(a); // 2</span><br><span class="line"></span><br><span class="line">const a = 1;</span><br><span class="line">a = 2;  // invalid assignment to const `a&apos;</span><br></pre></td></tr></table></figure>
+
+<p>使用 let 声明变量的时候，再次赋值，值可以改变，但使用 const 声明时，无论是否打印结果，都会报错“invalid assignment to const `a’”无效赋值。</p>
+<p>2、当声明复杂数据类型的时候，物理指针不可以改变，但可以改变数据内的属性值，并且可以给数据添加新属性。</p>
+<p>看下边例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let obj1 = &#123;</span><br><span class="line">    name: &quot;liu&quot;</span><br><span class="line">&#125;;</span><br><span class="line">obj1 = &#123;</span><br><span class="line">    age: &quot;24&quot;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(obj1); // Object &#123; age: &quot;24&quot; &#125;</span><br><span class="line">obj1.age = &quot;28&quot;;</span><br><span class="line">console.log(obj1); // Object &#123; age: &quot;28&quot; &#125;</span><br><span class="line">obj1.sex = &quot;man&quot;;</span><br><span class="line">console.log(obj1); // Object &#123; age: &quot;28&quot;, sex: &quot;man&quot; &#125;</span><br><span class="line"></span><br><span class="line">const obj2 = &#123;</span><br><span class="line">    name: &quot;liu&quot;</span><br><span class="line">&#125;;</span><br><span class="line">// obj2 = &#123;  // invalid assignment to const `obj2&apos;</span><br><span class="line">//     age: &quot;24&quot;</span><br><span class="line">// &#125;;</span><br><span class="line">obj2.name = &quot;Zhao&quot;;</span><br><span class="line">obj2.age = 18;</span><br><span class="line">console.log(obj2); // Object &#123; name: &quot;Zhao&quot;, age: 18 &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h3><p>不知道你有没有发现，以上代码在火狐、谷歌、360急速浏览器下都正常运行，但是在 360兼容模式（包括 IE11 兼容模式）下，ES6 语法的 javascript 代码就会报错。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b6766449595d8b66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果有了解过 Node.js 同学，那你应该会知道如果用 ES6 的语法创建一个 Node.js 服务器，无论什么版本的浏览器都不会报错的，那是因为 Node.js 代码是只运行在 Chrome v8 平台上，其对 ES6 的兼容性还是不错的，并且只运行在服务器端，所以不用考虑其他兼容性。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/JavaScript_01从原型到原型链/" rel="next" title="JavaScript_01从原型到原型链">
+                <i class="fa fa-chevron-left"></i> JavaScript_01从原型到原型链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/19/JavaScript_02词法作用域和动态作用域/" rel="prev" title="JavaScript_02词法作用域和动态作用域">
+                JavaScript_02词法作用域和动态作用域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、let"><span class="nav-text">一、let</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、const"><span class="nav-text">二、const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、补充"><span class="nav-text">三、补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
