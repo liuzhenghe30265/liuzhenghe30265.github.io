@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="四、给组件绑定原生事件如何给组件绑定原生事件？ 我们首先编写一个全局的子组件 child，在父组件的模板里先试一下子组件。有的时候我们会在父组件里给 child 绑定一个事件，例如通过 @click 绑定一个 clickFun 事件，然后在父组件的 methods 里编写 clickFun 方法，让他打印一个 “click”。 12345678910111213141516&amp;lt;div id=&amp;">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第3课-深入理解Vue组件（part02）">
+<meta property="og:url" content="http://yoursite.com/2019/05/09/Vuejs第3课-深入理解Vue组件（part02）/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="四、给组件绑定原生事件如何给组件绑定原生事件？ 我们首先编写一个全局的子组件 child，在父组件的模板里先试一下子组件。有的时候我们会在父组件里给 child 绑定一个事件，例如通过 @click 绑定一个 clickFun 事件，然后在父组件的 methods 里编写 clickFun 方法，让他打印一个 “click”。 12345678910111213141516&amp;lt;div id=&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9f693d2c9f095811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-386f012d697fb1cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f56ca8de6e249aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e65506a893507aa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-3ff8788f3e393256.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b127451950f1f64e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-062ce68c3368b610.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7888e05fe8b84330.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-c768a83b3e68605f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-5a39da5c8494eea5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-50ad089b6898e7a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-94aabe78dd931b27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:19.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第3课-深入理解Vue组件（part02）">
+<meta name="twitter:description" content="四、给组件绑定原生事件如何给组件绑定原生事件？ 我们首先编写一个全局的子组件 child，在父组件的模板里先试一下子组件。有的时候我们会在父组件里给 child 绑定一个事件，例如通过 @click 绑定一个 clickFun 事件，然后在父组件的 methods 里编写 clickFun 方法，让他打印一个 “click”。 12345678910111213141516&amp;lt;div id=&amp;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-9f693d2c9f095811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/09/Vuejs第3课-深入理解Vue组件（part02）/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第3课-深入理解Vue组件（part02） | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/Vuejs第3课-深入理解Vue组件（part02）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第3课-深入理解Vue组件（part02）</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T00:00:00+08:00">
+                2019-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="四、给组件绑定原生事件"><a href="#四、给组件绑定原生事件" class="headerlink" title="四、给组件绑定原生事件"></a>四、给组件绑定原生事件</h3><p>如何给组件绑定原生事件？</p>
+<p>我们首先编写一个全局的子组件 child，在父组件的模板里先试一下子组件。有的时候我们会在父组件里给 child 绑定一个事件，例如通过 @click 绑定一个 clickFun 事件，然后在父组件的 methods 里编写 clickFun 方法，让他打印一个 “click”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child @click=&quot;clickFun&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Child&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                console.log(&quot;click&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可是，当我们这么写的时候，点击 child 子组件的时候，并不会触发 clickFun 事件，这是因为，当我给子组件绑定一个事件的时候，实际上这个事件绑定的是一个自定义事件，也就是，如果你真正的鼠标点击触发的事件，并不是我绑定的这个事件，如果你想触发这个自定义的 click 事件，你得这么去写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child @click=&quot;clickFun&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div @click=&apos;childClick&apos;&gt;Child&lt;/div&gt;&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            childClick: function () &#123;</span><br><span class="line">                console.log(&quot;childClick&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                console.log(&quot;click&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9f693d2c9f095811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>在子组件里，对 template 中的 div 元素进行事件的绑定，这个事件实际上是一个真正的原生事件，例如 “@click=’childClick’”，然后在子组件的 methods 中写一个 childClick 方法，让他打印 “childClick”，可以在页面中看到，子组件中的 childClick 方法被触发了，但是外面的这个 clickFun 没有被触发，因为你在这个 div 元素上绑定的事件，指的是监听的原生的事件，而在子组件 child 上绑定的事件，指的是监听的一个自定义事件，那自定义事件怎么被出发呢？回顾一下子组件向父组件传值的方法 this.$emit，修改一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child @click=&quot;clickFun&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div @click=&apos;childClick&apos;&gt;Child&lt;/div&gt;&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            childClick: function () &#123;</span><br><span class="line">                console.log(&quot;childClick&quot;);</span><br><span class="line">                this.$emit(&quot;click&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                console.log(&quot;click&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-386f012d697fb1cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>首先当你点 click 的时候，子组件会监听到自身的 div 元素被点击了，然后向外触发一个自定义事件，而你在 child 这个组件里监听了这个事件，所以对应的 clickFun 就会被执行。但是这么写代码实在是太麻烦了，有的时候，有这样的需求，我就想加在我原生的事件，我就想在 child 这个组件上监听 child 这个组件的原生事件，如果需要两层的传递，太麻烦，再修改一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child @click.native=&quot;clickFun&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Child&lt;/div&gt;&quot;,</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                console.log(&quot;click&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将子组件中的 methods 删除掉，将 template 中 div 上的绑定事件也删除掉，回到最初的一个状态，如果想监听到原生的事件，可以给 child 中 @click 后加一个修饰符叫做 native，也就是这个时候，在组件上面，我做事件的监听，我监听的并不是自定义事件，而是一个原生的点击事件，此时再到页面上看，点击 child 的时候，click 就可以被正常的显示了，因为监听的已经不是内部组件向外触发的一个事件了，而是原生的点击事件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f56ca8de6e249aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>所以，给组件绑定原生事件，非常的简单，只要在事件绑定的后面加一个 native 这样的修饰符，就可以了。</p>
+<h3 id="五、非父子组件间的传值"><a href="#五、非父子组件间的传值" class="headerlink" title="五、非父子组件间的传值"></a>五、非父子组件间的传值</h3><p>这一章讲解一下非父子组件间的传值，通过 bus（也可叫做总线/发布订阅模式/观察者模式） 来解决非父子组件的传值问题。</p>
+<p>我们可以把一个网页拆分成很多部分，每个部分就是一个组件，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e65506a893507aa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>第一种情况：假设第二层的一个组件想跟第一层的组件进行通信，之前学过父子组件的传值问题，在 Vue 中，如果出现这种形式的组件传值问题，就是：父组件通过 props 向子组件传值，子组件通过事件触发 $emit 向父组件传值，这种形式的数据传递是没有问题的。</p>
+<p>第二种情况：假设第三层的组件想和第一层的组件进行通信，这个时候该怎么办呢？第一层的组件能不能直接通过属性穿过第三层的组件呢？其实这是不行的，我们换一个方法，我们可以让第一层组件把数据传给第二层组件，第二层组件再把数据传给第三层组件，这样的可以实现的，反过来，第三层可以通过事件触发，把数据带给第二层，第二层在通过事件触发，把数据带给第一层。但是这种传值稍微略显复杂了。</p>
+<p>第三种情况：假设左侧的第三层组件要向右侧的第三层组件传值呢？还是一层一层向上传，一层一层向下传么？如果这样传递的话，代码将会变得非常的复杂，Vue 的官方对 Vue 的定义是一个轻量级的视图层框架，当一个项目中出现了非常复杂的数据传递，光靠 Vue 这个框架是解决不了这个问题的，于是，我们需要引进一些其他的工具，或者设计模式，来帮我们解决复杂的组件间数据的传递。</p>
+<p>我们再来理解一下什么是父子组件间的传值，父子组件间的传值，指的是父亲和孩子间的传值，接下来要讲的非父子组件传值指的是两个组件进行传值，但是两个组件不具备父子关系，比如说图中 1 和 3 进行传值，3 和 3 进行传值。在 Vue 中如果遇到这种比较复杂的数据传递的时候，该如何解决呢？</p>
+<p>一般有两种方式来解决复杂的非父子组件的传值，一种是可以借助 Vue 官方提供的数据层的框架 Vuex，当然，Vuex 使用起来是有一点难度的，我们会放在项目中来讲解 Vuex。还有一种解决方案是发布订阅模式，这种模式在 Vue 中被称为总线机制，接下来通过总线机制来讲解一下非父子组件传值的情况。</p>
+<p>先来看一段简单地创建组件的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child&gt;&lt;/child&gt;</span><br><span class="line">    &lt;child&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Child&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上边代码，我希望每个子组件的内容是根据外部传递的内容进行显示的。给子组件传递一个 content，然后内部要接收：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child content=&quot;Hello&quot;&gt;&lt;/child&gt;</span><br><span class="line">    &lt;child content=&quot;World&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            content: String</span><br><span class="line">        &#125;,</span><br><span class="line">        template: &quot;&lt;div&gt;&#123;&#123;content&#125;&#125;&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-3ff8788f3e393256.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>接下来，我要实现的是，点击上边的 Hello 下边的 World 也会变成 Hello，点击下边的 World，上边的 Hello 也会变成 World，接下来就要进行一个非父子组件的一个传值了，非父子组件的传值如何通过总线机制解决呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child content=&quot;Hello&quot;&gt;&lt;/child&gt;</span><br><span class="line">    &lt;child content=&quot;World&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.prototype.bus = new Vue();</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            content: String</span><br><span class="line">        &#125;,</span><br><span class="line">        template: &quot;&lt;div @click=&apos;clickFun&apos;&gt;&#123;&#123;content&#125;&#125;&lt;/div&gt;&quot;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                console.log(this.content);</span><br><span class="line">                // 将内容传递给另一个组件</span><br><span class="line">                this.bus.$emit(&apos;change&apos;, this.content);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        mounted: function () &#123;</span><br><span class="line">            var this_ = this;</span><br><span class="line">            this.bus.$on(&apos;change&apos;, function (msg) &#123;</span><br><span class="line">                console.log(msg);</span><br><span class="line">                this_.content = msg;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，首先 new 一个 Vue 的实例，把它赋值给 Vue.prototype.bus，这么写目的是什么呢？我往 Vue 的 prototype 上挂载了一个 bus 的属性，这个属相指向一个 Vue 的实例，只要我们之后去调用 new Vue 或创建组件的时候，每一个组件上都会有 bus 这个属性，因为每一个组件或每一个 Vue 实例，都是通过 Vue 这个类来创建的，而我在 Vue 的类上，挂了一个 bus 这样的属性，而且挂在 Vue 的 prototype 上面，每一个通过这个类创建的对象，都会有 bus 这个属性，他都指向同一个 Vue 的实例。</p>
+<p>每一个子组件被点击的时候，希望另一个子组件跟着改变，在子组件里绑定一个点击事件 clickFun，在子组件的 methods 中定义这个 clickFun，每次点击都输出 this.content，到页面上看，点击 Hello 下边打印 Hello，点击 World 下边打印 World，接下来要把这个内容传传递给另一个组件，通过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.bus.$emit(&apos;change&apos;,this.content)</span><br></pre></td></tr></table></figure>
+
+<p>传就可以，这句代码的意思就是：这个实例上挂在的 bus，这个 bus 又是 Vue 的实例，所以他上面就有 emit 这个方法，那我就可以通过这个方法向外触发事件，这个事件触发的时候，同时携带了一个数据，就是我的内容，接着，其他的子组件就要监听，我们可以借助一个生命周期钩子（可以回顾第二章，生命周期函数）mounted，也就是这个组件被挂载的时候他会执行的一个函数。在这里我让这个组件监听 bus 的改变，这个组件一定会有 bus 这个属性，因为 Vue 的 prototype 上有这个属性，因为 bus 是 Vue 的实例，所以 bus 上又有 $.on 这个方法，他就能监听到 bus 上触发的事件。所以让他去监听 change 事件，如果监听成功，就输出一下传递过来的内容。</p>
+<p>此时到页面上去看，点击一次 Hello 就会打印出两次 Hello，这是因为在一个 child 组件里，去触发事件的时候，其实这两个 child 都进行了同一个事件的监听，所以两个 child 组件都会去弹 msg。接下来要做的事情就是只需要让 this.content = msg 就行了，但是此时点击页面并没有变化，原因是 function 这里面 this 的作用域发生了变化，所以在上面要将 this 做一个保存，这样两个组件的传值通过一个总线就连接起来了。</p>
+<p>此时，在页面上点击子组件，另一个子组件会改变，但是，打开控制台，发现有报错。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b127451950f1f64e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>这个报错产生的原因之前也讲过，child 组件的 content 是从父组件接收过来的，Vue 中有单项数据流，子组件不能改变父组件传递过来的内容，现在却改这个内容，当然就会报出警告了。</p>
+<p>解决办法：给子组件定义一个 data，把 content 做一个拷贝，返回 childContent，接下来内容区都替换为 childContent，change 向外触发的内容也是 childContent，当监听改变的时候，改变的也是 childContent，这样，我就没有对父组件传递过来的 content 属性做任何的修改，页面也就不会出任何的警告了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child content=&quot;Hello&quot;&gt;&lt;/child&gt;</span><br><span class="line">    &lt;child content=&quot;World&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.prototype.bus = new Vue();</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        props: &#123;</span><br><span class="line">            content: String</span><br><span class="line">        &#125;,</span><br><span class="line">        template: &quot;&lt;div @click=&apos;clickFun&apos;&gt;&#123;&#123;childContent&#125;&#125;&lt;/div&gt;&quot;,</span><br><span class="line">        data: function () &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                childContent: this.content</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                console.log(this.childContent);</span><br><span class="line">                this.bus.$emit(&apos;change&apos;, this.childContent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        mounted: function () &#123;</span><br><span class="line">            var this_ = this;</span><br><span class="line">            this.bus.$on(&apos;change&apos;, function (msg) &#123;</span><br><span class="line">                console.log(msg);</span><br><span class="line">                this_.childContent = msg;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过 bus 的总线形式，就实现了 vue 之中两个非父子组件之间的传值，当然现在它是一个兄弟节点，如果之后遇到了非兄弟节点的非父子组件，也是一样的，通过 bus 都能解决这种复杂的非父子组件之间传值的问题。</p>
+<h3 id="六、在-Vue-中使用插槽（slot）"><a href="#六、在-Vue-中使用插槽（slot）" class="headerlink" title="六、在 Vue 中使用插槽（slot）"></a>六、在 Vue 中使用插槽（slot）</h3><p>插槽这个概念非常的重要，在很多的第三方 Vue 的插件或模块之中都大量的使用了插槽这种特性。</p>
+<p>首先来讲一下插槽的使用场景，下面代码中先创建一个子组件，然后在父组件中使用一下子组件，打开页面，子组件会正常显示到页面上，这是没问题的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>那什么时候会用到插槽呢？假设我有一个需求，我希望子组件里除了 p 标签之外，还要展示一段内容，但是这一段内容并不是我子组件所决定的，而是父组件传递过来的，按照以前的想法，我们可以这么传：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child content=&quot;&lt;p&gt;World&lt;/p&gt;&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        props: [&apos;content&apos;],</span><br><span class="line">        template: &quot;&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&#123;&#123;content&#125;&#125;&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码，通过属性的形式向子组件传值，传一个 content 给子组件，子组件要接收这个 props。当接收了这个 content 之后，就可以在 template 中加一个插值表达式，把 content 显示出来啦。到页面上看一下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-062ce68c3368b610.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>发现出了一点问题，就是这个 p 标签并没有显示成一个 p 标签，而是被做了一次转义，如果不想做转义怎么办？可以使用之前讲过的一个指令 v-html，我们可以在 content 外加一个 div，然后在 div 上加一个指令 v-html=”this.content”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child content=&quot;&lt;p&gt;World&lt;/p&gt;&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        props: [&apos;content&apos;],</span><br><span class="line">        template: &quot;&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;div v-html=&apos;this.content&apos;&gt;&lt;/div&gt;&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>到页面上看一下，这个时候 world 就能被正常的显示出来了，而且如果查看源代码，他就是一个 div 下的 p 标签。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7888e05fe8b84330.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>这么写代码，他会有一个问题，就是多出了一个 div 标签，如果我只想显示 p 标签呢？使用 template 模板占位符行不行呢？试一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child content=&quot;&lt;p&gt;World&lt;/p&gt;&quot;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        props: [&apos;content&apos;],</span><br><span class="line">        // template: &quot;&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;template v-html=&apos;this.content&apos;&gt;&lt;/template&gt;&lt;/div&gt;&quot;</span><br><span class="line">        // 可以使用 ES6 的语法方便阅读</span><br><span class="line">        template: `&lt;div&gt;</span><br><span class="line">                   &lt;p&gt;Hello&lt;/p&gt;</span><br><span class="line">                   &lt;template v-html=&apos;this.content&apos;&gt;&lt;/template&gt;</span><br><span class="line">                   &lt;/div&gt;`</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-c768a83b3e68605f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>发现这种情况下模板占位符是不管用的，渲染不出来这个效果，所以通过 content 传值，是有两个问题的，第一个问题，如果想传一个 p 标签，外部必须包裹一个 div。第二个问题，如果 content 里面传递的内容比较少还可以，如果内容很多呢？页面渲染没有问题，但是代码就会变得难以阅读。当子组件有一部分内容是根据父组件传递过来的值显示的时候，可以使用 Vue 提供的一个新的语法，叫做插槽（slot），接下来看看 slot 怎么来用，怎么在父组件向子组件优雅的传递 DOM 的结构，可以这么去写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child&gt;</span><br><span class="line">        &lt;p&gt;World&lt;/p&gt;</span><br><span class="line">    &lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: `&lt;div&gt;</span><br><span class="line">                   &lt;p&gt;Hello&lt;/p&gt;</span><br><span class="line">                   &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">                   &lt;/div&gt;`</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以在 child 内部写一个 p 标签，内容 World，子组件就需要有办法用到这个内容，子组件的模板里 Vue 内置了一个新的语法叫做 slot 语法，slot 这个标签显示的内容就是父组件向子组件插入进来的这段 p 标签，打开页面，可以看到 Hello 和 World 都正常显示出来了，而且各自的外部没有 div。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-5a39da5c8494eea5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>所以通过插槽，我们可以更方便的向子组件传递 dom 元素，同时子组件使用这个插槽的内容也非常的简单，通过 slot 来用就可以了，当然 slot 还有一些新的特性，我们可以在 slot 中写一些默认的值，比如去掉 child 中的内容，在 slot 中写“默认内容”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;child&gt;&lt;/child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;child&quot;, &#123;</span><br><span class="line">        template: `&lt;div&gt;</span><br><span class="line">                   &lt;p&gt;Hello&lt;/p&gt;</span><br><span class="line">                   &lt;slot&gt;默认内容&lt;/slot&gt;</span><br><span class="line">                   &lt;/div&gt;`</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-50ad089b6898e7a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>所以 slot 这个插槽还可以定义默认值。</p>
+<p>假设现在又有一个新的需求，这个需求很常见，比如我有一个 body-content 组件，整个页面的内容我都放到 body-content 这个组件里来做，body-content 组件里先不用 slot， 先写一个区域，给他一个 class，比如就叫 content。现在需求是这样的：这个 body-content 组件里显示的内容，内容区域是由我这个组件决定的，但是他的 header 和 footer 是由外部传递进来的。通过 slot 传递一个 header 和 footer，这两个组件的很多内容不是由我自己决定的，而是有由外部传递进来的。我在 template 中写了两个 slot，可以往插槽里传东西，可以在 body-content 中写两个 div，分别是 header 和 footer，然后给这两个插槽起名字（也叫具名插槽 slot=””），然后在子组件中去用这两个插槽，加一个 name=””，就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;body-content&gt;</span><br><span class="line">        &lt;div class=&quot;header&quot; slot=&quot;header&quot;&gt;header&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;footer&quot; slot=&quot;footer&quot;&gt;footer&lt;/div&gt;</span><br><span class="line">    &lt;/body-content&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;body-content&quot;, &#123;</span><br><span class="line">        template: `&lt;div&gt;</span><br><span class="line">                   &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;</span><br><span class="line">                   &lt;div class=&apos;content&apos;&gt;content&lt;/div&gt;</span><br><span class="line">                   &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;</span><br><span class="line">                   &lt;/div&gt;`</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>到页面上，可以看到显示了 header、content、footer。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-94aabe78dd931b27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>小结：插槽只有一个，具名插槽可以有多个，同时具名插槽也是可以有默认值的。</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/08/Vuejs第3课-深入理解Vue组件（part01）/" rel="next" title="Vuejs第3课-深入理解Vue组件（part01）">
+                <i class="fa fa-chevron-left"></i> Vuejs第3课-深入理解Vue组件（part01）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/10/Vuejs第3课-深入理解Vue组件（part03）/" rel="prev" title="Vuejs第3课-深入理解Vue组件（part03）">
+                Vuejs第3课-深入理解Vue组件（part03） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#四、给组件绑定原生事件"><span class="nav-text">四、给组件绑定原生事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、非父子组件间的传值"><span class="nav-text">五、非父子组件间的传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、在-Vue-中使用插槽（slot）"><span class="nav-text">六、在 Vue 中使用插槽（slot）</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

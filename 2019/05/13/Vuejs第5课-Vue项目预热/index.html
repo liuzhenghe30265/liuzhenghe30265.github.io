@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、项目环境准备在开发之前，我们需要安装 Node.js 和 Git，然后注册一个 GitHub 账号用来存放我们的项目，通过 Git 管理我们的项目。以上的安装和注册操作略过，可以参考我的 如何在GitHub上协作开发项目 这篇文章。 安装成功后，使用 -v 命令检查是否安装成功：  登录 GitHub，我们创建一个仓库 Vue-Travel：  此时，在 GitHub 中就有了一个 Vue-T">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第5课-Vue项目预热">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/Vuejs第5课-Vue项目预热/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、项目环境准备在开发之前，我们需要安装 Node.js 和 Git，然后注册一个 GitHub 账号用来存放我们的项目，通过 Git 管理我们的项目。以上的安装和注册操作略过，可以参考我的 如何在GitHub上协作开发项目 这篇文章。 安装成功后，使用 -v 命令检查是否安装成功：  登录 GitHub，我们创建一个仓库 Vue-Travel：  此时，在 GitHub 中就有了一个 Vue-T">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9373a0798d1d7e75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-96783ba32639c37d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-262830f568ea74f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-df3ab68d2f9c9dd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-19756dc92d2b5872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-ef62785b97dbcc96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-232bd2d743f346e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-04356bd2258e1b50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-8e05eb416ee0332d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d5d25a5031b147ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f991da3b65393b3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-55e913cc5c7a8b58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-3004eaf2f6e21ecc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-dee75ba9005f1e85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-400ef902fc0107ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-0ca939e3905302c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-3227ef20ab99686b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e740088c7f71bf54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:33.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第5课-Vue项目预热">
+<meta name="twitter:description" content="一、项目环境准备在开发之前，我们需要安装 Node.js 和 Git，然后注册一个 GitHub 账号用来存放我们的项目，通过 Git 管理我们的项目。以上的安装和注册操作略过，可以参考我的 如何在GitHub上协作开发项目 这篇文章。 安装成功后，使用 -v 命令检查是否安装成功：  登录 GitHub，我们创建一个仓库 Vue-Travel：  此时，在 GitHub 中就有了一个 Vue-T">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-9373a0798d1d7e75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/13/Vuejs第5课-Vue项目预热/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第5课-Vue项目预热 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/Vuejs第5课-Vue项目预热/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第5课-Vue项目预热</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-13T00:00:00+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、项目环境准备"><a href="#一、项目环境准备" class="headerlink" title="一、项目环境准备"></a>一、项目环境准备</h3><p>在开发之前，我们需要安装 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> 和 <a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>，然后注册一个 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> 账号用来存放我们的项目，通过 Git 管理我们的项目。以上的安装和注册操作略过，可以参考我的 <a href="https://www.jianshu.com/p/4539b5dde0e2" target="_blank" rel="noopener">如何在GitHub上协作开发项目</a> 这篇文章。</p>
+<p>安装成功后，使用 -v 命令检查是否安装成功：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9373a0798d1d7e75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>登录 GitHub，我们创建一个仓库 Vue-Travel：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-96783ba32639c37d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此时，在 GitHub 中就有了一个 Vue-Travel 的仓库。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-262830f568ea74f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>接下来我们将本地的代码和线上的代码通过 Git 做一个关联，这样一旦本地代码丢失了，可以通过线上代码恢复，而且线上会记录我们对代码的每一步操作。下面我们通过 SSH 将线上代码克隆到本地：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-df3ab68d2f9c9dd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后在 Vue-Travel 目录中创建一个 Vue.js 项目，我们打开 Vue.js 官网看一下 Vue CLI 的安装步骤：先通过 “npm install –global vue-cli” 全局安装 vue-cli，然后通过 “vue init webpack xxx” 初始化项目，根据提示一步一步完成项目的构建。</p>
+<p>补充：在上边的执行步骤中，有些是一选项的形式进行选择的，他会提示你 “Use arrow keys”，这种情况，在 Window 下，先输入序号，然后回车就可以了。构建成功后，根据命令提示，运行项目：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-19756dc92d2b5872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-ef62785b97dbcc96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>此时打开我们的项目目录，可以看到多出了很多文件，接下来我们就把这个项目 push 到 GitHub 上：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-232bd2d743f346e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>通过下面命令提交到 GitHub 仓库中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;update&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-04356bd2258e1b50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>去 GitHub 上打开该仓库，可以看到项目文件已经 push 上来了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-8e05eb416ee0332d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="二、项目代码结构介绍"><a href="#二、项目代码结构介绍" class="headerlink" title="二、项目代码结构介绍"></a>二、项目代码结构介绍</h3><h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h4><p>里面有很多的依赖包，表示在开发这个项目的时候用到的第三方依赖。</p>
+<h4 id="LICENSE"><a href="#LICENSE" class="headerlink" title="LICENSE"></a>LICENSE</h4><p>开源协议说明。</p>
+<h4 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h4><p>项目首页默认的模板文件。</p>
+<h4 id="postcssrc-js"><a href="#postcssrc-js" class="headerlink" title=".postcssrc.js"></a>.postcssrc.js</h4><p>postcss 的默认配置项。</p>
+<h4 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h4><p>在把代码上传到线上的时候希望忽略一些文件，比如 node_modules 等目录文件。</p>
+<h4 id="eslintrc-js"><a href="#eslintrc-js" class="headerlink" title=".eslintrc.js"></a>.eslintrc.js</h4><p>对代码进行检测，里面配置了一些对对代码的规范。</p>
+<h4 id="eslintignore"><a href="#eslintignore" class="headerlink" title=".eslintignore"></a>.eslintignore</h4><p>在里面添加的目录文件是不会受到 eslint 这个检测工具检测的，这些文件如果写的不标准，也不会进行代码不标准提示。</p>
+<h4 id="editorconfig"><a href="#editorconfig" class="headerlink" title=".editorconfig"></a>.editorconfig</h4><p>他帮助我们配置了一下编辑器里一些语法。</p>
+<h4 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h4><p>我们的项目写的代码是 Vue 的单文件组件的写法，所以他需要通过 babel 这种语法解析器做一些语法上的转换，最终转换为浏览器能够编译执行的代码。</p>
+<h4 id="static-目录"><a href="#static-目录" class="headerlink" title="static 目录"></a>static 目录</h4><p>放一些静态资源，一些静态的图片或者模拟的一些 json 数据。</p>
+<h4 id="node-modules-目录"><a href="#node-modules-目录" class="headerlink" title="node_modules 目录"></a>node_modules 目录</h4><p>放的是这个项目依赖的一些第三方的包。</p>
+<h4 id="src-目录"><a href="#src-目录" class="headerlink" title="src 目录"></a>src 目录</h4><p>src 目录放的是整个项目的源代码。main.js 是整个项目的入口文件；App.vue 是项目最原始的那个根组件；router 目录下的 index.js 放这个项目的所有路由；components 里放的是项目里要用的小组件；assets 放的是项目里用到的一些图片类的资源。</p>
+<h4 id="config-目录"><a href="#config-目录" class="headerlink" title="config 目录"></a>config 目录</h4><p>config 目录放的是一些项目的配置文件，基础的配置信息放在 index.js 中，开发环境的配置信息放在 dev.env.js 中，线上环境的配置信息放在 prod.env 中。</p>
+<h4 id="build-目录"><a href="#build-目录" class="headerlink" title="build 目录"></a>build 目录</h4><p>build 目录放的是项目打包的 webpack 的一些配置内容：</p>
+<ul>
+<li>webpack.base.conf：基础的 webpack 配置项。</li>
+<li>webpack.dev.conf：开发环境中的 webpack 配置项。</li>
+<li>webpack.prod.conf：线上环境中的 webpack 配置项。</li>
+</ul>
+<h3 id="三、单文件组件与-Vue-中的路由"><a href="#三、单文件组件与-Vue-中的路由" class="headerlink" title="三、单文件组件与 Vue 中的路由"></a>三、单文件组件与 Vue 中的路由</h3><p>打开项目中 src 目录下的 main.js 文件，他是整个项目的入口，可以看到它挂载了一个 Vue 的根实例，并把它挂载到了 app 元素上:</p>
+<p>main.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// The Vue build version to load with the `import` command</span><br><span class="line">// (runtime-only or standalone) has been set in webpack.base.conf with an alias.</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App&apos;</span><br><span class="line">import router from &apos;./router&apos;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">/* eslint-disable no-new */</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  router,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: &apos;&lt;App/&gt;&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;vue-travel&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!-- built files will be auto injected --&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们打开 index.html 文件，在这个 html 上有一个 div，它的 id 等于 app，所以 main.js 里这个挂载点指的就是 index.html 上面 id 是 app 的元素。main.js 中有一个 “components: { App }”，这是一种 ES6 的写法，它相当于 “components: { App : App }”，意思是我在项目里用了一个局部组件，名字叫做 app，在外层的 Vue 实例里，我给这个组件的名字也叫 App。template 里面直接把 App 这个组件渲染出来。还有一个 router，我们后面再说。 </p>
+<p>main.js 中 App 这个组件是从哪来的呢？往上看，是从 App 目录中导入进来的，我们打开 App.vue：</p>
+<p>App.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;./assets/logo.png&quot;&gt;</span><br><span class="line">    &lt;router-view/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;App&apos;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: &apos;Avenir&apos;, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>首先可以看到它是由三部分组成的，第一部分由一个 template 模板标签所包裹，第二部分由一个 script 标签所包裹，第三部分由一个 style 标签所包裹。当一个文件以 vue 为后缀的时候，我们把这种文件叫做一个单文件组件，实际上他里面放的就是 Vue 组件。这个组件就是我们启动项目时看到的那个页面，可以修改一些内容做个测试，例如把样式和 img 标签删掉。</p>
+<p>App.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;router-view/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;App&apos;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d5d25a5031b147ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后看此时的页面效果，发现 logo 和一些样式没有了，但是还留有一些内容，这些内容在哪呢？接下来就该讲 router 路由了。</p>
+<p>什么是路由？路由就是根据网址的不同，返回不同的内容给用户，这样一个功能我们叫做路由的功能，再来看页面上留下的这些内容，其实这些内容来自于 “<router-view>” 这个标签，可以去除掉，保存，可以看到页面上就没有内容了。router-view 显示的是当前路由地址所对应的内容，我们来看看当前路由地址是哪里，回到页面上，可以看到当前路由的地址是 localhost 下面的一个根路径，那这个根路径对应的内容是什么呢？</router-view></p>
+<p>我们再打开 main.js 这个文件，可以看到在入口文件中引入了一个 router，然后在创建根实例的时候使用了 router，这个 router 是什么，他就是这个项目路由配置的内容，我们打开 router 目录中的 index.js 文件：</p>
+<p>router/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Router from &apos;vue-router&apos;</span><br><span class="line">import HelloWorld from &apos;@/components/HelloWorld&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/&apos;,</span><br><span class="line">      name: &apos;HelloWorld&apos;,</span><br><span class="line">      component: HelloWorld</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这个文件最终导出的内容就是一组配置项，当前路由做了这样的配置：当你访问根路径的时候，根路径这个路由对应的是 “HelloWorld”，“HelloWorld” 又在 components 目录下的 HelloWorld 文件中，我们打开 hello world 这个文件，和刚才讲的 App.vue 一样是三部分构成的，他也是一个单文件组件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f991da3b65393b3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后再回到 router 目录下的 index.js 文件，路由里配置了 “component: HelloWorld” 这么一项，当用户访问根路径的时候，他给用户展示的是 HelloWorld 这个组件，恰好 App.vue 中又写了 router-view，那么 router-view 里展示的是当前路由地址所对应的内容，就是在 router 目录下的 index.js 文中配置的 HelloWorld 这个组件，我们对这个组件进行一个修改：</p>
+<p>HelloWorld.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;HelloWorld&apos;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时页面上就没有任何的内容了，将以上内容弄明白后我们就可以改写代码了。</p>
+<p>现在访问根路径的时候，我们看到的是 HelloWorld 这个单文件组件，我希望展示的是首页，在 index.js 中去掉对 HelloWorld 组件的导入，把 components 目录删掉，然后在 src 下新建一个目录叫 pages，里面放我们所有网页的集合，在 pages 中新建一个目录叫 home，也就是首页的一个目录，然后在 home 目录下新建一个 Home.vue，只要是以 vue 结尾的文件，我们都可以说是 Vue 的单文件组件，在 Home.vue 中这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        home</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name : &quot;home&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>写完组件后，回到路由，我希望访问根路径的时候，展示的不是 HelloWorld 组件了，而是 Home，这样修改一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Router from &apos;vue-router&apos;</span><br><span class="line">import Home from &apos;@/pages/home/Home&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/&apos;,</span><br><span class="line">      name: &apos;Home&apos;,</span><br><span class="line">      component: Home</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>回到页面上，可以看到 Home 组件被显示到页面之上了。如果访问列表页，能展示出列表页的内容，这该怎么实现呢？</p>
+<p>到路由配置里，我们增加一条配置项，访问 list 路径的时候，去显示 List 这样一个组件，步骤和创建 Home 组件的方法一样。</p>
+<p>pages/list/List.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        list</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name : &quot;list&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>router/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Router from &apos;vue-router&apos;</span><br><span class="line">import Home from &apos;@/pages/home/Home&apos;</span><br><span class="line">import List from &apos;@/pages/list/List&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/&apos;,</span><br><span class="line">      name: &apos;Home&apos;,</span><br><span class="line">      component: Home</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/list&apos;,</span><br><span class="line">      name: &apos;List&apos;,</span><br><span class="line">      component: List</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>此时访问 list 这个路径，显示的就是 List 这个组件的内容了：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-55e913cc5c7a8b58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="四、多页应用-VS-单页应用"><a href="#四、多页应用-VS-单页应用" class="headerlink" title="四、多页应用 VS 单页应用"></a>四、多页应用 VS 单页应用</h3><h4 id="1、多页应用"><a href="#1、多页应用" class="headerlink" title="1、多页应用"></a>1、多页应用</h4><p>在多页面中，每一次页面的跳转，后端都会返回一个新的 HTML 文件。优点：首先它的首屏时间快，因为我们访问一个页面的时候，服务器给我们返回一个 HTML，然后页面就会被展现出来，这个过程只经历了一个 HTTP 请求，所以页面展示的速度非常快。第二个好处是它的搜素引擎优化效果非常好，搜索引擎在做网页排名的时候，他需要知道网页的内容，根据网页的内容他才能给你网页权重来进行一个网页的排名，搜索引擎是可以识别 HTML 中的内容的，而我们每一个页面所有的内容都放在 HTML 之中，所以这种多页应用的搜索引擎排名是非常好的。</p>
+<p>但是多页应用也有一个缺点，就是页面之间的切换有时候会比较慢，因为每次跳转页面的时候都需要发一个 HTTP 请求，假设网络比较慢，在多页跳转的时候就会有明显的卡顿情况。</p>
+<h4 id="2、单页应用"><a href="#2、单页应用" class="headerlink" title="2、单页应用"></a>2、单页应用</h4><p>打开项目并运行，在浏览器中打开 Network 下的 Dom，可以看到现在访问的是首页的页面。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-3004eaf2f6e21ecc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>在首页里我们希望能有一个链接跳转到 list 这个页，打开 Home.vue，这样去修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div class=&quot;home&quot;&gt;home&lt;/div&gt;</span><br><span class="line">        &lt;router-link to=&quot;/list&quot;&gt;列表页&lt;/router-link&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name : &quot;home&quot;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里跳转不用 a 标签，而是用 Vue 提供的 router-link 标签，里面的 to 指向跳转的页面。注意 template 模板只能向外暴露一个根标签，需要把 div 和 router-link 包裹在一起。</p>
+<p>打开页面，点击“列表页”，就进入列表页了，后退，又回到首页了。那怎么理解单页应用呢？第一次进入页面的时候，会请求一个 HTML 文件，先把他清除掉，然后进入列表页，这个时候并没有请求一个 HTML 文件，回退到首页，也是一样，没有请求一个 HTML 文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-dee75ba9005f1e85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>它的原理是这样的：js 会感知到 url 变化，当 url 变化的时候，通过 js 把当前页面的内容清掉，再把下一个页面的内容挂载到页面上，所以这个时候的路由不是后端来做了，而是由前端来做，我们判断页面到底是显示哪一个组件，然后把以前的组件清除掉，再去显示新的的组件就可以了。</p>
+<p>当使用单页应用进行页面事件的跳转的时候，每次跳转并不去加载 HTML 文件，而是通过 js 动态的把当前页面的内容删除掉，再去把新的页面上的 DOM 结构渲染出来，这种做法带来的一个好处是，当我页面之间做跳转的时候，我不需要做 HTML 文件的请求，这样就节约了很多 HTTP 请求发送的时延，使页面切换的非常快。它的缺点是首屏时间稍慢，因为他会发送一个 HTML 和 js 的请求，两个请求都回来了，首屏才会展示出来。还有一个问题，就是 SEO 比较差，SEO 只认识 HTML 中的内容，不认识 js 中的内容。</p>
+<h3 id="五、项目代码初始化"><a href="#五、项目代码初始化" class="headerlink" title="五、项目代码初始化"></a>五、项目代码初始化</h3><p>这个项目要做一个移动端的网页，所以首先要改一下 index.html 下的 meta 标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=240, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后引入 reset.css 文件，一个重置页面的样式表，从网上下载就可以，也可以拷贝我项目中的 reset.css 文件。在 src 目录下的 assest 目录中，创建一个 style 目录，将 reset.css 文件放进去。接下来在项目中引入这个文件，打开项目的入口文件 main.js，通过 import 来引入这个文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;./assets/style/reset.css&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面，可以看到 reset.css 引入成功:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-400ef902fc0107ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>还需要引入一个 border.css，移动端有一个 1 像素边框的问题，就是有的手机屏幕分辨率比较高，dpr 是 2 或者 3，如果在页面上写 “border : 1px solid”， 他实际上指的是 css 像素，在 dpr 2 的设备上，他其实对应的是 2 个物理像素，为了解决这种 1 像素被显示成多像素的问题，我们需要引入一个 border.css 文件，引入方式和 reset.css 的引入方式一样。</p>
+<p>在移动端还有一个 300ms 点击延迟的问题，他指得是在移动端开发中，某些机型上，某些浏览器上，当执行 click 的时候，这个 click 事件会延迟 300ms 后才执行，这样我们是用 click 事件用户体验就不是特别好了，要解决这个问题，我们可以引入一个 fastclick 库，通过 npm 来安装一下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-0ca939e3905302c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>–save 的意思就是不管在开发环境中，还是打包生成线上版本的代码，都使用 fastclick。安装好之后，打开 main.js，引入 fastclick，并使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import fastClick from &quot;fastclick&quot;;</span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">fastClick.attach(document.body);</span><br></pre></td></tr></table></figure>
+
+<p>最后，我们对项目中的一些无用代码进行一个删除，进入 router 下的 index.js，将之前见得列表页 list 删除，把上面的 import 也删除掉。打开 pages 这个目录，把 list 目录全删掉。再打开 pages 中 Home.vue 这个文件，将模板里的内容都清除掉，样式也清除掉。这个时候，项目中该删的代码基本都删除了。</p>
+<p>本地的代码改完之后，我们把它上传到远程的 Git 仓库中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;project init&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>因为我们在使用 vue-cli 搭建项目的时候，安装了 eslint，所以如果我们不去规范 vue 或 js 文件的代码，控制台中会出现很多的警告，比如首行缩进是两个空格，字符串需要用单引号包裹，标签结束后，下边必须保留一个空行（也只能留一个空行）……等等。但是我的习惯是首行缩进 4 个空格，所以我要修改一下 eslint 的配置。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-3227ef20ab99686b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>先打开 .editorconfig 文件，修改 indent_size 为 4，再打开 .eslintrc.js，在 rules 中添加一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;indent&apos;: [&apos;error&apos;, 4, &#123; &apos;SwitchCase&apos;: 1 &#125;]</span><br></pre></td></tr></table></figure>
+
+<p>重启一下服务，在控制台看到 App.vue 这个文件被警告了，提示应该是 4 个缩进，结果现在是 2 个缩进。这里如果你使用的是 VS Code，那推荐你安装一个 vue-format 插件，可以对 vue 文件进行一个格式化。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e740088c7f71bf54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>但是，就是因为我的这个缩进的习惯，给自己挖了一个坑，vue-cli 搭建出的项目，默认都是 2 个，所以，为了解决控制台一大堆的警告，我只能把项目文件都格式化一遍了。</p>
+<p>还有一种警告就是字符串必须是单引号包裹，我们可以在.eslintrc.js 文件中 rules 里配置一下 quotes，把第一项改为 0，0 表示不处理，1 表示警告，2 表示错误并退出，所以即使出现了双引号，也不会警告。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;quotes&quot;: 0</span><br></pre></td></tr></table></figure>
+
+<p>因为 eslint 规范限制太过严格，之后一定还会出现另一些 eslint 警告的，一点一点的去配置，未免有些太麻烦了，对于我这个强迫症来说，没有任何警告才是最舒服的。那如果不用 eslint 该怎么做？在创建 vue 项目的时候就不安装 eslint。如果安装了 eslint，怎么关闭呢？打开 config 目录下 index.js 文件，找到 useEslint，将他改为 false 就可以了。注意，每次修改了配置文件后都需要重新启动一下项目。</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/12/Vuejs第4课-Vue中的动画特效（part02）/" rel="next" title="Vuejs第4课-Vue中的动画特效（part02）">
+                <i class="fa fa-chevron-left"></i> Vuejs第4课-Vue中的动画特效（part02）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/14/Vuejs第6课-项目实战-首页开发（part01）/" rel="prev" title="Vuejs第6课-项目实战-首页开发（part01）">
+                Vuejs第6课-项目实战-首页开发（part01） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、项目环境准备"><span class="nav-text">一、项目环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、项目代码结构介绍"><span class="nav-text">二、项目代码结构介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json"><span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LICENSE"><span class="nav-text">LICENSE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-html"><span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#postcssrc-js"><span class="nav-text">.postcssrc.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitignore"><span class="nav-text">.gitignore</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#eslintrc-js"><span class="nav-text">.eslintrc.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#eslintignore"><span class="nav-text">.eslintignore</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#editorconfig"><span class="nav-text">.editorconfig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#babelrc"><span class="nav-text">.babelrc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#static-目录"><span class="nav-text">static 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#node-modules-目录"><span class="nav-text">node_modules 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src-目录"><span class="nav-text">src 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#config-目录"><span class="nav-text">config 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#build-目录"><span class="nav-text">build 目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、单文件组件与-Vue-中的路由"><span class="nav-text">三、单文件组件与 Vue 中的路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、多页应用-VS-单页应用"><span class="nav-text">四、多页应用 VS 单页应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、多页应用"><span class="nav-text">1、多页应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、单页应用"><span class="nav-text">2、单页应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、项目代码初始化"><span class="nav-text">五、项目代码初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充："><span class="nav-text">补充：</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

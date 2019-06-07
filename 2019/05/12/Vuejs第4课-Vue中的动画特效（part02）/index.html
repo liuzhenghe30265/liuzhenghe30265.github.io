@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="四、Vue 中的 Js 动画与 Velocity.js 的结合1、js 动画以前讲动画的时候都是通过 css 来实现一个动画效果，那有办法通过 js 实现一些动画效果么？其实也是有的。Vue 给我们提供了很多 js 动画的钩子，我们可以这样去用： 12345678910111213141516171819202122232425262728293031&amp;lt;div id=&amp;quot;app&amp;qu">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第4课-Vue中的动画特效（part02）">
+<meta property="og:url" content="http://yoursite.com/2019/05/12/Vuejs第4课-Vue中的动画特效（part02）/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="四、Vue 中的 Js 动画与 Velocity.js 的结合1、js 动画以前讲动画的时候都是通过 css 来实现一个动画效果，那有办法通过 js 实现一些动画效果么？其实也是有的。Vue 给我们提供了很多 js 动画的钩子，我们可以这样去用： 12345678910111213141516171819202122232425262728293031&amp;lt;div id=&amp;quot;app&amp;qu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4c4d9c23a80801a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:29.730Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第4课-Vue中的动画特效（part02）">
+<meta name="twitter:description" content="四、Vue 中的 Js 动画与 Velocity.js 的结合1、js 动画以前讲动画的时候都是通过 css 来实现一个动画效果，那有办法通过 js 实现一些动画效果么？其实也是有的。Vue 给我们提供了很多 js 动画的钩子，我们可以这样去用： 12345678910111213141516171819202122232425262728293031&amp;lt;div id=&amp;quot;app&amp;qu">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-4c4d9c23a80801a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/12/Vuejs第4课-Vue中的动画特效（part02）/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第4课-Vue中的动画特效（part02） | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/Vuejs第4课-Vue中的动画特效（part02）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第4课-Vue中的动画特效（part02）</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-12T00:00:00+08:00">
+                2019-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="四、Vue-中的-Js-动画与-Velocity-js-的结合"><a href="#四、Vue-中的-Js-动画与-Velocity-js-的结合" class="headerlink" title="四、Vue 中的 Js 动画与 Velocity.js 的结合"></a>四、Vue 中的 Js 动画与 Velocity.js 的结合</h3><h4 id="1、js-动画"><a href="#1、js-动画" class="headerlink" title="1、js 动画"></a>1、js 动画</h4><p>以前讲动画的时候都是通过 css 来实现一个动画效果，那有办法通过 js 实现一些动画效果么？其实也是有的。Vue 给我们提供了很多 js 动画的钩子，我们可以这样去用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; @before-enter=&quot;handleBeforeEnter&quot; @enter=&quot;handleEnetr&quot; @after-enter=&quot;handleAfterEnetr&quot;&gt;</span><br><span class="line">        &lt;div v-show=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;,</span><br><span class="line">            handleBeforeEnter: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;red&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            handleEnetr: function (el, done) &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    el.style.color = &quot;blue&quot;;</span><br><span class="line">                    done();</span><br><span class="line">                &#125;, 2000);</span><br><span class="line">            &#125;,</span><br><span class="line">            handleAfterEnetr: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;black&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码，在 transition 中绑定了一些事件 @before-enetr、@enetr、@after-enter，并在 methods 中编写这些函数，这些函数都会接受一个参数 el，这个 el 指的就是 transition 动画包裹的这个标签，那就直接可以通过 el.style 给他设置样式了。</p>
+<p>再来看第二个钩子函数 enter，这个钩子和 before-enter 稍有差异，他会接受两个参数，第一个是 el，第二个是一个 done 回调函数，enter 这个钩子当 before-enter 被触发结束后，下一步就是要真正的运行动画了，当真正运行动画的时候，实际上所有的动画都写在 enter 这个钩子对应的函数中。例如上面我在 handleEnter 中通过延时器编写一个 2s 后变色的效果，此时，页面的一个效果就是：点击显示后，元素的颜色开始是红色，接着动画执行，2s 后变为蓝色。在 handleEnetr 这个函数中，done 这个回调函数也很重要，当动画结束的时候，要手动的调一下 done 这个回调函数，相当于你告诉 Vue 这个动画已经执行完了。</p>
+<p>当 done 被调用之后，Vue 又会触发一个事件，这个事件的名字叫 after-enter，可以写一个对应的处理函数，叫做 handleAfterEnetr，这个函数中，我们可以让元素的颜色恢复成黑色。但是此时页面上的效果是他没有变蓝，而是直接变成了黑色，这是因为在 handleEnetr 中，我们设置了 2s 动画就结束了，红色变为蓝色后，马上就变为了黑色，为了看的更清楚一些，可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; @before-enter=&quot;handleBeforeEnter&quot; @enter=&quot;handleEnetr&quot; @after-enter=&quot;handleAfterEnetr&quot;&gt;</span><br><span class="line">        &lt;div v-show=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;,</span><br><span class="line">            handleBeforeEnter: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;red&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            handleEnetr: function (el, done) &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    el.style.color = &quot;blue&quot;;</span><br><span class="line">                &#125;, 2000);</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    done();</span><br><span class="line">                &#125;, 4000)</span><br><span class="line">            &#125;,</span><br><span class="line">            handleAfterEnetr: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;black&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上边设置了 4s 后动画才结束，所以此时页面上的效果就是先变红，2S 后变蓝，再过两秒后变黑，动画结束。上面讲了入场动画，那么出场动画呢？出场动画的钩子函数是 before-leave、leave、after、leave，他们的用法和 enter 是一致的，我们可以做个测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; @before-leave=&quot;handleBeforeLeave&quot; @leave=&quot;handleLeave&quot; @after-leave=&quot;handleAfterLeave&quot;&gt;</span><br><span class="line">        &lt;div v-show=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;,</span><br><span class="line">            handleBeforeLeave: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;red&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            handleLeave: function (el, done) &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    el.style.color = &quot;blue&quot;;</span><br><span class="line">                &#125;, 2000);</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    done();</span><br><span class="line">                &#125;, 4000)</span><br><span class="line">            &#125;,</span><br><span class="line">            handleAfterLeave: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;black&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上就是实现了 js 的动画，接下来介绍一种 js 常用的一个动画库。</p>
+<h4 id="2、Velocity-js-动画库"><a href="#2、Velocity-js-动画库" class="headerlink" title="2、Velocity.js 动画库"></a>2、Velocity.js 动画库</h4><p>去 <a href="http://velocityjs.org/" target="_blank" rel="noopener">Velocity.js 官网</a> 下载并查看 API 文档。我这里直接用 BootCDN 方式引用了。</p>
+<p>下来我们借助 Velocity.js 来实现一些动画效果。首先把我们自己写的动画效果删掉，当动画还没执行时，我们在 handleBeforeEnter 先设置元素的 opacity 为 0，也就是还没有入场的时候透明度为 0，动画开始执行，走到 handleEnetr 的时候，我希望将元素的透明度慢慢变为 1，通过 Velocity() 来写，第一个参数传 el，第二个参数写变化的结果，第三个参数写这个动画变化的时间，例如：Velocity(el,{opacity:1},{duration:1000})。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&apos;https://cdn.bootcss.com/velocity/2.0.5/velocity.js&apos;&gt;&lt;/script&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; @before-enter=&quot;handleBeforeEnter&quot; @enter=&quot;handleEnetr&quot; @after-enter=&quot;handleAfterEnetr&quot;&gt;</span><br><span class="line">        &lt;div v-show=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;,</span><br><span class="line">            handleBeforeEnter: function (el) &#123;</span><br><span class="line">                el.style.opacity = 0</span><br><span class="line">            &#125;,</span><br><span class="line">            handleEnetr: function (el, done) &#123;</span><br><span class="line">                Velocity(el, &#123;</span><br><span class="line">                    opacity: 1</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    duration: 1000,</span><br><span class="line">                    complete: done</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">            handleAfterEnetr: function (el) &#123;</span><br><span class="line">                console.log(&quot;动画结束！&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时到页面上来看一下，从隐藏到显示，会有一个渐现的效果。但是这个效果这么执行完其实是有问题的，我们先看一下 Velocity 的官网，在右侧导航找到一个 Complete 参数：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4c4d9c23a80801a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>这里有一个 complete 配置参数，我们在 duration 后面加一个 complete 配置参数，里面加一个 done 函数，他的意思是，当 Velocity 执行完这个动画之后，complete 这个属性对应的内容会被自动的执行，也就是 done 这个函数会被自动的执行，告诉 Vue 我的动画执行完成了，接下来 handleAfterEnet 这个函数就会被执行，可以让他打印一个 “动画结束！”。可以试一下，如果不设置 complete 这个参数，那么他就永远不会执行 handleAfterEnet 这个方法，也就永远不会结束。</p>
+<p>以上就讲解了 Vue 中如何使用 js 的钩子实现 js 动画效果，和 Velocity.js 动画库的使用。</p>
+<h3 id="五、Vue-中多个元素或组件的过渡"><a href="#五、Vue-中多个元素或组件的过渡" class="headerlink" title="五、Vue 中多个元素或组件的过渡"></a>五、Vue 中多个元素或组件的过渡</h3><h4 id="1、多个元素的过渡"><a href="#1、多个元素的过渡" class="headerlink" title="1、多个元素的过渡"></a>1、多个元素的过渡</h4><p>之前讲的是一个元素的过渡动画，这一节来讲一下 Vue 中多个元素或组件的过渡。</p>
+<p>在 transition 这个标签内，我们再加一个元素，通过 v-if 和 v-else 的形式来确定显示与否，然后再添加一个过渡动画，希望有一个渐隐渐现的效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enetr-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">        &lt;div v-else&gt;Bye World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是我们打开页面，切换效果是有的，但是渐隐渐现的效果并没有实现，原因是，Vue 在这两个元素进行切换的时候，他会尽量的复用 DOM，所以导致这种动画不会出现，如果让 Vue 不去复用 DOM 的话，该怎么解决呢？我们回忆一下 Vue.js第2课中的第7章讲过的 key 值，在那个例子中，有两个 input 框，因为 Vue 中 DOM 复用的机制，导致在控制台修改 data 后，input 框切换了，但是里边的值还是保持着上一个输入框输入的内容，我们通过给每一个 input 框设置一个属于自身的 key 值，就可以解决这个问题，这里也一样，给两个元素分别设置一个 key 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enetr-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot; key=&quot;hello&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">        &lt;div v-else key=&quot;bye&quot;&gt;Bye World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时打开页面，可以看到渐隐渐现动画效果也实现了。</p>
+<p>实际上 Vue 在 transition 上还给我们提供了一个参数 mode，来设置多个属性切换时的一个效果，如果把 mode 设置为 in-out，就是要显示的元素先显示，要隐藏的元素再隐藏，反过来，out-in 就是要隐藏的元素先隐藏，要显示的元素再显示，看下边代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    .fade-enetr-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; mode=&quot;out-in&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot; key=&quot;hello&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">        &lt;div v-else key=&quot;bye&quot;&gt;Bye World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上就是对个元素的过渡，下面在来看一下多个组件的过渡。</p>
+<h4 id="2、多个组件的过渡"><a href="#2、多个组件的过渡" class="headerlink" title="2、多个组件的过渡"></a>2、多个组件的过渡</h4><p>创建两个组件，并在 transition 中使用这两个组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; mode=&quot;out-in&quot;&gt;</span><br><span class="line">        &lt;hello v-if=&quot;show&quot;&gt;&lt;/hello&gt;</span><br><span class="line">        &lt;bye v-else&gt;&lt;/bye&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;hello&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Hello World!&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    Vue.component(&quot;bye&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Bye world!&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.show = !this.show;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面，可以看到渐隐渐现的动画效果是没有问题的，这样就实现了多个组件的过渡效果，如果改为动态组件呢？</p>
+<p>我们先来回忆一下 Vue.js第3课第八章中讲过的动态组件，如果兄弟组件之间是通过 v-if、v-else 的方式进行判断显示的，那就可以使用 component 标签添加 :is 属性和判断条件，来显示不同的组件。接下来按照动态组件的方式修改一下上面代码。</p>
+<p>先来修改一下 data，可以将之前的 show 换为 type，值写成子组件名，methods 中的 toggleFun 中的代码也需要修改一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; mode=&quot;out-in&quot;&gt;</span><br><span class="line">        &lt;component :is=&quot;type&quot;&gt;&lt;/component&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;hello&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Hello World!&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    Vue.component(&quot;bye&quot;, &#123;</span><br><span class="line">        template: &quot;&lt;div&gt;Bye world!&lt;/div&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            type: &quot;hello&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleFun: function () &#123;</span><br><span class="line">                this.type = this.type === &quot;hello&quot; ? &quot;bye&quot; : &quot;hello&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、Vue-中的列表过渡"><a href="#六、Vue-中的列表过渡" class="headerlink" title="六、Vue 中的列表过渡"></a>六、Vue 中的列表过渡</h3><p>我们先来实现这样一个功能：显示一个列表项，这个列表项循环显示数组中的内容，这个数组里的内容是通过点击一次按钮，加一次数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickAddFun&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">    &lt;div v-for=&quot;item of list&quot; :key=&quot;item.id&quot;&gt;&#123;&#123;item.title&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var count = 0;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: []</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickAddFun: function () &#123;</span><br><span class="line">                this.list.push(&#123;</span><br><span class="line">                    id: count++,</span><br><span class="line">                    title: &quot;Hello World!&quot;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面，可以看到，每点一次按钮，就会新增一个 “Hello World!”。以前我们做动画效果的时候，只能做对单个元素的隐藏或显示，或者说对多个元素来回切换做隐藏或显示效果。那怎么对列表做一个过渡效果呢？</p>
+<p>这个时候给大家讲解一个新的标签，叫做 transition-group，我们把要循环的元素放到这个标签中，然后需要写一个 css 过渡的内容，方法和之前一样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .v-enter,</span><br><span class="line">    .v-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .v-enter-active,</span><br><span class="line">    .v-leave-to &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickAddFun&quot;&gt;Add&lt;/button&gt;</span><br><span class="line">    &lt;transition-group&gt;</span><br><span class="line">        &lt;div v-for=&quot;item of list&quot; :key=&quot;item.id&quot;&gt;&#123;&#123;item.title&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/transition-group&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var count = 0;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: []</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickAddFun: function () &#123;</span><br><span class="line">                this.list.push(&#123;</span><br><span class="line">                    id: count++,</span><br><span class="line">                    title: &quot;Hello World!&quot;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面，可以看到每次点击后添加内容的时候都有一个渐现的效果，它的原理是什么呢？其实可以这样理解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;transition-group&gt;</span><br><span class="line">    &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">&lt;/transition-group&gt;</span><br><span class="line">&lt;!-- 相当于： --&gt;</span><br><span class="line">&lt;transition&gt;</span><br><span class="line">    &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br><span class="line">&lt;transition&gt;</span><br><span class="line">    &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br><span class="line">&lt;transition&gt;</span><br><span class="line">    &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+
+<p>给列表外层加一个 transition-group 标签，相当于给列表的每一项都加一个 transition 标签。</p>
+<h3 id="七、Vue-中的动画封装"><a href="#七、Vue-中的动画封装" class="headerlink" title="七、Vue 中的动画封装"></a>七、Vue 中的动画封装</h3><p>这一节来看一下如何进行 Vue 中的动画封装，让我们的动画变得可复用。</p>
+<h4 id="1、封装-style-样式的动画"><a href="#1、封装-style-样式的动画" class="headerlink" title="1、封装 style 样式的动画"></a>1、封装 style 样式的动画</h4><p>先来回忆一下之前写的通过点击 toggle 实现元素渐隐渐现的效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .v-enter,</span><br><span class="line">    .v-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .v-enter-active,</span><br><span class="line">    .v-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleBtnFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleBtnFun: function () &#123;</span><br><span class="line">                this.show = !this.show;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>有的时候这种渐隐渐现的效果会用的比较多，我们就希望对这种效果进行一个封装，怎么封装呢？</p>
+<p>可以建一个组件，例如叫 fade，然后设置模板，模板里把 transition 标签放进去，在 transition 里写一个 slot，也就是我让外部给我传一些 DOM 元素，紧接着我还需要外部给我传一个 show 这样一个变量，我要根据这个变量来判断外部传过来的 DOM 是否要被显示。然后用一下 fade 这个组件，这个组件需要传几个东西，插槽里的内容已经通过 Hello World! 传给子组件了，紧接着要传一个名字叫 show 的变量，他等于父组件的这个 show 的变量。现在已经把动画封装到了 fade 组件中，如果想再用这种动画，复制出一份这个组件就可以了，然后里面传不同的 DOM 元素就可以了（这就是为什么使用 slot 的原因了）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .v-enter,</span><br><span class="line">    .v-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .v-enter-active,</span><br><span class="line">    .v-leave-active &#123;</span><br><span class="line">        transition: opacity 1s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleBtnFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;fade :show=&quot;show&quot;&gt;</span><br><span class="line">        &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/fade&gt;</span><br><span class="line">    &lt;fade :show=&quot;show&quot;&gt;</span><br><span class="line">        &lt;h1&gt;Bye World!&lt;/h1&gt;</span><br><span class="line">    &lt;/fade&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;fade&quot;, &#123;</span><br><span class="line">        props: [&quot;show&quot;],</span><br><span class="line">        template: `</span><br><span class="line">            &lt;transition&gt;</span><br><span class="line">                &lt;slot v-if=&quot;show&quot;&gt;&lt;/slot&gt;</span><br><span class="line">            &lt;/transition&gt;</span><br><span class="line">            `</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleBtnFun: function () &#123;</span><br><span class="line">                this.show = !this.show;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面，点击 toggle，不管是 div 这个元素，还是 h1 这个元素，都实现了渐隐渐现的效果。其实还可以把上面 style 中的样式也封装到子组件里，回顾一下本课第4章 Vue 中的 js 动画。</p>
+<h4 id="2、封装-js-样式的动画"><a href="#2、封装-js-样式的动画" class="headerlink" title="2、封装 js 样式的动画"></a>2、封装 js 样式的动画</h4><p>我们通过钩子函数，将动画效果都封装到子组件的 methods 方法中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;toggleBtnFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;fade :show=&quot;show&quot;&gt;</span><br><span class="line">        &lt;div&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/fade&gt;</span><br><span class="line">    &lt;fade :show=&quot;show&quot;&gt;</span><br><span class="line">        &lt;h1&gt;Bye World!&lt;/h1&gt;</span><br><span class="line">    &lt;/fade&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    Vue.component(&quot;fade&quot;, &#123;</span><br><span class="line">        props: [&quot;show&quot;],</span><br><span class="line">        template: `</span><br><span class="line">            &lt;transition</span><br><span class="line">            @before-enter=&quot;handleBeforeEnter&quot; @enter=&quot;handleEnter&quot; @after-enter=&quot;handleAfterEnter&quot;&gt;</span><br><span class="line">                &lt;slot v-if=&quot;show&quot;&gt;&lt;/slot&gt;</span><br><span class="line">            &lt;/transition&gt;</span><br><span class="line">            `,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            handleBeforeEnter: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;red&quot;;</span><br><span class="line">            &#125;,</span><br><span class="line">            handleEnter: function (el, done) &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    el.style.color = &quot;blue&quot;;</span><br><span class="line">                &#125;, 2000);</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    done();</span><br><span class="line">                &#125;, 4000);</span><br><span class="line">            &#125;,</span><br><span class="line">            handleAfterEnter: function (el) &#123;</span><br><span class="line">                el.style.color = &quot;black&quot;;</span><br><span class="line">                console.log(&quot;动画结束！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            toggleBtnFun: function () &#123;</span><br><span class="line">                this.show = !this.show;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面可以看到，元素显示后，显示红色，2s 后变为蓝色，再 2s 后变为黑色，动画结束。</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/11/Vuejs第4课-Vue中的动画特效（part01）/" rel="next" title="Vuejs第4课-Vue中的动画特效（part01）">
+                <i class="fa fa-chevron-left"></i> Vuejs第4课-Vue中的动画特效（part01）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/13/Vuejs第5课-Vue项目预热/" rel="prev" title="Vuejs第5课-Vue项目预热">
+                Vuejs第5课-Vue项目预热 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Vue-中的-Js-动画与-Velocity-js-的结合"><span class="nav-text">四、Vue 中的 Js 动画与 Velocity.js 的结合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、js-动画"><span class="nav-text">1、js 动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、Velocity-js-动画库"><span class="nav-text">2、Velocity.js 动画库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、Vue-中多个元素或组件的过渡"><span class="nav-text">五、Vue 中多个元素或组件的过渡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、多个元素的过渡"><span class="nav-text">1、多个元素的过渡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、多个组件的过渡"><span class="nav-text">2、多个组件的过渡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、Vue-中的列表过渡"><span class="nav-text">六、Vue 中的列表过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、Vue-中的动画封装"><span class="nav-text">七、Vue 中的动画封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、封装-style-样式的动画"><span class="nav-text">1、封装 style 样式的动画</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、封装-js-样式的动画"><span class="nav-text">2、封装 js 样式的动画</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

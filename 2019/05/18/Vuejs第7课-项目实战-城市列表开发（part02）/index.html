@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="五、页面的动态数据渲染这一章使用 axios 将城市数据动态渲染到城市列表页，城市的数据存放在 static/mock/city.json 中，因为内容比较多，可以直接去我的 项目线上仓库 下载。 首先在 City.vue 中通过 ajax 获取 city.json 中的数据，然后在 data 中返回获取到的热门城市数组和所有城市对象，通过属性将这两组数据传递给子组件 list.vue。 City">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第7课-项目实战-城市列表开发（part02）">
+<meta property="og:url" content="http://yoursite.com/2019/05/18/Vuejs第7课-项目实战-城市列表开发（part02）/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="五、页面的动态数据渲染这一章使用 axios 将城市数据动态渲染到城市列表页，城市的数据存放在 static/mock/city.json 中，因为内容比较多，可以直接去我的 项目线上仓库 下载。 首先在 City.vue 中通过 ajax 获取 city.json 中的数据，然后在 data 中返回获取到的热门城市数组和所有城市对象，通过属性将这两组数据传递给子组件 list.vue。 City">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-ab4ae0c34f1a9695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:54.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第7课-项目实战-城市列表开发（part02）">
+<meta name="twitter:description" content="五、页面的动态数据渲染这一章使用 axios 将城市数据动态渲染到城市列表页，城市的数据存放在 static/mock/city.json 中，因为内容比较多，可以直接去我的 项目线上仓库 下载。 首先在 City.vue 中通过 ajax 获取 city.json 中的数据，然后在 data 中返回获取到的热门城市数组和所有城市对象，通过属性将这两组数据传递给子组件 list.vue。 City">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-ab4ae0c34f1a9695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/18/Vuejs第7课-项目实战-城市列表开发（part02）/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第7课-项目实战-城市列表开发（part02） | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/Vuejs第7课-项目实战-城市列表开发（part02）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第7课-项目实战-城市列表开发（part02）</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-18T00:00:00+08:00">
+                2019-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="五、页面的动态数据渲染"><a href="#五、页面的动态数据渲染" class="headerlink" title="五、页面的动态数据渲染"></a>五、页面的动态数据渲染</h3><p>这一章使用 axios 将城市数据动态渲染到城市列表页，城市的数据存放在 static/mock/city.json 中，因为内容比较多，可以直接去我的 <a href="https://github.com/he30265/Vue-Travel" target="_blank" rel="noopener">项目线上仓库</a> 下载。</p>
+<p>首先在 City.vue 中通过 ajax 获取 city.json 中的数据，然后在 data 中返回获取到的热门城市数组和所有城市对象，通过属性将这两组数据传递给子组件 list.vue。</p>
+<p>City.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;city-header&gt;&lt;/city-header&gt;</span><br><span class="line">    &lt;city-search&gt;&lt;/city-search&gt;</span><br><span class="line">    &lt;city-list :hotCities=&quot;hotCities&quot; :cities=&quot;cities&quot;&gt;&lt;/city-list&gt;</span><br><span class="line">    &lt;city-alphabet&gt;&lt;/city-alphabet&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import CityHeader from &quot;./components/header&quot;;</span><br><span class="line">import CitySearch from &quot;./components/search&quot;;</span><br><span class="line">import CityList from &quot;./components/list&quot;;</span><br><span class="line">import CityAlphabet from &quot;./components/alphabet&quot;;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;City&quot;,</span><br><span class="line">    components: &#123;</span><br><span class="line">        CityHeader,</span><br><span class="line">        CitySearch,</span><br><span class="line">        CityList,</span><br><span class="line">        CityAlphabet</span><br><span class="line">    &#125;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            hotCities: [],</span><br><span class="line">            cities: &#123;&#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        getCityInfo() &#123;</span><br><span class="line">            axios.get(&quot;/api/city.json&quot;).then(this.getCitySuccess);</span><br><span class="line">        &#125;,</span><br><span class="line">        getCitySuccess(result) &#123;</span><br><span class="line">            if (result.data.ret &amp;&amp; result.data.data) &#123;</span><br><span class="line">                const data = result.data.data;</span><br><span class="line">                this.hotCities = data.hotCities;</span><br><span class="line">                this.cities = data.cities;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        this.getCityInfo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接下来去子组件中通过 props 接收这两组数据，并渲染到页面上：</p>
+<p>list.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class=&quot;list_wrapper&quot; ref=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div class=&quot;lw_section&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;ls_tit&quot;&gt;当前城市&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;ls_li&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;button_box&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;lw_section&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;ls_tit&quot;&gt;热门城市&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;ls_li&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;button_box&quot; v-for=&quot;item of hotCities&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;button&quot;&gt;&#123;&#123;item.name&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;lw_section&quot;&gt;</span><br><span class="line">            &lt;div v-for=&quot;(item,key) of cities&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;ls_tit&quot;&gt;&#123;&#123;key&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;ls_li&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;alp_li border-bottom&quot; v-for=&quot;city of item&quot;&gt;&#123;&#123;city.name&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import BScroll from &quot;better-scroll&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;CityList&quot;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        hotCities: Array,</span><br><span class="line">        cities: Object</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        this.scroll = new BScroll(this.$refs.wrapper);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.list_wrapper &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 1.62rem;</span><br><span class="line">    left: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line"></span><br><span class="line">    .lw_section &#123;</span><br><span class="line">        .ls_tit &#123;</span><br><span class="line">            background-color: #f5f5f5;</span><br><span class="line">            padding: 0.2rem;</span><br><span class="line">            color: #212121;</span><br><span class="line">            font-size: 0.24rem;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .ls_li &#123;</span><br><span class="line">            overflow: hidden;</span><br><span class="line">            padding: 0 0.5rem 0.2rem 0.1rem;</span><br><span class="line"></span><br><span class="line">            .button_box &#123;</span><br><span class="line">                width: 33.3%;</span><br><span class="line">                float: left;</span><br><span class="line">                box-sizing: border-box;</span><br><span class="line">                padding: 0 0.1rem;</span><br><span class="line">                margin-top: 0.2rem;</span><br><span class="line"></span><br><span class="line">                .button &#123;</span><br><span class="line">                    font-size: 0.24rem;</span><br><span class="line">                    border: 1px solid #ccc;</span><br><span class="line">                    text-align: center;</span><br><span class="line">                    padding: 0.1rem 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .alp_li &#123;</span><br><span class="line">                padding: 0.2rem 0;</span><br><span class="line">                padding: 0.2rem 0.1rem;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接着再完成右侧字母表的数据渲染，通过 Ajax 将字母表数据渲染到 alphabet.vue 中，方式和 list.vue 中渲染城市首字母的方式一样，使用的也是同一个数据：</p>
+<p>alphbet.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class=&quot;alp_list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ul&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;li&quot; v-for=&quot;(item,key) of cities&quot; :key=&quot;key&quot;&gt;&#123;&#123;key&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;CityAlphabet&quot;,</span><br><span class="line">    props:&#123;</span><br><span class="line">        cities : Object</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.alp_list &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 1.62rem;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    line-height: 0.44rem;</span><br><span class="line"></span><br><span class="line">    .ul &#123;</span><br><span class="line">        .li &#123;</span><br><span class="line">            color: $ftColor;</span><br><span class="line">            text-align: center;</span><br><span class="line">            padding: 0 0.2rem;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当前效果图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-ab4ae0c34f1a9695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>完成 Ajax 数据的渲染之后，我们提交一下代码，并合并到主分支。</p>
+<p>下一节我们来介绍如何实现点击右侧字母，定位到左侧对应首字母城市列表位置的这样一个效果了。</p>
+<h3 id="六、兄弟组件间联动"><a href="#六、兄弟组件间联动" class="headerlink" title="六、兄弟组件间联动"></a>六、兄弟组件间联动</h3><p>首先还是创建一个分支 git-comments，将这部分功能提交到这个分支上。</p>
+<p>先来实现这样一个功能，点击右侧字母表，例如点击 B，城市列表就会定位到以 B 字母开头的城市。</p>
+<p>现在涉及到 city 下两个子组件（alphabet.vue 、list.vue）的传值问题，也就是兄弟组件之间的传值，之前在<a href="https://www.jianshu.com/p/451ae220bc7f" target="_blank" rel="noopener">“Vue.js第3课-深入理解Vue组件（part02）”</a>中讲过非父子组件的传值方法，通过 bus 总线的形式来传值。但是因为我们现在这个非父子组件非常的简单，可以让 alphabet.vue 组件将值传递给父组件 City.vue 组件，然后 City.vue 组件再将值转发给 list.vue 组件，这样就实现了兄弟组件的传值。</p>
+<p>打开 alphabet.vue，在循环的元素上加一个点击事件，例如 handleAlpClick，然后在 methods 中写这个事件方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;li&quot; :ref=&quot;item&quot; v-for=&quot;item of letters&quot; @click=&quot;handleAlpClick&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">    handleAlpClick(e) &#123;</span><br><span class="line">        this.$emit(&quot;change&quot;, e.target.innerHTML);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当执行点击方法的时候，这个事件会接收一个 e 对象，可以 console.log 在控制台看一下这个对象有哪些内容。这样我们就可以通过 e.target.innerHTML 获取到被点击的元素的值。然后回忆一下子组件是如何向父组件传值的，我们通过 emit 向外触发一个 change 事件，再传一个刚才获取到的元素的值到父组件 City.vue 中的 city-alphabet 组件中，city-alphabet 这个组件里绑定一个 change 方法，方法名可以叫 handleAlpChange，然后在 methods 写这个方法，这个方法接收一个值 letter，这个 letter 就是 alphabet.vue 中获取的被点击的元素的值，可以在这个方法中 console.log 一下这个 letter，可以看到，他就是当前被点击的元素的字母，此时，父组件就接收到子组件传来的这个数据了。</p>
+<p>接下来，我们再将父组件接收到的这个数据转发给子组件 list.vue，父组件是通过属性向子组件传值的。首先在父组件 City.vue 里的 data 中定义一个 letter，默认值是空，在 handleAlpChange 方法中，当接受到外部传来的 letter 的时候，让 this.letter = letter。</p>
+<p>City.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;city-alphabet :cities=&quot;cities&quot; @change=&quot;handleAlpChange&quot;&gt;&lt;/city-alphabet&gt;</span><br><span class="line"></span><br><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        hotCities: [],</span><br><span class="line">        cities: &#123;&#125;,</span><br><span class="line">        letter: &quot;&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    handleAlpChange(letter) &#123;</span><br><span class="line">        this.letter = letter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>最后只需要把 letter 传递给子组件 list.vue 就可以了，在 City.vue 组件的模板 city-list 中通过 :letter=”letter” 向子组件 list 传值。打开 list.vue，在 props 中接收这个 letter，并且验证类型为 String 类型。现在要做的就是，当 list.vue 发现 letter 有改变的时候，就需要让组件显示的列表项跟 letter 相同的首字母的列表项要显示出来，怎么做呢？</p>
+<p>这个时候就要借助一个侦听器，回忆一下<a href="https://www.jianshu.com/p/bfb8aee31de4" target="_blank" rel="noopener">”Vue.js第2课-基础“</a>中的 watch 侦听器，我们要在 list.vue 这个组件里监听 letter 的变化，一旦 letter 变了，我们就需要做一些事情。先来打印一下 letter，可以看到，点击字母，就会打印出对应的字母，以上就完成了子组件监听父组件传来的数据的变化。</p>
+<p>list.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    letter() &#123;</span><br><span class="line">        console.log(this.letter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>接下来就该在侦听器里的 letter 方法中编写逻辑代码了。better-scroll 给我们提供了这样一个接口，scroll.scorllToElement，如果 letter 不为空的时候，就调用 this.scroll.scrollToElement() 这个方法，可以让滚动区自动滚到某一个元素上，那么怎么传这个元素呢？在循环城市这一块中，我们给循环项加一个 ref 引用来获取当前 Dom 元素，让他也等于 key 就行，然后回到侦听器的 letter 中，定义一个 element，他就等于通过 ref 获取到的元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    letter() &#123;</span><br><span class="line">        if (this.letter) &#123;</span><br><span class="line">            const element = this.$refs[this.letter][0];</span><br><span class="line">            this.scroll.scrollToElement(element);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>这个时候就可以通过字母获取到他对应的区域，然后把 element 传入 scrollToElement 里，注意，上边代码最后加了一个 [0]，这是因为如果不加，通过 ref 或的的内容就是一个数组，这个数组里的第一个元素才是真正的 DOM 元素，这个时候，点击右侧字母表，就可以跳到对应的字母下的城市列表了。</p>
+<p>点击跳转的功能实现啦，接下来再实现一下滑动右侧字母表，左侧城市列表切换的效果。</p>
+<p>首先在 alphabet.vue 组件的模板中给循环项绑定三个新的事件： touchstart 事件 handleTouchStart、touchmove 事件 handleTouchMove 和 touchend 事件 handleTouchEnd：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;li&quot; :ref=&quot;item&quot; v-for=&quot;item of letters&quot; :key=&quot;item&quot; @touchstart=&quot;handleTouchStart&quot; @touchmove=&quot;handleTouchMove&quot; @touchend=&quot;handleTouchEnd&quot; @click=&quot;handleAlpClick&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后将这三个事件写到 methods 中，这三个事件需要帮我们做一些事，当 touchstart 事件执行之后，才会触发 touchmove 事件，所以要在 data 中定义一个标识位 touchSataus，默认值为 false，当手指触摸的时候，也就是触发 touchstart 事件的时候，在 handleTouchStart 方法中让 this.touchstart = true，当结束滑动的时候，在 handleTouchEnd 方法中让 this.touchstart = false。只有在触发 touchmove 事件的时候，才会执行 handleTouchMove 方法，主要的逻辑代码也就在 handleTouchMove 方法中来实现。</p>
+<p>在 handleTouchMove 方法中，先做一个判断，也就是当 this.touchSataus 为 true 的时候，再编写下面的代码。先定义一个 startY 来获 A 字母距页面顶部的高度是多少，然后定义一个 touchY 来获取当前手指距离顶部的高度，做一个差值，就能够算出当前手指位置和 A 字母顶部的一个差值，再除以每个字母的高度，我就可以知道当前是第几个字母了，然后我去去对应的字母，触发一个 change 事件给外部就可以了。</p>
+<p>如果想根据下标找到对应下标的字母的话，就需要有一个数组来存储这个字母的列表，现在我们通过 props 接收的 cities 是一个对象，不是一个数组，我们需要定义一个数组类型的数据，这里用到了 computed 计算属性，回忆一下<a href="https://www.jianshu.com/p/bfb8aee31de4" target="_blank" rel="noopener">”Vue.js第2课-基础“</a>中的 computed 属性。在计算属性中定义一个 letters 的一个属性默认为一个空数组，然后通过 for 循环遍历出 cities 中的每一项，添加到 letters 中，这样我们就构建出一个名字叫做 letters 的计算属性，然后返回这个属性，他的内容就是一个只包含字母表的一个数组了，那么上面的循环项也可以修改一下了，将 v-for 中的 cities 改为 letters，key 值让他等于 item 就可以了，传值也是 item 就可以了。</p>
+<p>接下来再回到 handleTouchMove 方法中，继续编写拖动的代码，上面 touchY 获取了当前手指距离顶部的高度，因为上面还有城市选择和输入框的元素，所以需要减去这两个元素的高度，可以打印一下这个值，在浏览器中可以看到这个值是不断变化的。接着定义一个 index 的变量，他是一个字母的下标，他就等于 touchY - startY，再除以每个字母的高度，最后做一个向下取整，也就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const index = Math.floor((touchY - startY) / 22);</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以算出当前手指滑动的位置对应的字母的下标是多。最后一步，通过 emit 向父组件触发一个 change 事件，并传一个下标对应的字母。这个 emit 是要写在一个判断里的，判断当 index 大于等于 0 并且 index 小于 letters 的长度，再去通过 emit 触发事件。</p>
+<p>这个时候就实现了拖动右侧，左侧也跟着变得效果了，下面我把 alphabet 和  list 这两个子组件及 City 这个父组件粘贴到笔记中：</p>
+<p>alphhabet.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class=&quot;alp_list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ul&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;li&quot; :ref=&quot;item&quot; v-for=&quot;item of letters&quot; :key=&quot;item&quot; @touchstart=&quot;handleTouchStart&quot; @touchmove=&quot;handleTouchMove&quot; @touchendå=&quot;handleTouchEnd&quot; @click=&quot;handleAlpClick&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;CityAlphabet&quot;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        cities: Object</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        letters() &#123;</span><br><span class="line">            const letters = [];</span><br><span class="line">            for (let i in this.cities) &#123;</span><br><span class="line">                letters.push(i);</span><br><span class="line">            &#125;</span><br><span class="line">            return letters;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            touchSataus: false</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        handleAlpClick(e) &#123;</span><br><span class="line">            this.$emit(&quot;change&quot;, e.target.innerHTML);</span><br><span class="line">        &#125;,</span><br><span class="line">        handleTouchStart() &#123;</span><br><span class="line">            this.touchSataus = true;</span><br><span class="line">        &#125;,</span><br><span class="line">        handleTouchMove(e) &#123;</span><br><span class="line">            if (this.touchSataus) &#123;</span><br><span class="line">                const startY = this.$refs[&quot;A&quot;][0].offsetTop;</span><br><span class="line">                const touchY = e.touches[0].clientY - 81;</span><br><span class="line">                const index = Math.floor((touchY - startY) / 22);</span><br><span class="line">                if (index &gt;= 0 &amp;&amp; index &lt; this.letters.length) &#123;</span><br><span class="line">                    this.$emit(&quot;change&quot;, this.letters[index]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        handleTouchEnd() &#123;</span><br><span class="line">            this.touchSataus = false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.alp_list &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 1.62rem;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    line-height: 0.44rem;</span><br><span class="line"></span><br><span class="line">    .ul &#123;</span><br><span class="line">        .li &#123;</span><br><span class="line">            color: $ftColor;</span><br><span class="line">            text-align: center;</span><br><span class="line">            padding: 0 0.2rem;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>City.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;city-header&gt;&lt;/city-header&gt;</span><br><span class="line">    &lt;city-search&gt;&lt;/city-search&gt;</span><br><span class="line">    &lt;city-list :hotCities=&quot;hotCities&quot; :cities=&quot;cities&quot; :letter=&quot;letter&quot;&gt;&lt;/city-list&gt;</span><br><span class="line">    &lt;city-alphabet :cities=&quot;cities&quot; @change=&quot;handleAlpChange&quot;&gt;&lt;/city-alphabet&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import CityHeader from &quot;./components/header&quot;;</span><br><span class="line">import CitySearch from &quot;./components/search&quot;;</span><br><span class="line">import CityList from &quot;./components/list&quot;;</span><br><span class="line">import CityAlphabet from &quot;./components/alphabet&quot;;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;City&quot;,</span><br><span class="line">    components: &#123;</span><br><span class="line">        CityHeader,</span><br><span class="line">        CitySearch,</span><br><span class="line">        CityList,</span><br><span class="line">        CityAlphabet</span><br><span class="line">    &#125;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            hotCities: [],</span><br><span class="line">            cities: &#123;&#125;,</span><br><span class="line">            letter: &quot;&quot;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        getCityInfo() &#123;</span><br><span class="line">            axios.get(&quot;/api/city.json&quot;).then(this.getCitySuccess);</span><br><span class="line">        &#125;,</span><br><span class="line">        getCitySuccess(result) &#123;</span><br><span class="line">            if (result.data.ret &amp;&amp; result.data.data) &#123;</span><br><span class="line">                const data = result.data.data;</span><br><span class="line">                this.hotCities = data.hotCities;</span><br><span class="line">                this.cities = data.cities;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        handleAlpChange(letter) &#123;</span><br><span class="line">            this.letter = letter;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        this.getCityInfo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>list.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class=&quot;list_wrapper&quot; ref=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div class=&quot;lw_section&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;ls_tit&quot;&gt;当前城市&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;ls_li&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;button_box&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;button&quot;&gt;北京&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;lw_section&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;ls_tit&quot;&gt;热门城市&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;ls_li&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;button_box&quot; v-for=&quot;item of hotCities&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;button&quot;&gt;&#123;&#123;item.name&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;lw_section&quot;&gt;</span><br><span class="line">            &lt;div v-for=&quot;(item,key) of cities&quot; :key=&quot;key&quot; :ref=&quot;key&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;ls_tit&quot;&gt;&#123;&#123;key&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;ls_li&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;alp_li border-bottom&quot; v-for=&quot;city of item&quot; :key=&quot;item.id&quot;&gt;&#123;&#123;city.name&#125;&#125;&lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import BScroll from &quot;better-scroll&quot;;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;CityList&quot;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        hotCities: Array,</span><br><span class="line">        cities: Object,</span><br><span class="line">        letter: String</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        this.scroll = new BScroll(this.$refs.wrapper);</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">        letter() &#123;</span><br><span class="line">            if (this.letter) &#123;</span><br><span class="line">                const element = this.$refs[this.letter][0];</span><br><span class="line">                this.scroll.scrollToElement(element);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.list_wrapper &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 1.62rem;</span><br><span class="line">    left: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line"></span><br><span class="line">    .lw_section &#123;</span><br><span class="line">        .ls_tit &#123;</span><br><span class="line">            background-color: #f5f5f5;</span><br><span class="line">            padding: 0.2rem;</span><br><span class="line">            color: #212121;</span><br><span class="line">            font-size: 0.24rem;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .ls_li &#123;</span><br><span class="line">            overflow: hidden;</span><br><span class="line">            padding: 0 0.5rem 0.2rem 0.1rem;</span><br><span class="line"></span><br><span class="line">            .button_box &#123;</span><br><span class="line">                width: 33.3%;</span><br><span class="line">                float: left;</span><br><span class="line">                box-sizing: border-box;</span><br><span class="line">                padding: 0 0.1rem;</span><br><span class="line">                margin-top: 0.2rem;</span><br><span class="line"></span><br><span class="line">                .button &#123;</span><br><span class="line">                    font-size: 0.24rem;</span><br><span class="line">                    border: 1px solid #ccc;</span><br><span class="line">                    text-align: center;</span><br><span class="line">                    padding: 0.1rem 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .alp_li &#123;</span><br><span class="line">                padding: 0.2rem 0;</span><br><span class="line">                padding: 0.2rem 0.1rem;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上就完成了字母表组件和列表组件进行了关联，兄弟组件间的通信，包括父子组件之间的通信也在项目中做了真实的应用。最后，记得提交代码合并分支。</p>
+<h3 id="七、列表切换性能优化"><a href="#七、列表切换性能优化" class="headerlink" title="七、列表切换性能优化"></a>七、列表切换性能优化</h3><p>这一节我们来优化一下列表页面的性能，首先打开 alphabet.vue，上一节在这个组件中写了一个 handleTouchMove 方法，在里面获取了一个 A 标签的 offsetTop 值，这个值一直都是固定的，而我们需要每次执行这个方法的时候，都会去运算一次，所以他的性能比较低，提高这块的性能，我们可以这样去写：</p>
+<p>在 data 里再定义一个变量 startY，初始值为 0，再写一个 updated 生命周期钩子，当页面的数据被更新的时候，同时页面完成了自己的渲染之后，updated 这个钩子就会被执行，他执行的时候，startY 就等于我们在 handleTouchMove 方法中定义的 startY 的值，还要把 index 中减去的 startY 替换成 this.startY，保存一下，到页面上看一下，效果没有问题。</p>
+<p>看一下 updated 这一块是怎么回事，当初次渲染 alphabet.vue 的时候，用的是 City.vue 中的 cities 来渲染的，City.vue 中初始的 cities 值是一个空对象，也就是页面刚加载在的时候，alphabet.vue 什么定西都不会显示出来，当 City.vue Ajax 获取到数据之后，cities 的值才发生变化，alphabet 才被渲染出来，当往 alphabet 传的数据发生变化的时候，alphabet 这个组件就会重新渲染，当 alphabet 重新渲染之后，updated 这个生命周期钩子就会被执行，这个时候页面上已经展示出了城市字母列表里的所有内容，那么这个时候我们就会去 A 这个字母所在的城市列表所有的内容，也就去获取 A 所对应的 DOM 的 offsetTop 的值，就没有任何的问题。</p>
+<p>这是第一步的性能优化，第二步做一个函数截流的性能优化。</p>
+<p>当鼠标在字母表上来回移动的时候，这个时候，touchMove 执行的频率是非常高的，可以通过截流限制一下函数执行的频率。怎么做呢？可以在数据项中定义一个 timer，默认值等于 null，然后到 handleTouchMove 中编写代码。如果已经存在了，就 clearTimeout，否则，就创建一个 timer，给他一个 setTimeout 方法，将下面的逻辑代码剪切到这个定时器。也就是正在做这件事情的时候，我让他延时 16ms 再去执行，假设在这 16ms 之间，你又去做了手指的滚动，他就会把上一次做的操作给清除掉，重新做你这一次要做的事情，通过这种函数截流的方式，可以大大的节约 handleTouchMove 这个函数的执行频率，从而提高函页面的性能。更新一下 alphabet.vue 中的代码：</p>
+<p>alphabet.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class=&quot;alp_list&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;ul&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;li&quot; :ref=&quot;item&quot; v-for=&quot;item of letters&quot; :key=&quot;item&quot; @touchstart=&quot;handleTouchStart&quot; @touchmove=&quot;handleTouchMove&quot; @touchendå=&quot;handleTouchEnd&quot; @click=&quot;handleAlpClick&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &quot;CityAlphabet&quot;,</span><br><span class="line">    props: &#123;</span><br><span class="line">        cities: Object</span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        letters() &#123;</span><br><span class="line">            const letters = [];</span><br><span class="line">            for (let i in this.cities) &#123;</span><br><span class="line">                letters.push(i);</span><br><span class="line">            &#125;</span><br><span class="line">            return letters;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            touchSataus: false,</span><br><span class="line">            startY: 0,</span><br><span class="line">            timer: null</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    updated() &#123;</span><br><span class="line">        this.startY = this.$refs[&quot;A&quot;][0].offsetTop;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        handleAlpClick(e) &#123;</span><br><span class="line">            this.$emit(&quot;change&quot;, e.target.innerHTML);</span><br><span class="line">        &#125;,</span><br><span class="line">        handleTouchStart() &#123;</span><br><span class="line">            this.touchSataus = true;</span><br><span class="line">        &#125;,</span><br><span class="line">        handleTouchMove(e) &#123;</span><br><span class="line">            if (this.touchSataus) &#123;</span><br><span class="line">                if (this.timer) &#123;</span><br><span class="line">                    clearTimeout;</span><br><span class="line">                &#125;</span><br><span class="line">                this.timer = setTimeout(() =&gt; &#123;</span><br><span class="line">                    const touchY = e.touches[0].clientY - 81;</span><br><span class="line">                    const index = Math.floor((touchY - this.startY) / 22);</span><br><span class="line">                    if (index &gt;= 0 &amp;&amp; index &lt; this.letters.length) &#123;</span><br><span class="line">                        this.$emit(&quot;change&quot;, this.letters[index]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, 16);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        handleTouchEnd() &#123;</span><br><span class="line">            this.touchSataus = false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.alp_list &#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 1.62rem;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-direction: column;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    line-height: 0.44rem;</span><br><span class="line"></span><br><span class="line">    .ul &#123;</span><br><span class="line">        .li &#123;</span><br><span class="line">            color: $ftColor;</span><br><span class="line">            text-align: center;</span><br><span class="line">            padding: 0 0.2rem;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上就完成了列表切换性能优化，记得提交代码合并分支。</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/17/Vuejs第7课-项目实战-城市列表开发（part01）/" rel="next" title="Vuejs第7课-项目实战-城市列表开发（part01）">
+                <i class="fa fa-chevron-left"></i> Vuejs第7课-项目实战-城市列表开发（part01）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/19/Vuejs第7课-项目实战-城市列表开发（part03）/" rel="prev" title="Vuejs第7课-项目实战-城市列表开发（part03）">
+                Vuejs第7课-项目实战-城市列表开发（part03） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#五、页面的动态数据渲染"><span class="nav-text">五、页面的动态数据渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、兄弟组件间联动"><span class="nav-text">六、兄弟组件间联动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、列表切换性能优化"><span class="nav-text">七、列表切换性能优化</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

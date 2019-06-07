@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="四、图标区域页面布局与逻辑实现和上一节首页轮播图一样，我们再创建一个分支 home-icons 并切换到这个分支，将图标区域组件提交到这个分支上去。流程一样，先新建一个 icons.vue，然后在 Home.vue 中引入这个组件，最后编辑这个组件的布局样式就行。 注意，这块也应该是一个轮播效果，当图标超过8个的时候，在第二屏展示，可以根据 swiper.vue 对布局进行一个配置，在去哪网上找一">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第6课-项目实战-首页开发（part02）">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/Vuejs第6课-项目实战-首页开发（part02）/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="四、图标区域页面布局与逻辑实现和上一节首页轮播图一样，我们再创建一个分支 home-icons 并切换到这个分支，将图标区域组件提交到这个分支上去。流程一样，先新建一个 icons.vue，然后在 Home.vue 中引入这个组件，最后编辑这个组件的布局样式就行。 注意，这块也应该是一个轮播效果，当图标超过8个的时候，在第二屏展示，可以根据 swiper.vue 对布局进行一个配置，在去哪网上找一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-9a827ed1442a61dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4e6677bdd2bd8f38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-db23eb0c13f4f8bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7563f5ca8516e86a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-3dc1efb9366e7ca9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:41.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第6课-项目实战-首页开发（part02）">
+<meta name="twitter:description" content="四、图标区域页面布局与逻辑实现和上一节首页轮播图一样，我们再创建一个分支 home-icons 并切换到这个分支，将图标区域组件提交到这个分支上去。流程一样，先新建一个 icons.vue，然后在 Home.vue 中引入这个组件，最后编辑这个组件的布局样式就行。 注意，这块也应该是一个轮播效果，当图标超过8个的时候，在第二屏展示，可以根据 swiper.vue 对布局进行一个配置，在去哪网上找一">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-9a827ed1442a61dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/Vuejs第6课-项目实战-首页开发（part02）/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第6课-项目实战-首页开发（part02） | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/Vuejs第6课-项目实战-首页开发（part02）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第6课-项目实战-首页开发（part02）</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T00:00:00+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="四、图标区域页面布局与逻辑实现"><a href="#四、图标区域页面布局与逻辑实现" class="headerlink" title="四、图标区域页面布局与逻辑实现"></a>四、图标区域页面布局与逻辑实现</h3><p>和上一节首页轮播图一样，我们再创建一个分支 home-icons 并切换到这个分支，将图标区域组件提交到这个分支上去。流程一样，先新建一个 icons.vue，然后在 Home.vue 中引入这个组件，最后编辑这个组件的布局样式就行。</p>
+<p>注意，这块也应该是一个轮播效果，当图标超过8个的时候，在第二屏展示，可以根据 swiper.vue 对布局进行一个配置，在去哪网上找一些图标素材，把数据添加到组件的 data 下，通过 v-for 渲染出来。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-9a827ed1442a61dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>页面的布局样式我就不多说了，可以参考我写的结构样式：</p>
+<p>icons.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;icon_list&quot;&gt;</span><br><span class="line">    &lt;swiper :options=&quot;swiperOption&quot;&gt;</span><br><span class="line">      &lt;swiper-slide&gt;</span><br><span class="line">        &lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">          &lt;li class=&quot;li&quot; v-for=&quot;item of iconList&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">            &lt;a href class=&quot;a&quot;&gt;</span><br><span class="line">              &lt;img :src=&quot;item.imgSrc&quot; alt class=&quot;ico&quot;&gt;</span><br><span class="line">              &lt;span class=&quot;txt&quot;&gt;&#123;&#123;item.txt&#125;&#125;&lt;/span&gt;</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      &lt;/swiper-slide&gt;</span><br><span class="line">      &lt;div class=&quot;swiper-pagination&quot; slot=&quot;pagination&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/swiper&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;HomeIcons&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      swiperOption: &#123;</span><br><span class="line">        loop: false,</span><br><span class="line">        pagination: &#123;</span><br><span class="line">          el: &quot;.swiper-pagination&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      iconList: [</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;001&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png&quot;,</span><br><span class="line">          txt: &quot;景点门票&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;002&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/f0f00d6dfe038c044dbc9a437f58b0eb.png&quot;,</span><br><span class="line">          txt: &quot;一日游&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;003&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png&quot;,</span><br><span class="line">          txt: &quot;北京必游&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;004&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://img1.qunarzz.com/piao/fusion/1803/47/c2b659e048b11602.png&quot;,</span><br><span class="line">          txt: &quot;溜娃游&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;005&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20191/0334cf5430b9b5505fd79e2b8d7e8670.png&quot;,</span><br><span class="line">          txt: &quot;爬长城&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;006&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://img1.qunarzz.com/piao/fusion/1803/6c/9e54a8540fee0102.png&quot;,</span><br><span class="line">          txt: &quot;故宫&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;007&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png&quot;,</span><br><span class="line">          txt: &quot;动植物园&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;008&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20195/35d83bb968d80d54926f30cfb92cb6ff.png&quot;,</span><br><span class="line">          txt: &quot;限时抢购&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id:&apos;009&apos;,</span><br><span class="line">          imgSrc:</span><br><span class="line">            &quot;http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20194/b4511345827006994aa1980a3886f0ac.png&quot;,</span><br><span class="line">          txt: &quot;北京世园会&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">.icon_list &gt;&gt;&gt; .swiper-container &#123;</span><br><span class="line">  height: 2.8rem;</span><br><span class="line">&#125;</span><br><span class="line">.icon_list &#123;</span><br><span class="line">  margin: 0.24rem 0;</span><br><span class="line">  .ul &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    margin: 0 -0.1rem;</span><br><span class="line">    .li &#123;</span><br><span class="line">      width: 25%;</span><br><span class="line">      float: left;</span><br><span class="line">      box-sizing: border-box;</span><br><span class="line">      padding: 0.08rem 0.1rem;</span><br><span class="line">      .a &#123;</span><br><span class="line">        color: #333;</span><br><span class="line">        font-size: 0.26rem;</span><br><span class="line">        text-align: center;</span><br><span class="line">        display: block;</span><br><span class="line">        .ico &#123;</span><br><span class="line">          width: 1rem;</span><br><span class="line">          height: 1rem;</span><br><span class="line">        &#125;</span><br><span class="line">        .txt &#123;</span><br><span class="line">          display: block;</span><br><span class="line">          font-size: 0.24rem;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中我添加了9个图标项，因为设置了轮播区域的高度，所以只显示出8个，如果想在第二屏显示剩下的轮播项该怎么做？我们可以通过 computed 属性来计算，回忆一下 <a href="https://www.jianshu.com/p/bfb8aee31de4" target="_blank" rel="noopener">“Vue.js第2课-基础”</a> 中的 computed 计算属性，它自带缓存机制，语法又比较简单。</p>
+<p>修改一下 icons.vue 中 js 部分的代码：</p>
+<p>icons.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  name: &quot;HomeIcons&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      swiperOption: &#123;</span><br><span class="line">        loop: false,</span><br><span class="line">        pagination: &#123;</span><br><span class="line">          el: &quot;.swiper-pagination&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      iconList: [</span><br><span class="line">        // ...</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    pages() &#123;</span><br><span class="line">      const pages = [];</span><br><span class="line">      this.iconList.forEach((item, index) =&gt; &#123;</span><br><span class="line">        const page = Math.floor(index / 8);</span><br><span class="line">        if (!pages[page]) &#123;</span><br><span class="line">          pages[page] = [];</span><br><span class="line">        &#125;</span><br><span class="line">        pages[page].push(item);</span><br><span class="line">      &#125;);</span><br><span class="line">      return pages;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，我们定义了一个 pages 属性，他返回一个内容，这个内容中先定义了一个数组 pages，这个数组就是最外层的一个数组，然后通过 forEach 便历 iconList，forEach 中传一个函数，他接收两个参数，第一个是便历出的每一项，第二个是每一项的下标，然后再定义一个 page，当前下标对应的数据应该展示在轮播图的第几屏，这个页码我们通过 Math.floor（向下取整）来计算，假设第3个数据，index 对应的是2，Math.floor(2/8) 是0，所以应该展示在第0页上，如果是第9个数据，index 对应的就是 8，Math.floor(8/8) 是1，所以第9个数据就会展示到第二页。page 计算完后，就可以做一个判断了，如果 pages 下面的第 page 项不存在，就让他等于一个空数组，然后把 item 添加到 pages 的第 page 项中。最后还需要返回 pages 这个属性。现在 pages 和 page 的关系其实就是这样的一个二维数组，pages 里包含着两个 page：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[1,2,3,4,5,6,7,8],[9]]</span><br></pre></td></tr></table></figure>
+
+<p>数据便历出来了，接下来就该渲染到页面了，既然 pages 是一个二维数组，那么我们在模板中也要通过两个 v-for 来循环，先在 swiper-slide 中循环 pages，决定它是几页显示，然后在图标列表中循环 page，展示出每页的图标项。</p>
+<p>icons.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;icon_list&quot;&gt;</span><br><span class="line">    &lt;swiper :options=&quot;swiperOption&quot;&gt;</span><br><span class="line">      &lt;swiper-slide v-for=&quot;(page,index) of pages&quot; :key=&quot;index&quot;&gt;</span><br><span class="line">        &lt;ul class=&quot;ul&quot;&gt;</span><br><span class="line">          &lt;li class=&quot;li&quot; v-for=&quot;item of page&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">            &lt;a href class=&quot;a&quot;&gt;</span><br><span class="line">              &lt;img :src=&quot;item.imgSrc&quot; alt class=&quot;ico&quot;&gt;</span><br><span class="line">              &lt;span class=&quot;txt&quot;&gt;&#123;&#123;item.txt&#125;&#125;&lt;/span&gt;</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      &lt;/swiper-slide&gt;</span><br><span class="line">      &lt;div class=&quot;swiper-pagination&quot; slot=&quot;pagination&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/swiper&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样就没问题了，第一屏8个图标项展示完后，第9个会显示到第二屏。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4e6677bdd2bd8f38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>再来对模板做一个优化，如果图标下的文字多了，可能会影响页面的布局，这个时候可以通过样式来设置文字超出显示“…”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden; white-space: nowrap; text-overflow: ellipsis;</span><br></pre></td></tr></table></figure>
+
+<p>其实，不仅这里会用到超出显示“…”，其他地方也会用到，那我们就可以借助 styl 提供的 mixin 对这块的代码进行封装。在 asset 下 style 目录中新建一个文件 mixins.styl，在这里定义一个 ellipsic 方法，他接收的参数就是上边这三行样式代码。</p>
+<p>mixins.styl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ellipsic() &#123;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如何用这个方法呢？首先在样式中通过 import 引入这个 mixins 这个文件，然后在元素样式下直接使用 ellipsic() 就可以了，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &quot;~style/mixins&quot;</span><br><span class="line">.txt &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    font-size: 0.24rem;</span><br><span class="line">    padding:0 .1rem;</span><br><span class="line">    ellipsic();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上就完成了图标区域页面布局与逻辑实现，记得把代码提交到仓库，并切换到 master 分支合并</p>
+<h3 id="五、“推荐组件”和“周末去哪组件”开发"><a href="#五、“推荐组件”和“周末去哪组件”开发" class="headerlink" title="五、“推荐组件”和“周末去哪组件”开发"></a>五、“推荐组件”和“周末去哪组件”开发</h3><p>这两个组件我们放在一起讲，依然新建一个分支来开发，不过，我们可以试着换一种方式，使用成员协作的方式来开发（如果条件允许的话，可以试一下，两台电脑，两个用户，模拟一下协作开发）。之前两个组件都是在同一个用户账户下，新建分支，开发完成之后再提交并合并，这次，我们试一下在这个项目仓库里添加一个团队成员，在他的账户上开发这个两个组件，再提交。具体操作方法可以参考我的 <a href="https://www.jianshu.com/p/4539b5dde0e2" target="_blank" rel="noopener">“如何在GitHub上协作开发项目”</a> 这篇文章。</p>
+<p>接下来，在这个新成员的账户环境下我们开始开发“推荐组件”和“周末去哪组件”这部分。首先还是新建并切换到 index-recommend 这个分支上，流程和之前的几个组件一样，先在 home 目录下的 components 目下新建一个 recommend.vue 文件和 weekend.vue，编写布局结构和逻辑代码，然后在 Home.vue 中引用这个两个组件，布局样式我就不多讲解了，可以参考我写好的布局样式，或上去哪网看一下。</p>
+<p>recommend.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;rec_wrap&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;rw_tit&quot;&gt;猜你喜欢&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;rw_list&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;rl_li border-bottom&quot; v-for=&quot;item of recommendList&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">        &lt;a href class=&quot;a&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;pic&quot;&gt;</span><br><span class="line">            &lt;img :src=&quot;item.imgUrl&quot; alt class=&quot;img&quot;&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;tit&quot;&gt;&#123;&#123;item.infoTit&#125;&#125;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;txt&quot;&gt;&#123;&#123;item.infoTxt&#125;&#125;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;money&quot;&gt;</span><br><span class="line">              &lt;b class=&quot;b&quot;&gt;¥&lt;/b&gt;</span><br><span class="line">              &lt;i class=&quot;i&quot;&gt;&#123;&#123;item.infoMoney&#125;&#125;&lt;/i&gt;起</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/a&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;rw_more&quot;&gt;</span><br><span class="line">      &lt;a href class=&quot;a&quot;&gt;查看所有产品&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;HomeRecommend&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      recommendList: [</span><br><span class="line">        &#123;</span><br><span class="line">          id: &quot;001&quot;,</span><br><span class="line">          imgUrl:</span><br><span class="line">            &quot;http://img1.qunarzz.com/sight/p0/1902/84/84696f368bbec10da3.img.jpg_200x200_50323152.jpg&quot;,</span><br><span class="line">          infoTit: &quot;北京世界园艺博览会&quot;,</span><br><span class="line">          infoTxt: &quot;80条评论&quot;,</span><br><span class="line">          infoMoney: &quot;108&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id: &quot;002&quot;,</span><br><span class="line">          imgUrl:</span><br><span class="line">            &quot;http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg&quot;,</span><br><span class="line">          infoTit: &quot;故宫&quot;,</span><br><span class="line">          infoTxt: &quot;659条评论&quot;,</span><br><span class="line">          infoMoney: &quot;60&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/mixins&apos;;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.rec_wrap &#123;</span><br><span class="line">  .rw_tit &#123;</span><br><span class="line">    font-size: 0.32rem;</span><br><span class="line">    color: #333;</span><br><span class="line">    padding: 0.2rem;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .rw_list &#123;</span><br><span class="line">    .rl_li &#123;</span><br><span class="line">      padding: 0.2rem;</span><br><span class="line"></span><br><span class="line">      .a &#123;</span><br><span class="line">        color: #333;</span><br><span class="line">        display: flex;</span><br><span class="line"></span><br><span class="line">        .pic &#123;</span><br><span class="line">          width: 2rem;</span><br><span class="line">          height: 2rem;</span><br><span class="line"></span><br><span class="line">          .img &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .info &#123;</span><br><span class="line">          flex: 1;</span><br><span class="line">          min-width: 0;</span><br><span class="line">          padding: 0.2rem;</span><br><span class="line">          box-sizing: border-box;</span><br><span class="line"></span><br><span class="line">          .tit &#123;</span><br><span class="line">            font-size: 0.28rem;</span><br><span class="line">            ellipsic();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          .txt &#123;</span><br><span class="line">            font-size: 0.22rem;</span><br><span class="line">            color: #666;</span><br><span class="line">            margin: 0.2rem 0;</span><br><span class="line">            ellipsic();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          .money &#123;</span><br><span class="line">            font-size: 0.22rem;</span><br><span class="line">            color: #666;</span><br><span class="line"></span><br><span class="line">            .b &#123;</span><br><span class="line">              font-size: 0.18rem;</span><br><span class="line">              color: #ff7b00;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            .i &#123;</span><br><span class="line">              font-size: 0.38rem;</span><br><span class="line">              color: #ff7b00;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .rw_more &#123;</span><br><span class="line">    .a &#123;</span><br><span class="line">      display: block;</span><br><span class="line">      text-align: center;</span><br><span class="line">      font-size: 0.28rem;</span><br><span class="line">      padding: 0.2rem 0;</span><br><span class="line">      color: $ftColor;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>补充：在原网站上每一个列表项都有一个下边的，回忆一下在(“Vue.js第5课-Vue项目预热”)[<a href="https://www.jianshu.com/p/402e35c9e978]" target="_blank" rel="noopener">https://www.jianshu.com/p/402e35c9e978]</a> 讲过的1像素边框的问题，那个时候在全局引入了一个 border.css，所以这个下边框就不需要在样式选择器中写了，直接在这个元素标签上加一个 border-bottom 的 class 名就可以了。</p>
+<p>weekend.vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;rec_wrap&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;rw_tit&quot;&gt;周末去哪儿&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;rw_list&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;rl_li&quot; v-for=&quot;item of weekendList&quot; :key=&quot;item.id&quot;&gt;</span><br><span class="line">        &lt;a href class=&quot;a&quot;&gt;</span><br><span class="line">          &lt;div class=&quot;pic&quot;&gt;</span><br><span class="line">            &lt;img :src=&quot;item.imgUrl&quot; alt class=&quot;img&quot;&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;div class=&quot;info&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;tit&quot;&gt;&#123;&#123;item.infoTit&#125;&#125;&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;txt&quot;&gt;&#123;&#123;item.infoTxt&#125;&#125;&lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/a&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;HomeWeekend&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      weekendList: [</span><br><span class="line">        &#123;</span><br><span class="line">          id: &quot;001&quot;,</span><br><span class="line">          imgUrl:</span><br><span class="line">            &quot;http://img1.qunarzz.com/sight/source/1603/6d/2f67ae0659f41f.jpg_r_640x214_bf6cbd0b.jpg&quot;,</span><br><span class="line">          infoTit: &quot;北京赏花好地方&quot;,</span><br><span class="line">          infoTxt: &quot;乱花渐欲迷人眼，京城赏花大搜索&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          id: &quot;002&quot;,</span><br><span class="line">          imgUrl:</span><br><span class="line">            &quot;http://img1.qunarzz.com/sight/source/1811/f3/86173f863bef61.jpg_r_640x214_52b003ac.jpg&quot;,</span><br><span class="line">          infoTit: &quot;京城周末撒欢&quot;,</span><br><span class="line">          infoTxt: &quot;在帝都过周末，不仅仅是城中游！&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;stylus&quot; scoped&gt;</span><br><span class="line">@import &apos;~style/mixins&apos;;</span><br><span class="line">@import &apos;~style/varibles&apos;;</span><br><span class="line"></span><br><span class="line">.rec_wrap &#123;</span><br><span class="line">  background-color: #f4f4f4;</span><br><span class="line"></span><br><span class="line">  .rw_tit &#123;</span><br><span class="line">    font-size: 0.32rem;</span><br><span class="line">    color: #333;</span><br><span class="line">    padding: 0.2rem;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .rw_list &#123;</span><br><span class="line">    .rl_li &#123;</span><br><span class="line">      margin-bottom: 0.1rem;</span><br><span class="line"></span><br><span class="line">      .a &#123;</span><br><span class="line">        color: #333;</span><br><span class="line"></span><br><span class="line">        .pic &#123;</span><br><span class="line">          width: 100%;</span><br><span class="line"></span><br><span class="line">          .img &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .info &#123;</span><br><span class="line">          box-sizing: border-box;</span><br><span class="line">          padding: 0.2rem;</span><br><span class="line">          background-color: #fff;</span><br><span class="line"></span><br><span class="line">          .tit &#123;</span><br><span class="line">            font-size: 0.28rem;</span><br><span class="line">            ellipsic();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          .txt &#123;</span><br><span class="line">            font-size: 0.22rem;</span><br><span class="line">            color: #666;</span><br><span class="line">            margin-top: 0.2rem;</span><br><span class="line">            ellipsic();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 编写好 recommend.vue 和 weekend.vue 后，效果应该是这样的：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-db23eb0c13f4f8bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>接下来将代码提交到远程仓库：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7563f5ca8516e86a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>然后切换到主分支，并将 index-recommend 分支合并到主分支，记得，执行完合并命令后还需要 push 一下，提交到远程仓库。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-3dc1efb9366e7ca9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>到此，我们就完成了首页基本的一些内容。</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/Vuejs第6课-项目实战-首页开发（part01）/" rel="next" title="Vuejs第6课-项目实战-首页开发（part01）">
+                <i class="fa fa-chevron-left"></i> Vuejs第6课-项目实战-首页开发（part01）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/15/如何在GitHub上协作开发项目/" rel="prev" title="如何在GitHub上协作开发项目">
+                如何在GitHub上协作开发项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#四、图标区域页面布局与逻辑实现"><span class="nav-text">四、图标区域页面布局与逻辑实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、“推荐组件”和“周末去哪组件”开发"><span class="nav-text">五、“推荐组件”和“周末去哪组件”开发</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、Vue 中的 css 动画原理先来实现一个非常简单的功能，通过点击按钮控制文本的展示与否。 1234567891011121314151617&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    &amp;lt;button @click=&amp;quot;clickFun&amp;quot;&amp;gt;切换&amp;lt;/button&amp;gt;    &amp;lt;div v-if=&amp;quot;show&amp;quot;&amp;">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第4课-Vue中的动画特效（part01）">
+<meta property="og:url" content="http://yoursite.com/2019/05/11/Vuejs第4课-Vue中的动画特效（part01）/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、Vue 中的 css 动画原理先来实现一个非常简单的功能，通过点击按钮控制文本的展示与否。 1234567891011121314151617&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    &amp;lt;button @click=&amp;quot;clickFun&amp;quot;&amp;gt;切换&amp;lt;/button&amp;gt;    &amp;lt;div v-if=&amp;quot;show&amp;quot;&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-674946f9432746f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6891b024ca28821b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-59fce68628146573.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a9611b84dbd894c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-4b0e42da1c473031.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-18ce9405a3b42b7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:25.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第4课-Vue中的动画特效（part01）">
+<meta name="twitter:description" content="一、Vue 中的 css 动画原理先来实现一个非常简单的功能，通过点击按钮控制文本的展示与否。 1234567891011121314151617&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    &amp;lt;button @click=&amp;quot;clickFun&amp;quot;&amp;gt;切换&amp;lt;/button&amp;gt;    &amp;lt;div v-if=&amp;quot;show&amp;quot;&amp;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9373308-674946f9432746f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/11/Vuejs第4课-Vue中的动画特效（part01）/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第4课-Vue中的动画特效（part01） | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/Vuejs第4课-Vue中的动画特效（part01）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第4课-Vue中的动画特效（part01）</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-11T00:00:00+08:00">
+                2019-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、Vue-中的-css-动画原理"><a href="#一、Vue-中的-css-动画原理" class="headerlink" title="一、Vue 中的 css 动画原理"></a>一、Vue 中的 css 动画原理</h3><p>先来实现一个非常简单的功能，通过点击按钮控制文本的展示与否。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;切换&lt;/button&gt;</span><br><span class="line">    &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面，我想实现一个动画的功能，“Hello World!” 显示和隐藏的时候，能够有一个渐隐渐现的动画效果。首先需要在 “Hello World!” 这个 div 外层包裹一个 transition 标签，这个标签的意思是他包裹的元素有一个动画效果，可以给 transition 这个标签起一个名字，例如 name=”fade”，这个名字可以随意起。我们还要把 transition 过渡动画的原理讲清楚。</p>
+<p>在进入/离开的过渡中，会有 6 个 class 切换，Vue.js 官方文档是这样描述这 6 个 class 的：</p>
+<p>1、v-enter：定义进入过渡的开始状态。在元素被插入之前生效，在元素被插入之后的下一帧移除。</p>
+<p>2、v-enter-active：定义进入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。</p>
+<p>3、v-enter-to: 2.1.8版及以上 定义进入过渡的结束状态。在元素被插入之后下一帧生效 (与此同时 v-enter 被移除)，在过渡/动画完成之后移除。</p>
+<p>4、v-leave: 定义离开过渡的开始状态。在离开过渡被触发时立刻生效，下一帧被移除。</p>
+<p>5、v-leave-active：定义离开过渡生效时的状态。在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。</p>
+<p>6、v-leave-to: 2.1.8版及以上 定义离开过渡的结束状态。在离开过渡被触发之后下一帧生效 (与此同时 v-leave 被删除)，在过渡/动画完成之后移除。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-674946f9432746f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>根据上边的 class 我们可以给元素添加一下过渡的样式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    /* 进入 */</span><br><span class="line">    .fade-enter &#123;</span><br><span class="line">        opacity: 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active &#123;</span><br><span class="line">        transition: opacity 2s</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;切换&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6891b024ca28821b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>上面代码，在第一次点击后，元素消失，再次点击，元素渐渐显示出来，可以看到控制台中给该元素添加了两个样式名，分别是 fade-enter-active 和 fade-enter-to，然后在 2s 后消失了，所以出现了渐现的效果。这两个 class 就是上边列出的 2 和 3 class。此时进入的过渡实现了，我们再添加一下离开的过渡。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    /* 进入 */</span><br><span class="line">    .fade-enter &#123;</span><br><span class="line">        opacity: 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active &#123;</span><br><span class="line">        transition: opacity 2s</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* 离开 */</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 2s</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;切换&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-59fce68628146573.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>元素离开时，也被添加了两个 class，分别是 fade-leave-active 和 fade-leave-to，也就是上边列出的 5 和 6 class。</p>
+<p>面代码就实现了一个渐隐渐现的动画效果。在 transition 也可以不传入 name，样式名中的 fade 换成 v 就可以，也可以把相同属性的样式放在一起：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .v-enter,</span><br><span class="line">    .v-leave-to &#123;</span><br><span class="line">        opacity: 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .v-enter-active,</span><br><span class="line">    .v-leave-active &#123;</span><br><span class="line">        transition: opacity 2s</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;切换&lt;/button&gt;</span><br><span class="line">    &lt;transition&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、在-Vue-中使用-Animate-css-库"><a href="#二、在-Vue-中使用-Animate-css-库" class="headerlink" title="二、在 Vue 中使用 Animate.css 库"></a>二、在 Vue 中使用 Animate.css 库</h3><p>这一节来讲解 Vue 中更复杂的动画效果。首先进入上一节最终的那段代码，并对这段代码进行一个变更。上一节是讲了 transition 的使用方法，这一节看一下 keyframes 形式的动画。</p>
+<p>回忆一下 fade-enter-active 和 fade-leave-active 这两个 class 是什么时候生效的，当 div 标签在显示的这个过程中，fade-enter-active 是一直存在的，当他在隐藏的过程中，fade-leave-active 是一直存在的，根据这个特性可以这样写动画效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    @keyframes bounce-in &#123;</span><br><span class="line">        0% &#123;</span><br><span class="line">            transform: scale(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        50% &#123;</span><br><span class="line">            transform: scale(1.5);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        100% &#123;</span><br><span class="line">            transform: scale(1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active &#123;</span><br><span class="line">        transform-origin: left center;</span><br><span class="line">        animation: bounce-in 1s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transform-origin: left center;</span><br><span class="line">        animation: bounce-in 1s reverse;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码定义了一个 keyframes 的一个 CSS3 动画 bounce-in，分别设置 0%、50%、100% 时 的状态，然后在 fade-enter-active 和 fade-leave-active 中就可以用这个动画了。打开页面可以看到，点击 toggle，隐藏时候有放大缩小的效果，显示的时候也有放大缩小的效果。</p>
+<p>上面就讲解了在 Vue 中如何使用 keyframes 这种形式的 CSS3 动画。接着再讲一个知识点，当你使用 transition 标签的时候，给了一个 name=”fade”，那么他就会都自动的添加 fade-enter-active 和 fade-leave-active 这样的 class 名字。那我能不能定义一个就叫 enter 或 leave 这样的一个名字，不用他默认提供的命名的规范？是可以的，如果想这么写，只需要在 transition 外面自定义这个 class 名字，如下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    @keyframes bounce-in &#123;</span><br><span class="line">        0% &#123;</span><br><span class="line">            transform: scale(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        50% &#123;</span><br><span class="line">            transform: scale(1.5);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        100% &#123;</span><br><span class="line">            transform: scale(1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .enter &#123;</span><br><span class="line">        transform-origin: left center;</span><br><span class="line">        animation: bounce-in 1s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .leave &#123;</span><br><span class="line">        transform-origin: left center;</span><br><span class="line">        animation: bounce-in 1s reverse;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;change&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; enter-active-class=&quot;enter&quot; leave-active-class=&quot;leave&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到效果是一样的，不会有任何问题，到这里就可以知道，其实你可以自定义添加的 class 名字。</p>
+<p>现在既然可以自定义 fade-enter-active 和 fade-leave-active 名字，那借助这个功能我们就可以在我们的 Vue 项目里使用比较流行的 animate.css 库了，我们可以进入 <a href="https://daneden.github.io/animate.css/" target="_blank" rel="noopener">animate.css 官网</a>，在这里去查看对应动画的 class 名，然后添加 class 名。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a9611b84dbd894c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>下载 animate.css 文件并引用，我直接用了 BootCDN 的方式在项目中引用了 animate.css。引用了 animate.css 我就不需要自己写动画效果了，然后在入场动画和出场动画的 class 中添加 animated，并在后边更上对应动画效果的 class 名，例如下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;https://cdn.bootcss.com/animate.css/3.7.0/animate.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;change&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; enter-active-class=&quot;animated bounce&quot; leave-active-class=&quot;animated flash&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果想使用 animate.css 这个库，有几点需要注意：第一点是你必须使用自定义 class 名字的形式来使用 animate.css，第二是 class 类里面必须得包含一个 animate 这样一个具体的类，然后根据需求的不同添加不同动画的类名。</p>
+<h3 id="三、在-Vue-中同时使用过渡和动画"><a href="#三、在-Vue-中同时使用过渡和动画" class="headerlink" title="三、在 Vue 中同时使用过渡和动画"></a>三、在 Vue 中同时使用过渡和动画</h3><p>我们在上一节最终的代码上看一下，注意要引入 animate.css。使用 animate.css 和 @keyframes 是没有区别的，animate.css 其实就是一个封装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; enter-active-class=&quot;animated swing&quot; leave-active-class=&quot;animated flash&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当我们打开页面的时候，也就是元素第一次显示的时候，其实这个动画并没有被添加上，点击之后才会被添加上。那如果我想在元素第一次显示的时候，我的这个 “Hello Word!” 也具备动画效果，应该怎么做呢？</p>
+<p>我们在 transition 中增加一个自定义名字叫做 appear-active-class=”animated swing”，就这样写是不行的，如果想使用 appear-active-class 的话，记得在上面再写一个属性叫做 appear，意思是第一次显示这个内容的时候，也有一个动画效果，它的动画效果是使用了 animated 库中的一个动画。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; appear enter-active-class=&quot;animated swing&quot; leave-active-class=&quot;animated jello&quot;</span><br><span class="line">        appear-active-class=&quot;animated jello&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候刷新页面，可以看到第一次显示元素的时候就有一个动画效果，隐藏没问题，显示也没问题，都有动画效果。</p>
+<p>在上面这个例子中，实际上我们只用到了一种动画，就是 animate.css 库提供的动画。假设入场动画不仅有 css3 的动画效果，还有一个过渡的动画效果，怎么做呢？</p>
+<p>在 enter-active-class 中添加一个 fade-enter-active，在 leave-active-class 中添加一个 fade-leave-active，然后给新添加的这两个 class 名添加属性，回忆一下第一节添加 transition 的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 3s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition name=&quot;fade&quot; appear enter-active-class=&quot;animated swing fade-enter-active&quot;</span><br><span class="line">        leave-active-class=&quot;animated jello fade-leave-active&quot; appear-active-class=&quot;animated swing&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面点击按钮可以看到，此时元素既有 animate 动画效果，也有 transition 透明度的变化效果，所以把两个动画结合到了一起做了一个使用。</p>
+<p>但是会发现这样一个问题，opacity 动画执行的是 3s，但是 animate.css 这个动画执行的是几秒呢？我们可以从 animate.css 源码中查看一下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-4b0e42da1c473031.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到 animate.css 动画执行的时间是 1s，那整个的动画效果到底是怎么算呢？是 1s 所有动画都结束，还是 3s 所有动画都结束？Vue 也不清楚哪一个是结束时长，这个时候我们可以手动的去设置，我们现在已 3s 这个比较长的时间作为动画时间，直接在 transition 标签中写 type=”transition” 就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 3s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition type=&quot;transition&quot; name=&quot;fade&quot; appear enter-active-class=&quot;animated swing fade-enter-active&quot;</span><br><span class="line">        leave-active-class=&quot;animated jello fade-leave-active&quot; appear-active-class=&quot;animated swing&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>它的意思是，我的这个动画既有 animate 就是普通的这种 @keyframe 形式的动画，又有 transition 这种形式的动画，我的动画时长以 transition 的动画时长为准，他就会以 3s 作为整个动画的执行时间。到页面上，点击按钮，可以看到 3s 动画结束。这样我们就确定了我们动画的播放时长。</p>
+<p>现在是以过渡效果的时长作为动画的总时长，那能不能我自己定义一个动画执行的总时长呢？这个时长是可以进行自定义的，可以在 transition 标签中这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 3s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition :duration=&quot;5000&quot; name=&quot;fade&quot; appear enter-active-class=&quot;animated swing fade-enter-active&quot;</span><br><span class="line">        leave-active-class=&quot;animated jello fade-leave-active&quot; appear-active-class=&quot;animated swing&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码，我在 transition 标签中添加了一个 :duration 属性，值设置为 5000，意思是我让这个动画的执行时长是 5s。回到浏览器上，怎么才能看到效果呢？我们可以查看元素，点击 toggle，3s 后元素其实已经隐藏掉了，但是这个动画并没有执行完，fade-leave-active 和 fade-leave-to 还都在，等 5s 后才会消失。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-18ce9405a3b42b7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>现在是自定义了一个动画的时长，其实这个时长还可以设置的复杂一点，可以设置一个入场动画的时长和一个出场动画的时长，例如入场设置为 5s，出场设置为 10s。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .fade-enter,</span><br><span class="line">    .fade-leave-to &#123;</span><br><span class="line">        opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .fade-enter-active,</span><br><span class="line">    .fade-leave-active &#123;</span><br><span class="line">        transition: opacity 3s;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;button @click=&quot;clickFun&quot;&gt;toggle&lt;/button&gt;</span><br><span class="line">    &lt;transition :duration=&quot;&#123;enter:5000,leave:10000&#125;&quot; name=&quot;fade&quot; appear</span><br><span class="line">        enter-active-class=&quot;animated swing fade-enter-active&quot; leave-active-class=&quot;animated jello fade-leave-active&quot;</span><br><span class="line">        appear-active-class=&quot;animated swing&quot;&gt;</span><br><span class="line">        &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun: function () &#123;</span><br><span class="line">                this.show = !this.show</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打开页面，点击按钮，查看元素，可以看到元素入场的时长为 5s，出场的时长为 10s。</p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/10/Vuejs第3课-深入理解Vue组件（part03）/" rel="next" title="Vuejs第3课-深入理解Vue组件（part03）">
+                <i class="fa fa-chevron-left"></i> Vuejs第3课-深入理解Vue组件（part03）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/12/Vuejs第4课-Vue中的动画特效（part02）/" rel="prev" title="Vuejs第4课-Vue中的动画特效（part02）">
+                Vuejs第4课-Vue中的动画特效（part02） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Vue-中的-css-动画原理"><span class="nav-text">一、Vue 中的 css 动画原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、在-Vue-中使用-Animate-css-库"><span class="nav-text">二、在 Vue 中使用 Animate.css 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、在-Vue-中同时使用过渡和动画"><span class="nav-text">三、在 Vue 中同时使用过渡和动画</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

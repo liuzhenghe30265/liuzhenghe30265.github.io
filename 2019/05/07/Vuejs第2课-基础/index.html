@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、Vue.js 实例一个 Vue.js 的项目，是由很多个组件组成的，Vue.js 组件也是一个实例，也可以说一个 Vue.js 的项目是由很多很多 Vue.js 实例拼装成的。 1234567891011121314151617181920212223242526&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    &amp;lt;div v-on:click=&amp;quot;clickFu">
+<meta name="keywords" content="JavaScript,Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs第2课-基础">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/Vuejs第2课-基础/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、Vue.js 实例一个 Vue.js 的项目，是由很多个组件组成的，Vue.js 组件也是一个实例，也可以说一个 Vue.js 的项目是由很多很多 Vue.js 实例拼装成的。 1234567891011121314151617181920212223242526&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    &amp;lt;div v-on:click=&amp;quot;clickFu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/9373308-463830a27b136df3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-443112302fce4dfe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e648b154a93400d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-f5ac5864e5c3ab7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d27c9b55642fd1d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-091a5145ee6e894c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-b40bab40052f6f2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6a27890b53834330.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-a4a369fb51c18952.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e0acc274944d4683.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-fc2a862a96c11c74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-7289c1a8b2fb99c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-e464382dd52c5b21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-edcf259a39e1af8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-d785c5c365944594.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-36857ab4d0b4a3e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-714f39913febf880.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-6add4ee974b2e481.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-360e8b6e508650d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-42f9f74d58c85811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-07T04:30:09.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs第2课-基础">
+<meta name="twitter:description" content="一、Vue.js 实例一个 Vue.js 的项目，是由很多个组件组成的，Vue.js 组件也是一个实例，也可以说一个 Vue.js 的项目是由很多很多 Vue.js 实例拼装成的。 1234567891011121314151617181920212223242526&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    &amp;lt;div v-on:click=&amp;quot;clickFu">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/9373308-463830a27b136df3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/Vuejs第2课-基础/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>Vuejs第2课-基础 | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/Vuejs第2课-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vuejs第2课-基础</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T00:00:00+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、Vue-js-实例"><a href="#一、Vue-js-实例" class="headerlink" title="一、Vue.js 实例"></a>一、Vue.js 实例</h3><p>一个 Vue.js 的项目，是由很多个组件组成的，Vue.js 组件也是一个实例，也可以说一个 Vue.js 的项目是由很多很多 Vue.js 实例拼装成的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-on:click=&quot;clickFun&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;test&gt;&lt;/test&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 创建一个全局组件</span><br><span class="line">    Vue.component(&apos;test&apos;, &#123;</span><br><span class="line">        template: &quot;&lt;h1&gt;hello&lt;/h1&gt;&quot;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;hello world&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            clickFun() &#123;</span><br><span class="line">                alert(&quot;hello&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(app); // wn &#123;_uid: 0, _isVue: true, $options: &#123;…&#125;, _renderProxy: wn, _self: wn, …&#125;</span><br><span class="line">    console.log(app.$el); // &lt;div id=&quot;app&quot;&gt;&lt;div&gt;hello world&lt;/div&gt;&lt;/div&gt;</span><br><span class="line">    console.log(app.$data); // &#123;__ob__: we&#125;</span><br><span class="line">    console.log(app.$data.msg); // hello world</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、Vue-js-实例生命周期函数"><a href="#二、Vue-js-实例生命周期函数" class="headerlink" title="二、Vue.js 实例生命周期函数"></a>二、Vue.js 实例生命周期函数</h3><p>生命周期函数就是 Vue.js 实例在某一个时间点会自动执行的函数，这些函数并不是放到 methods 中，而是直接放到 Vue.js 的实例中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        template: &quot;&lt;div&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;hello world&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        // Vue 实例部分初始化的时候执行</span><br><span class="line">        beforeCreate: function () &#123;</span><br><span class="line">            console.log(&quot;beforeCreate&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        created: function () &#123;</span><br><span class="line">            console.log(&quot;create&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        beforeMount: function () &#123;</span><br><span class="line">            console.log(this.$el); // &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">            console.log(&quot;beforeMount&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        mounted: function () &#123;</span><br><span class="line">            console.log(this.$el); // &lt;div&gt;hello word&lt;/div&gt;</span><br><span class="line">            console.log(&quot;mounted&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        // beforeDestroy 和 destroyed 需要先销毁，才会执行，在控制台执行 app.$destroy</span><br><span class="line">        beforeDestroy: function () &#123;</span><br><span class="line">            console.log(&quot;beforeDestroy&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        destroyed: function () &#123;</span><br><span class="line">            console.log(&quot;destroyed&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        // 当数据发生改变时，beforeUpdate 和 updated 才会执行</span><br><span class="line">        beforeUpdate: function () &#123;</span><br><span class="line">            console.log(&quot;beforeUpdate&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        updated: function () &#123;</span><br><span class="line">            console.log(&quot;updated&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下图是 Vue.js 官网上生命周期图示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/9373308-463830a27b136df3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="三、Vue-js-的模板语法"><a href="#三、Vue-js-的模板语法" class="headerlink" title="三、Vue.js 的模板语法"></a>三、Vue.js 的模板语法</h3><h4 id="1、插值表达式"><a href="#1、插值表达式" class="headerlink" title="1、插值表达式"></a>1、插值表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;Hello World!&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、v-text"><a href="#2、v-text" class="headerlink" title="2、v-text"></a>2、v-text</h4><p>v-text 指令，让标签内的 innerText 和 msg 绑定，后面的值是一个 js 表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;Vtext&quot; v-text=&quot;msg&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;Hello World!&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var Vtext = document.getElementById(&apos;Vtext&apos;);</span><br><span class="line">    console.log(Vtext.innerText); // Hello World!</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、v-html"><a href="#3、v-html" class="headerlink" title="3、v-html"></a>3、v-html</h4><p>v-html 让标签内的 innerHTML 和 msg 绑定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;Vhtml&quot; v-html=&quot;msg&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;Hello World!&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    var Vhtml = document.getElementById(&apos;Vhtml&apos;);</span><br><span class="line">    console.log(Vhtml.innerHTML); // Hello World!</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>目前来看，v-text 和 v-html 没有区别，我们把 msg 中的值变成一个标签，例如放到 h1 标签中，v-text 渲染的依然是 “&lt; h1&gt;hello&lt;/ h1&gt;”，而 v-html 渲染出的就是 h1 字号的 “hello”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-text=&quot;msg&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div v-html=&quot;msg&quot;&gt;&lt;/div&gt;</span><br><span class="line">    ---</span><br><span class="line">    &lt;div v-text=&quot;msg2&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div v-html=&quot;msg2&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;Hello World!&quot;,</span><br><span class="line">            msg2: &quot;&lt;h1&gt;Hello World!&lt;/h1&gt;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-443112302fce4dfe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>通过以上的例子得出，插值表达式和 v-text 的渲染结果是一样的。</p>
+<p>凡是 “v-***” 后面的内容都是一个 js 表达式，在表达式中，不仅可以写一个变量，还可以往后面加一个字符串，插值表达式中也可以写 js 表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &#123;&#123;msg + &apos; world1&apos;&#125;&#125;</span><br><span class="line">    &lt;div v-text=&quot;msg + &apos; world!&apos;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div v-html=&quot;msg + &apos; world!&apos;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg: &quot;Hello&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、计算属性，方法和侦听器"><a href="#四、计算属性，方法和侦听器" class="headerlink" title="四、计算属性，方法和侦听器"></a>四、计算属性，方法和侦听器</h3><p>fullName 的计算。</p>
+<h4 id="方式一：computed-计算属性（有缓存机制，会提高性能）"><a href="#方式一：computed-计算属性（有缓存机制，会提高性能）" class="headerlink" title="方式一：computed 计算属性（有缓存机制，会提高性能）"></a>方式一：computed 计算属性（有缓存机制，会提高性能）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&#123;&#123;fullName&#125;&#125; &#123;&#123;age&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            firstName: &quot;Liu&quot;,</span><br><span class="line">            lastName: &quot;Zhenghe&quot;,</span><br><span class="line">            age: 26</span><br><span class="line">        &#125;,</span><br><span class="line">        computed: &#123;</span><br><span class="line">            fullName: function () &#123;</span><br><span class="line">                console.log(&quot;计算了一次！&quot;);</span><br><span class="line">                return this.firstName + this.lastName;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到页面渲染出 LiuZhenghe 26。</p>
+<p>如何证明 computed 具有缓存机制？在 fullName 方法中打印一句话“计算了一次！”，在控制台改变 age 的值，再改变 fullName 中计算过的属性值。</p>
+<p>可以看到，页面一刷新的时候，打印一遍 “计算了一次！”，改变 age，没有打印这句话，改变 lastName，又打印一遍 “计算了一次！”。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e648b154a93400d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="方式二：methods"><a href="#方式二：methods" class="headerlink" title="方式二：methods"></a>方式二：methods</h4><p>注意：因为 fullName 这次写到了 methods 中，所以在模板引擎中需要加括号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&#123;&#123;fullName()&#125;&#125; &#123;&#123;age&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            firstName: &quot;Liu&quot;,</span><br><span class="line">            lastName: &quot;Zhenghe&quot;,</span><br><span class="line">            age: 26</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            fullName: function () &#123;</span><br><span class="line">                console.log(&quot;计算了一次！&quot;);</span><br><span class="line">                return this.firstName + this.lastName;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，页面一刷新的时候，打印一遍 “计算了一次！”，改变 age，也打印这句话，改变 firstName 和 lastName，又都打印一遍 “计算了一次！”。</p>
+<p>所以，说明 methods 方法是没有缓存机制的，只要改变了数据，就会重新计算一次。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-f5ac5864e5c3ab7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="方式三：watch-侦听器"><a href="#方式三：watch-侦听器" class="headerlink" title="方式三：watch 侦听器"></a>方式三：watch 侦听器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&#123;&#123;fullName&#125;&#125; &#123;&#123;age&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            firstName: &quot;Liu&quot;,</span><br><span class="line">            lastName: &quot;Zhenghe&quot;,</span><br><span class="line">            fullName: &quot;LiuZhenghe&quot;,</span><br><span class="line">            age: 26</span><br><span class="line">        &#125;,</span><br><span class="line">        watch: &#123;</span><br><span class="line">            firstName: function () &#123;</span><br><span class="line">                console.log(&quot;计算了一次！&quot;);</span><br><span class="line">                this.fullName = this.firstName + this.lastName;</span><br><span class="line">            &#125;,</span><br><span class="line">            lastName: function () &#123;</span><br><span class="line">                console.log(&quot;计算了一次！&quot;);</span><br><span class="line">                this.fullName = this.firstName + this.lastName;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在控制台，改变 age，并没有打印出 “计算了一次！”这句话，改变 firstName 和 lastName 的值，发现打印出了这句话，说明 watch 和 computed 一样具有缓存机制，但和 computed 相比，watch 逻辑代码多出很多，所以，当这三种计算方式都能实现计算功能的时候，优先选择 computed。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d27c9b55642fd1d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="五、计算属性的-setter-和-getter"><a href="#五、计算属性的-setter-和-getter" class="headerlink" title="五、计算属性的 setter 和 getter"></a>五、计算属性的 setter 和 getter</h3><p>computed 有这样一个特性：当他依赖的值发生变化的时候，它就会去重新的计算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;&#123;&#123;fullName&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            firstName: &quot;Liu&quot;,</span><br><span class="line">            lastName: &quot;Zhenghe&quot;,</span><br><span class="line">        &#125;,</span><br><span class="line">        computed: &#123;</span><br><span class="line">            fullName: &#123;</span><br><span class="line">                get: function () &#123;</span><br><span class="line">                    return this.firstName + &quot; &quot; + this.lastName</span><br><span class="line">                &#125;,</span><br><span class="line">                // set 方法可以接收一个设置后的值，例如在控制台改变 fullName 的值 “app.fullName=&quot;Li Zheng&quot;”，将会打印出 “Li Zheng”。</span><br><span class="line">                set: function (value) &#123;</span><br><span class="line">                    console.log(value);</span><br><span class="line">                    // 将设置后的 fullName 值通过空格分开，并存放到数组 arr 中，按照上面给 fullName 设置的值，下边 arr 的值将会打印出 “(2) [&quot;Li&quot;, &quot;Zheng&quot;]”</span><br><span class="line">                    var arr = value.split(&quot; &quot;);</span><br><span class="line">                    console.log(arr);</span><br><span class="line">                    this.firstName = arr[0];</span><br><span class="line">                    this.lastName = arr[1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过这个例子，可以知道，在 computed 上，不仅可以通过 get 方法，通过其他的值算出一个新值，同时可以写 set 方法，通过设置一个值，来改变他相关联的一个值，而改变了相关的值后，又使 fullName 的值重新计算。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-091a5145ee6e894c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="六、Vue-js-中的样式绑定"><a href="#六、Vue-js-中的样式绑定" class="headerlink" title="六、Vue.js 中的样式绑定"></a>六、Vue.js 中的样式绑定</h3><p>样式和数据绑定，实现：点击一次，元素变色，再点击一次，元素颜色变回来。</p>
+<h4 id="方式一、class-的对象绑定，借助-class-和对象的形式做样式和数据的绑定。"><a href="#方式一、class-的对象绑定，借助-class-和对象的形式做样式和数据的绑定。" class="headerlink" title="方式一、class 的对象绑定，借助 class 和对象的形式做样式和数据的绑定。"></a>方式一、class 的对象绑定，借助 class 和对象的形式做样式和数据的绑定。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot; :class=&quot;&#123;activted:isActivted&#125;&quot; v-on:click=&quot;changeColor&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            isActivted: false,</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            changeColor: function () &#123;</span><br><span class="line">                this.isActivted = !this.isActivted;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .activted &#123;</span><br><span class="line">        color: red</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，通过给元素绑定点击事件，在点击事件中，改变 isActivted 的值，来确定是否给元素的 class 加 activted，然后给 activted 设置一个样式，来实现点击切换颜色效果。</p>
+<h4 id="方式二、-class-中不再写入一个对象，而是写一个数组，在数组中写一个-activted。"><a href="#方式二、-class-中不再写入一个对象，而是写一个数组，在数组中写一个-activted。" class="headerlink" title="方式二、:class 中不再写入一个对象，而是写一个数组，在数组中写一个 activted。"></a>方式二、:class 中不再写入一个对象，而是写一个数组，在数组中写一个 activted。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot; :class=&quot;[activted]&quot; v-on:click=&quot;changeColor&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            activted: &quot;&quot;,</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            changeColor: function () &#123;</span><br><span class="line">                // 用 if 判断实现点击切换效果：</span><br><span class="line">                // if (this.activted === &quot;activted&quot;) &#123;</span><br><span class="line">                //     this.activted = &quot;&quot;;</span><br><span class="line">                // &#125; else &#123;</span><br><span class="line">                //     this.activted = &quot;activted&quot;;</span><br><span class="line">                // &#125;;</span><br><span class="line"></span><br><span class="line">                // 用三元运算符实现点击切换效果：</span><br><span class="line">                this.active = this.activted === &quot;activted&quot; ? this.activted = &quot;&quot; : this.activted =</span><br><span class="line">                    &quot;activted&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .activted &#123;</span><br><span class="line">        color: red</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在上面代码中，首先将 activted 设置为空，然后在点击事件中通过 if 或三元运算符来判断，当 data 中的 activted 为空时，就设置为 “activted”，当是“activted”时，再设置为空，以此来实现点击切换颜色效果。</p>
+<h4 id="方式三、通过-style-来改变样式，-style-中写-js-字符串。"><a href="#方式三、通过-style-来改变样式，-style-中写-js-字符串。" class="headerlink" title="方式三、通过 style 来改变样式，:style 中写 js 字符串。"></a>方式三、通过 style 来改变样式，:style 中写 js 字符串。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot; :style=&quot;styleObj&quot; v-on:click=&quot;changeColor&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            styleObj: &#123;</span><br><span class="line">                color: &quot;black&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            changeColor: function () &#123;</span><br><span class="line">                this.styleObj.color = this.styleObj.color === &quot;black&quot; ? &quot;red&quot; : &quot;black&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，将 data 中的样式对象 styleObj 传到 :style 中，在点击事件中，通过改变 styleObj 中的 color 值来实现点击切换颜色效果。</p>
+<h4 id="方式四：通过-style-来改变样式，-style-中写数组，数组中还可以挂载多个样式。"><a href="#方式四：通过-style-来改变样式，-style-中写数组，数组中还可以挂载多个样式。" class="headerlink" title="方式四：通过 style 来改变样式，:style 中写数组，数组中还可以挂载多个样式。"></a>方式四：通过 style 来改变样式，:style 中写数组，数组中还可以挂载多个样式。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot; :style=&quot;[styleObj,&#123;fontSize : &apos;24px&apos;&#125;,&#123;fontWeight : &apos;900&apos;&#125;]&quot; v-on:click=&quot;changeColor&quot;&gt;Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            styleObj: &#123;</span><br><span class="line">                color: &quot;black&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            changeColor: function () &#123;</span><br><span class="line">                this.styleObj.color = this.styleObj.color === &quot;black&quot; ? &quot;red&quot; : &quot;black&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>无论是绑定 class 还是 style，都有两种方式，一种是通过对象的方式绑定，一种是通过数组的方式绑定。</p>
+<h3 id="七、Vue-js-中的条件渲染"><a href="#七、Vue-js-中的条件渲染" class="headerlink" title="七、Vue.js 中的条件渲染"></a>七、Vue.js 中的条件渲染</h3><h4 id="1、条件渲染-v-if-和-v-show-对比"><a href="#1、条件渲染-v-if-和-v-show-对比" class="headerlink" title="1、条件渲染 v-if 和 v-show 对比"></a>1、条件渲染 v-if 和 v-show 对比</h4><p>v-if 后面跟一个 js 表达式，它的返回值（true, false）决定了这个元素是否真实的被挂载到页面上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;div v-show=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在 data 中 show 默认为 true，是显示的，可以在控制台中修改一下 show 的值：“app.show = false”，发现两个 dom 不存在了，改为 true，这两个 dom 又显示了。</p>
+<p>打开网页，可以看到，无论是 v-if 还是 v-show，如果 data 中的 show 值是 false，那么两个元素都不显示，我们在控制台中查看一下两个元素：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-b40bab40052f6f2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>发现，v-if 在页面上就不显示了，而 v-show 元素是存在的，只是样式被加了 “display: none;” ，所以 v-show 的性能更会高一些，因为它不会频繁的去把有个 dom 从页面上删再添加。</p>
+<h4 id="2、更复杂的使用-v-if"><a href="#2、更复杂的使用-v-if" class="headerlink" title="2、更复杂的使用 v-if"></a>2、更复杂的使用 v-if</h4><h5 id="v-if-和-v-else"><a href="#v-if-和-v-else" class="headerlink" title="v-if 和 v-else"></a>v-if 和 v-else</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;show&quot;&gt;Hello World!&lt;/div&gt;</span><br><span class="line">    &lt;!-- 注意，v-if 和 v-else 两个元素中间不能加其他元素，否则条件判断不能生效。 --&gt;</span><br><span class="line">    &lt;div v-else&gt;Bye World!&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，如果 show 的值是 false 的话，就显示 v-else 中的值，需要注意的是 v-if 和 v-else 两个元素中间不能加其他元素，否则条件判断不能生效。</p>
+<h5 id="多条件（v-if、v-else-if、v-else）"><a href="#多条件（v-if、v-else-if、v-else）" class="headerlink" title="多条件（v-if、v-else-if、v-else）"></a>多条件（v-if、v-else-if、v-else）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;show === &apos;a&apos;&quot;&gt;This is a!&lt;/div&gt;</span><br><span class="line">    &lt;div v-else-if=&quot;show === &apos;b&apos;&quot;&gt;This is b!&lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;This is other&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: a</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以在控制台中改变一下 show 的值，当时 show 的值为 a 时，显示 “This is a”，为 b 时，显示 “This is b”，为其他时，显示 “This is other。”</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6a27890b53834330.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="3、key-值"><a href="#3、key-值" class="headerlink" title="3、key 值"></a>3、key 值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;show&quot;&gt;</span><br><span class="line">        用户名：&lt;input type=&quot;text&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;</span><br><span class="line">        邮箱：&lt;input type=&quot;text&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码，因为 show 的值是 true，所以此时页面上显示的是用户名输入框，我们在输入框中输入内容，然后在控制台中改变 show 的值为 flase，发现输入框更换为邮箱了，但是输入框里的内容并没有变，这是因为 Vue 在重新渲染页面的时候，会尽量的复用页面上已存在的 dom，当显示用户名的时候，已经有了一个 input，当切换邮箱名的时候，Vue 会发现以前页面上有一个 input，所以他的机制会尽量的帮你复用页面上的 dom，回去尝试复用这个 input，但是内容并没有被清空。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-a4a369fb51c18952.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>解决方法：在 input 中加 key 值，例如给用户名加一个 key 值 “key=”username””，邮箱加一个 “key=”email””，此时再改变 show 的值，发现输入框内容被清空了功能也没有任何的 bug 了。当给元素加一个 key 值的时候，Vue 会知道他是页面上唯一的元素，如果两个元素的 key 值不一样，Vue 就不会尝试复用以前的 input 标签了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-if=&quot;show&quot;&gt;</span><br><span class="line">        用户名：&lt;input type=&quot;text&quot; key=&quot;username&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div v-else&gt;</span><br><span class="line">        邮箱：&lt;input type=&quot;text&quot; key=&quot;email&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            show: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="八、Vue-js-中的列表渲染"><a href="#八、Vue-js-中的列表渲染" class="headerlink" title="八、Vue.js 中的列表渲染"></a>八、Vue.js 中的列表渲染</h3><p>先来看一下列表循环最基础的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;item in list&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;div v-for=&quot;item of list&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [</span><br><span class="line">                &quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在 v-for 中，in 和 of 的效果是一样的，可以在 item 后再加一个参数 index，代表索引下标：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(item, index) of list&quot;&gt;&#123;&#123;item&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [</span><br><span class="line">                &quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e0acc274944d4683.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>在实际的开发中，为了提升循环显示的性能，我们会给每一个循环项上加唯一的 key 值，可以在循环向上加一个 key 值，因为目前 index 的值是唯一的，所以使用 index 作为 key 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(item, index) of list&quot; :key=&quot;index&quot;&gt;&#123;&#123;item&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [</span><br><span class="line">                &quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是不推荐这样使用 index 的，因为使用 index 作为 key 值，在平凡操作 DOM 元素相对应的数据的时候，是比较费性能的，可能让 Vue 没法充分的复用 dom 节点。如果不用 index 做 key 值。那用什么呢？</p>
+<p>一般在真正的项目中，后端向前端返回数据的时候，list 并不是写死的一个数据，后端反数据的时候，一般会携带一个数据相关的唯一标识符，一般是 id，可能是数据对应的一个随机的数据段，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(item, index) of list&quot; :key=&quot;item.id&quot;&gt;&#123;&#123;item.text&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [&#123;</span><br><span class="line">                id: &quot;10001&quot;,</span><br><span class="line">                text: &quot;one&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                id: &quot;10002&quot;,</span><br><span class="line">                text: &quot;two&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                id: &quot;10003&quot;,</span><br><span class="line">                text: &quot;three&quot;</span><br><span class="line">            &#125;],</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候，key 值就没必要是 index 了，可以用 item.id，我们可以参考之前 TodoList 在控制台中给 list 添加数据，可以看到数据添加成功，页面更新了：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-fc2a862a96c11c74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果通过下标添加数据呢？可以在控制台看到数据添加成功，但是页面却没有更新。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-7289c1a8b2fb99c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>到这里，需要讲一个内容，当我们去尝试修改数组里的内容时，不能直接通过下标的形式，只能通过 Vue 提供的几个数组变异方法来操作数组，才能够实现数据发生变化，页面也跟着变这种响应式效果。在 Vue 中一共提供了 7 个数组变异方法来帮助我们操作数组，他们分别是：</p>
+<ul>
+<li>pop：把数组最后一项删除掉。</li>
+<li>push：往数组里增加一条。</li>
+<li>shift：把数组的第一项删除掉。</li>
+<li>unshift：往数组的第一项里加点儿内容。</li>
+<li>splice：数组的截取。</li>
+<li>sort：对驻足进行排序。</li>
+<li>reverse：对数组取反。</li>
+</ul>
+<p>回到页面上，例如将第二项做一个替换，可以在控制台做如下操作：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-e464382dd52c5b21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>除了变异方法可以改变页面数据的显示，还有一种方法，就是改变引用：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-edcf259a39e1af8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>上边数组循环只循环了一个数据，假设有这样一个情况：不仅要根据 list2 循环一个 div，还要根据 list 循环一个 span 标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(item, index) of list&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;item.text&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123;item.text&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [&#123;</span><br><span class="line">                id: &quot;10001&quot;,</span><br><span class="line">                text: &quot;one&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                id: &quot;10002&quot;,</span><br><span class="line">                text: &quot;two&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                id: &quot;10003&quot;,</span><br><span class="line">                text: &quot;three&quot;</span><br><span class="line">            &#125;],</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-d785c5c365944594.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>如果要想显示一个 span 一个 div 就必须在外层包裹一个 div，否则就会先显示完 div 再显示 span， 假设在需求里就不想让这个 div 存在，有什么办法么？template 占位符，可以把外层 div 改为 template，也可以理解为一个模板占位符，回到页面上，可以看到依然是 div，span 的显示方式，但是最外层的 div 就消失了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;template v-for=&quot;(item, index) of list&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;item.text&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123;item.text&#125;&#125; --- &#123;&#123;index&#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [&#123;</span><br><span class="line">                id: &quot;10001&quot;,</span><br><span class="line">                text: &quot;one&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                id: &quot;10002&quot;,</span><br><span class="line">                text: &quot;two&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                id: &quot;10003&quot;,</span><br><span class="line">                text: &quot;three&quot;</span><br><span class="line">            &#125;],</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-36857ab4d0b4a3e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>其实这个 template 模板占位符可以帮我们去包裹一些元素，但是在循环的时候并不会被真正的渲染到页面上。</p>
+<p>除了数组可以做循环之外，其实还可以对对象做一个循环，接下来看一下对象怎么做循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;item of userInfo&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            userInfo: &#123;</span><br><span class="line">                name: &quot;liu&quot;,</span><br><span class="line">                age: &quot;26&quot;,</span><br><span class="line">                gender: &quot;male&quot;,</span><br><span class="line">                salary: &quot;secret&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>item 还可以接收其他内容 key，index：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(item, key, index) of userInfo&quot;&gt;</span><br><span class="line">        &#123;&#123;item&#125;&#125; --- &#123;&#123;key&#125;&#125; --- &#123;&#123;index&#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            userInfo: &#123;</span><br><span class="line">                name: &quot;liu&quot;,</span><br><span class="line">                age: &quot;26&quot;,</span><br><span class="line">                gender: &quot;male&quot;,</span><br><span class="line">                salary: &quot;secret&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们在控制台改变一下 userInfo 中的值：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-714f39913febf880.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>可以看到，改变  userInfo 中的某个值，页面会更新，但是新添加一个 address 值，数据变了，但页面不会更新，所以当你去便历对象的时候，如果直接动态的往里加值是不好用的，但是如果就是相加那怎么加呢？</p>
+<p>可以和数组的方式一样，直接改变他的引用：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-6add4ee974b2e481.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<p>通过改变引用这种方式，数据变化了，页面也就变化了。</p>
+<h3 id="九、Vue-js-中的-set-方法"><a href="#九、Vue-js-中的-set-方法" class="headerlink" title="九、Vue.js 中的 set 方法"></a>九、Vue.js 中的 set 方法</h3><p>先来回顾上一节我们说过的，如果要改变对象 userInfo 中的属性和值，就要通过它的引用来改变，这样才会让页面也更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(item, key, index) of userInfo&quot;&gt;</span><br><span class="line">        &#123;&#123;item&#125;&#125; --- &#123;&#123;key&#125;&#125; --- &#123;&#123;index&#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            userInfo: &#123;</span><br><span class="line">                name: &quot;liu&quot;,</span><br><span class="line">                age: &quot;26&quot;,</span><br><span class="line">                gender: &quot;male&quot;,</span><br><span class="line">                salary: &quot;secret&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>那除了改变引用是否还有其他方法能在改变数据后页面也更新呢？下面看一下 Vue.js 中的 set 方法。</p>
+<h4 id="1、对象中的-set-方法"><a href="#1、对象中的-set-方法" class="headerlink" title="1、对象中的 set 方法"></a>1、对象中的 set 方法</h4><p>还是用上的代码，可以通过构造函数来更新 userInfo 中的属性值，例如：“Vue.set(app2.userInfo,”address”,”Beijing”)”，也可以通过实例对象来更新 userInfo 中的属性值，例如 “app2.$set(app2.userInfo,”tel”,”1234567”)”，这两种方法在更新数据后，页面也都会同步更新。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-360e8b6e508650d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h4 id="2、数组中的-set-方法"><a href="#2、数组中的-set-方法" class="headerlink" title="2、数组中的 set 方法"></a>2、数组中的 set 方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;item of list&quot;&gt;</span><br><span class="line">        &#123;&#123;item&#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: &quot;#app&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            list: [1, 2, 3, 4]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在控制台中，分别通过全局对象（构造函数）和实例对象来更新 list 中的数据，可以看到这两种方法在更新数据后，页面也都会同步更新。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-42f9f74d58c85811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/9373308-07ae1ea6f13ef986.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h2 id="长得好看的都会关注我的-o-≧v≦-o"><a href="#长得好看的都会关注我的-o-≧v≦-o" class="headerlink" title="长得好看的都会关注我的 o(≧v≦)o~~"></a>长得好看的都会关注我的 o(≧v≦)o~~</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/06/Vuejs第1课-起步/" rel="next" title="Vuejs第1课-起步">
+                <i class="fa fa-chevron-left"></i> Vuejs第1课-起步
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/08/Vuejs第3课-深入理解Vue组件（part01）/" rel="prev" title="Vuejs第3课-深入理解Vue组件（part01）">
+                Vuejs第3课-深入理解Vue组件（part01） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Vue-js-实例"><span class="nav-text">一、Vue.js 实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Vue-js-实例生命周期函数"><span class="nav-text">二、Vue.js 实例生命周期函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Vue-js-的模板语法"><span class="nav-text">三、Vue.js 的模板语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、插值表达式"><span class="nav-text">1、插值表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、v-text"><span class="nav-text">2、v-text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、v-html"><span class="nav-text">3、v-html</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、计算属性，方法和侦听器"><span class="nav-text">四、计算属性，方法和侦听器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一：computed-计算属性（有缓存机制，会提高性能）"><span class="nav-text">方式一：computed 计算属性（有缓存机制，会提高性能）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二：methods"><span class="nav-text">方式二：methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式三：watch-侦听器"><span class="nav-text">方式三：watch 侦听器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、计算属性的-setter-和-getter"><span class="nav-text">五、计算属性的 setter 和 getter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、Vue-js-中的样式绑定"><span class="nav-text">六、Vue.js 中的样式绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一、class-的对象绑定，借助-class-和对象的形式做样式和数据的绑定。"><span class="nav-text">方式一、class 的对象绑定，借助 class 和对象的形式做样式和数据的绑定。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二、-class-中不再写入一个对象，而是写一个数组，在数组中写一个-activted。"><span class="nav-text">方式二、:class 中不再写入一个对象，而是写一个数组，在数组中写一个 activted。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式三、通过-style-来改变样式，-style-中写-js-字符串。"><span class="nav-text">方式三、通过 style 来改变样式，:style 中写 js 字符串。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式四：通过-style-来改变样式，-style-中写数组，数组中还可以挂载多个样式。"><span class="nav-text">方式四：通过 style 来改变样式，:style 中写数组，数组中还可以挂载多个样式。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、Vue-js-中的条件渲染"><span class="nav-text">七、Vue.js 中的条件渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、条件渲染-v-if-和-v-show-对比"><span class="nav-text">1、条件渲染 v-if 和 v-show 对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、更复杂的使用-v-if"><span class="nav-text">2、更复杂的使用 v-if</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#v-if-和-v-else"><span class="nav-text">v-if 和 v-else</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多条件（v-if、v-else-if、v-else）"><span class="nav-text">多条件（v-if、v-else-if、v-else）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、key-值"><span class="nav-text">3、key 值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、Vue-js-中的列表渲染"><span class="nav-text">八、Vue.js 中的列表渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、Vue-js-中的-set-方法"><span class="nav-text">九、Vue.js 中的 set 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、对象中的-set-方法"><span class="nav-text">1、对象中的 set 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、数组中的-set-方法"><span class="nav-text">2、数组中的 set 方法</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#长得好看的都会关注我的-o-≧v≦-o"><span class="nav-text">长得好看的都会关注我的 o(≧v≦)o~~</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
