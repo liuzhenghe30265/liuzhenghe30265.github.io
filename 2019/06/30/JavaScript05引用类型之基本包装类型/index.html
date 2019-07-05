@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、Boolean 类型Boolean 类型是与布尔值对应的引用类型。要创建 Boolean 对象，可以调用 Boolean 构造函数并传入 true 或 false 值： 12var booleanObj = new Boolean(true);console.log(booleanObj); // true  Boolean 类型的实例重写了 ValueOf() 方法，返回基本类型值 true">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript05引用类型之基本包装类型.md">
+<meta property="og:url" content="http://yoursite.com/2019/06/30/JavaScript05引用类型之基本包装类型/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、Boolean 类型Boolean 类型是与布尔值对应的引用类型。要创建 Boolean 对象，可以调用 Boolean 构造函数并传入 true 或 false 值： 12var booleanObj = new Boolean(true);console.log(booleanObj); // true  Boolean 类型的实例重写了 ValueOf() 方法，返回基本类型值 true">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-05T08:33:20.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript05引用类型之基本包装类型.md">
+<meta name="twitter:description" content="一、Boolean 类型Boolean 类型是与布尔值对应的引用类型。要创建 Boolean 对象，可以调用 Boolean 构造函数并传入 true 或 false 值： 12var booleanObj = new Boolean(true);console.log(booleanObj); // true  Boolean 类型的实例重写了 ValueOf() 方法，返回基本类型值 true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/30/JavaScript05引用类型之基本包装类型/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>JavaScript05引用类型之基本包装类型.md | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/JavaScript05引用类型之基本包装类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript05引用类型之基本包装类型.md</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-30T00:00:00+08:00">
+                2019-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript高级程序设计笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript高级程序设计笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、Boolean-类型"><a href="#一、Boolean-类型" class="headerlink" title="一、Boolean 类型"></a>一、Boolean 类型</h3><p>Boolean 类型是与布尔值对应的引用类型。要创建 Boolean 对象，可以调用 Boolean 构造函数并传入 true 或 false 值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var booleanObj = new Boolean(true);</span><br><span class="line">console.log(booleanObj); // true</span><br></pre></td></tr></table></figure>
+
+<p>Boolean 类型的实例重写了 ValueOf() 方法，返回基本类型值 true 或 false，重写了 toString() 方法，返回字符串 “true” 和 “false”。但是，Boolean 对象在 ECMAScript 中的用处不大，因为它经常会造成人们的误解。其中最常见的就是在布尔表达式中使用 Boolean 对象，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var falseBoolean = new Boolean(false);</span><br><span class="line">var result = falseBoolean &amp;&amp; true;</span><br><span class="line">console.log(result); // true</span><br><span class="line">var falseValue = false;</span><br><span class="line">var result2 = falseValue &amp;&amp; true;</span><br><span class="line">console.log(result2); // false</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码，先通过 Boolean 构造函数创建了一个 falseBoolean 对象，它的值虽然设置为了 false，但是逻辑表达式这行代码是对 falseBoolean 对象而不是对他的值（false）进行求值，falseBoolean 在布尔表达式中代表的是 true，所以 true &amp;&amp; true 就返回 true。</p>
+<p>接下来又将 falseBoolean 对象的值修改为了 false，所以 false &amp;&amp; true 就返回 false。</p>
+<p>基本类型和引用类型的布尔值还有两个区别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof falseBoolean); // obejct</span><br><span class="line">console.log(typeof falseValue); // boolean</span><br><span class="line">console.log(falseBoolean instanceof Boolean); // true</span><br><span class="line">console.log(falseValue instanceof Boolean); // false</span><br></pre></td></tr></table></figure>
+
+<p>typeof 对引用类型返回 boolean，对基本类型返回 object。由于 falseBoolean 对象是 Boolean 类型的实例，所以使用 instanceof 操作符检测 falseBoolean 对象会返回 true，而 falseValue 是基本类型的布尔值，所以会返回 false。</p>
+<p><strong>建议永远不要使用 Boolean 对象。</strong></p>
+<h3 id="二、Number-类型"><a href="#二、Number-类型" class="headerlink" title="二、Number 类型"></a>二、Number 类型</h3><p>Number 是与数字值对应的引用类型，可以在调用 Number 构造函数的时候向其传入相应的数值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var numObj = new Number(100);</span><br><span class="line">console.log(numObj); // 100</span><br></pre></td></tr></table></figure>
+
+<p>与 Boolean 类型一样，Number 类型也重写了 valueOf()、toLocaleString()、toString() 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(numObj.valueOf()); // 100</span><br><span class="line">console.log(typeof numObj.valueOf()); // number</span><br><span class="line">console.log(numObj.toLocaleString()); // 100</span><br><span class="line">console.log(typeof numObj.toLocaleString()); // string</span><br><span class="line">console.log(numObj.toString()); // 100</span><br><span class="line">console.log(typeof numObj.toString()); // string</span><br></pre></td></tr></table></figure>
+
+<p>valueOf() 返回对象表示的基本类型的数值，另外两个返回字符串类型的数值。</p>
+<p>toString() 方法还可以传入一个参数，告诉他返回几进制数值的字符串形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var num = 10;</span><br><span class="line">console.log(typeof num); // number</span><br><span class="line">console.log(num.toString()); // 10</span><br><span class="line">console.log(num.toString(2)); // 1010</span><br><span class="line">console.log(num.toString(8)); // 12</span><br><span class="line">console.log(num.toString(10)); //10</span><br><span class="line">console.log(num.toString(16)); // a</span><br></pre></td></tr></table></figure>
+
+<p>除了继承的这些方法，Number 类型还提供了一些用于将数值转换为字符串的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- toFixed()</span><br><span class="line">- toExponential()</span><br><span class="line">- toPrecision()</span><br></pre></td></tr></table></figure>
+
+<p>toFixed() 会按照指定的小数位数返回数值的字符串表示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(num.toFixed(2)); // 10.00</span><br><span class="line">console.log(typeof num.toFixed(2)); // string</span><br></pre></td></tr></table></figure>
+
+<p>如果数值本身包含的小数位数比指定的小数位数多，那么他就会返回指定位数四舍五入后的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var num2 = 10.0005;</span><br><span class="line">console.log(num2.toFixed(3)); // 10.001</span><br></pre></td></tr></table></figure>
+
+<p>toExponential() 返回指数表示法表示的数值字符串形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(num.toExponential(1)); // 1.0e+1</span><br></pre></td></tr></table></figure>
+
+<p>toPrecision() 可能会返回固定大小（fixed）格式，也可能返回指数（exponential）指数形式，这个方法接收一个参数，表示数值的所有数字的位数（不包括指数位置）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var num2 = 99;</span><br><span class="line">console.log(num2.toPrecision(1)); // 1e+2</span><br><span class="line">console.log(num2.toPrecision(2)); // 99</span><br><span class="line">console.log(num2.toPrecision(3)); // 99.0</span><br></pre></td></tr></table></figure>
+
+<p>仍然不建议直接实例化 Number 类型，原因与现实创建 Boolean 对象一样。在使用 typeof 和 instanceof 来检测基本类型数值和引用类型数值，得到的结果也完全不同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var numVlaue = 10;</span><br><span class="line">var numObj = new Object(10);</span><br><span class="line">console.log(typeof numVlaue); // number</span><br><span class="line">console.log(typeof numObj); // object</span><br><span class="line">console.log(numVlaue instanceof Number); // false</span><br><span class="line">console.log(numObj instanceof Number); // true</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、String-类型"><a href="#三、String-类型" class="headerlink" title="三、String 类型"></a>三、String 类型</h3><p>String 类型是字符串的对象包装类型，可以使用构造函数来创建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = new String(&quot;Hello World!&quot;);</span><br><span class="line">console.log(str); // Hello World!</span><br></pre></td></tr></table></figure>
+
+<p>String 类型也继承了 valueOf()、toLocaleString()、toString() 这些方法，返回对象所表示的基本字符串值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(str.valueOf()); // Hello World!</span><br><span class="line">console.log(str.toString()); // Hello World!</span><br><span class="line">console.log(str.toLocaleString()); // Hello World!</span><br></pre></td></tr></table></figure>
+
+<p>String 类型每个实例都有一个 length 属性，返回字符串的长度：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(str.length); // 12</span><br></pre></td></tr></table></figure>
+
+<p>String 类型提供了很多的方法，用于对字符串的解析和操作。</p>
+<h4 id="3-1、字符方法"><a href="#3-1、字符方法" class="headerlink" title="3.1、字符方法"></a>3.1、字符方法</h4><ul>
+<li>charAt()</li>
+<li>charCodeAt()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(str.charAt(4)); // o</span><br><span class="line">console.log(str.charCodeAt(4)); // 111</span><br></pre></td></tr></table></figure>
+
+<p>CharAt 传入一个参数，这个参数是一个位置索引，返回这个位置上的字符。<br>charCodeAt() 同样传入一个位置索引的参数，但是他返回的是该位置上字符的 Unicode 编码。</p>
+<p>ECMAScript 还提供了一个通过位置访问字符的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(str[2]); // l</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2、字符串操作方法"><a href="#3-2、字符串操作方法" class="headerlink" title="3.2、字符串操作方法"></a>3.2、字符串操作方法</h4><ul>
+<li>concat()</li>
+<li>slice()</li>
+<li>substr()</li>
+<li>substring()</li>
+</ul>
+<h5 id="3-2-1、cancat"><a href="#3-2-1、cancat" class="headerlink" title="3.2.1、cancat()"></a>3.2.1、cancat()</h5><p>可以将一个或多个字符串拼接起来，返回一个新的字符串，不会改变原字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str3 = &quot;Love &quot;;</span><br><span class="line">var newStr3 = str3.concat(&quot;Myself&quot;, &quot;!&quot;);</span><br><span class="line">console.log(str3); // Love</span><br><span class="line">console.log(newStr3); // Love Myself!</span><br></pre></td></tr></table></figure>
+
+<p>但是在实际开发中使用更多的还是加号操作符（+），因为加号操作符方法更简单易行。</p>
+<h5 id="3-2-2、slice"><a href="#3-2-2、slice" class="headerlink" title="3.2.2、slice()"></a>3.2.2、slice()</h5><p>接收两个参数，分别是开始位置和结束位置，返回起始间位置的字符。当传入一个参数的时候，返回开始位置到字符串结束的字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str3 = &quot;All is well!&quot;;</span><br><span class="line">console.log(str3.slice(4, 6)); // is</span><br><span class="line">console.log(str3.slice(4)); // is well!</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2-3、substr"><a href="#3-2-3、substr" class="headerlink" title="3.2.3、substr()"></a>3.2.3、substr()</h5><p>接收两个参数，开始位置和向后取几个字符数，返回从开始位置到向后取几个字符的字符串。当传入一个参数的时候，返回从开始位置到字符串结束的字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(str3.substr(4, 6)); // is wel</span><br><span class="line">console.log(str3.substr(4)); // is well!</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2-4、substring"><a href="#3-2-4、substring" class="headerlink" title="3.2.4、substring()"></a>3.2.4、substring()</h5><p>他和 slice() 的返回结果是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(str3.substring(4, 6)); // is</span><br><span class="line">console.log(str3.substring(4)); // is well!</span><br></pre></td></tr></table></figure>
+
+<p>如果给 slice()、substr() 和 substring() 传入负值，结果会是怎么样的？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(str3.slice(-3)); // ll!</span><br><span class="line">console.log(str3.substr(-3)); // ll!</span><br><span class="line">console.log(str3.substring(-3)); // All is well!</span><br><span class="line"></span><br><span class="line">console.log(str3.slice(3, -4)); //  is w</span><br><span class="line">console.log(str3.substr(3, -4)); // </span><br><span class="line">console.log(str3.substring(3, -4)); // All</span><br><span class="line">console.log(str3.length); // 12</span><br></pre></td></tr></table></figure>
+
+<p>slice() 和 substr() 如果只传入一个负数参数，相当于字符串 length 值+(负数参数)，也就是 12+(-3)=9，参数传入了 9，所以都返回了“ll!”。substring() 返回了全部字符串，也就是他把负值都转换成了 0。</p>
+<p>当第二个参数传入负数的时候，slice() 方法会把第二个参数转换为 12+(-4)=8，所以 slice(3, 8) 返回的就是 “ is w”。substr() 方法会把第二个负数参数转换为 0，也就是 substr(3, 0)，从第三个位置取 0 个字符，也就返回了 0。substring() 方法也会把第二个负数参数转换为 0，也就是 substring(3, 0)，但是因为 substring() 截取的是开始到结束的位置，当开始位置小于结束位置时，就会自动将大的换为结束位置，所以就是 substring(0, 3)，返回的就是 “All”。</p>
+<h4 id="3-3、字符串位置方法"><a href="#3-3、字符串位置方法" class="headerlink" title="3.3、字符串位置方法"></a>3.3、字符串位置方法</h4><ul>
+<li>indexOf()</li>
+<li>lastIndexOf()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;All is well!&quot;;</span><br><span class="line">console.log(str.indexOf(&quot;l&quot;)); // 1</span><br><span class="line">console.log(str.indexOf(&quot;m&quot;)); // -1</span><br><span class="line">console.log(str.lastIndexOf(&quot;l&quot;)); // 10</span><br><span class="line">console.log(str.lastIndexOf(&quot;k&quot;)); // -1</span><br></pre></td></tr></table></figure>
+
+<p>向 indexOf() 传入一个字符参数的时候，他返回的就是这个字符在字符串中的位置。lastIndexOf() 与 indexOf() 基本类似，只不过他是从字符串右向左找，找到第一个符合参数的字符，返回他在字符串中的位置。indexOf() 和 lastIndexOf() 一样，如果没有找到该字符，则返回 -1。</p>
+<p>当向 indexOf() 和 lastIndexOf() 传入两个参数的时候，第一个参数是要找的元素，第二个参数是从那个位置开始找：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(str.indexOf(&apos;l&apos;, 3));//9</span><br><span class="line">console.log(str.lastIndexOf(&apos;l&apos;, 5));//2</span><br></pre></td></tr></table></figure>
+
+<p>lastIndexOf() 第一个参数是要找的元素，第二个参数是从那个位置开始，向前查找，找到第一个出现的元素，返回它的位置。</p>
+<h4 id="3-4、trim-方法"><a href="#3-4、trim-方法" class="headerlink" title="3.4、trim() 方法"></a>3.4、trim() 方法</h4><p>删除字符串前后的空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var str4 = &quot;   All is well!   &quot;;</span><br><span class="line">console.log(str4); // &quot;   All is well!   &quot;</span><br><span class="line">console.log(str4.length); // 18</span><br><span class="line"></span><br><span class="line">var result4 = str4.trim();</span><br><span class="line">console.log(result4); // &quot;All is well!&quot;</span><br><span class="line">console.log(result4.length); // 12</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5、字符串大小写转换"><a href="#3-5、字符串大小写转换" class="headerlink" title="3.5、字符串大小写转换"></a>3.5、字符串大小写转换</h4><ul>
+<li>toLowerCase() 转小写</li>
+<li>toLocaleLowerCase() 针对特定地区实现转小写</li>
+<li>toUpperCase() 转大写</li>
+<li>toLocaleUpperCase() 针对特定地区实现转大写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str5 = &quot;All Is Well!&quot;;</span><br><span class="line">console.log(str5.toLowerCase()); // all is well!</span><br><span class="line">console.log(str5.toLocaleLowerCase()); // all is well!</span><br><span class="line">console.log(str5.toUpperCase()); // ALL IS WELL!</span><br><span class="line">console.log(str5.toLocaleUpperCase()); // all is well!</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6、字符串的模式匹配方法"><a href="#3-6、字符串的模式匹配方法" class="headerlink" title="3.6、字符串的模式匹配方法"></a>3.6、字符串的模式匹配方法</h4><p>String 类型提供了几个用于在字符串中匹配模式的方法：</p>
+<ul>
+<li>match()</li>
+<li>search()</li>
+<li>replace()</li>
+<li>split()</li>
+</ul>
+<h5 id="3-6-1、match"><a href="#3-6-1、match" class="headerlink" title="3.6.1、match()"></a>3.6.1、match()</h5><p>只接收一个参数，要么是正则表达式，要么是一个 RegExp 对象，他返回一个数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var text = &quot;cat,bat,fat,hat&quot;;</span><br><span class="line">var pattern = /.at/;</span><br><span class="line">var matches = text.match(pattern);</span><br><span class="line">console.log(matches.index); // 0</span><br><span class="line">console.log(matches[0]); // cat</span><br><span class="line">console.log(pattern.lastIndex); // 0</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-6-2、search"><a href="#3-6-2、search" class="headerlink" title="3.6.2、search()"></a>3.6.2、search()</h5><p>和 match() 方法一样，只接收一个参数，要么是正则表达式，要么是一个 RegExp 对象。他返回字符串中第一个匹配项的索引，如果没有找到匹配项，返回 -1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;pig,cat,bat,fat,hat&quot;.search(/.at/)); // 4</span><br><span class="line">console.log(&quot;pig&quot;.search(/.at/)); // -1</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-6-3、replace"><a href="#3-6-3、replace" class="headerlink" title="3.6.3、replace()"></a>3.6.3、replace()</h5><p>replace() 方法接收两个参数，第一个是字符串或 RegExp 对象，第二个参数可以是字符串或者一个函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var text3 = &quot;cat,bat,fat,hat&quot;;</span><br><span class="line">console.log(text3.replace(&quot;at&quot;, &quot;oo&quot;)); // coo,bat,fat,hat</span><br><span class="line">console.log(text3.replace(/at/, &quot;oo&quot;)); // coo,bat,fat,hat</span><br><span class="line">console.log(text3.replace(/at/g, &quot;oo&quot;)); // coo,boo,foo,hoo</span><br></pre></td></tr></table></figure>
+
+<p>如果第一个参数是字符串，那么只会替换第一个子字符串，如上边第一条打印结果。如果想要替换所有子字符串，第一个参数就要传一个正则表达式，而且要指定全局标志（g），如上边第三条打印结果。</p>
+<p>如果第二个参数是字符串，还可以使用一些特殊的字符序列，将正则表达式操作得到的值插入到结果字符串中，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;cat,bat,fat,hat&quot;.replace(/(.at)/g, &quot;word($1)&quot;)); //  word(cat),word(bat),word(fat),word(hat)</span><br></pre></td></tr></table></figure>
+
+<p>每个以 at 结尾的单词都被替换了，替换的结果是 word 后跟一对圆括号，而圆括号中是被字符序列 $1 所替换的单词。</p>
+<p>replace 方法第二个参数也可以是一个函数。在只有一个匹配项的情况下，会向这个函数传递3个参数：<br>模式的匹配项、模式的匹配项在字符串中的位置和原始字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function htmlEscape(text) &#123;</span><br><span class="line">    return text.replace(/[&lt;&gt;&quot;&amp;]/g, function (match, pos, originalText) &#123;</span><br><span class="line">        switch (match) &#123;</span><br><span class="line">            case &quot;&lt;&quot;:</span><br><span class="line">                return &quot;&amp;lt;&quot;;</span><br><span class="line">            case &quot;&gt;&quot;:</span><br><span class="line">                return &quot;&amp;gt&quot;;</span><br><span class="line">            case &quot;&amp;&quot;:</span><br><span class="line">                return &quot;&amp;amp&quot;;</span><br><span class="line">            case &quot;\&quot;&quot;:</span><br><span class="line">                return &quot;&amp;quot&quot;;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(&quot;&lt;p class=&apos;greeting&apos;&gt;Hello world!&lt;/p&gt;&quot;) // Hello world!</span><br><span class="line">console.log(htmlEscape(&quot;&lt;p class=\&apos;greeting\&apos;&gt;Hello world!&lt;/p&gt;&quot;)); // &lt;p class=&apos;greeting&apos;&gt;Hello world!&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码，为插入 HTML 代码定义了函数 htmlEscape，这个函数能转义 4 个字符：小于号、大于号、和号及双引号。实现这种转义最简单的方式，就是使用正则表达式查找这几个字符，然后定一个能够针对每个匹配的字符返回特定 HTML 实体的函数。</p>
+<h5 id="3-6-4、split"><a href="#3-6-4、split" class="headerlink" title="3.6.4、split()"></a>3.6.4、split()</h5><p>根据指定的分割符将一个字符串分割成多个字符串，并放到一个数组中。分隔符可以是一个字符串，也可以是一个 RegExp 对象。可以接收可选的第二个参数，用于指定数组的大小。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var colors = &quot;red,blue,yellow,black,green&quot;;</span><br><span class="line">console.log(colors.split(&quot;,&quot;)); // [ &quot;red&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;black&quot;, &quot;green&quot; ]</span><br><span class="line">console.log(colors.split(&quot;,&quot;, 2)); // [ &quot;red&quot;, &quot;blue&quot; ]</span><br><span class="line">console.log(colors.split(/[^\,]+/)); // [ &quot;&quot;, &quot;,&quot;, &quot;,&quot;, &quot;,&quot;, &quot;,&quot;, &quot;&quot; ]</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7、localeCompare"><a href="#3-7、localeCompare" class="headerlink" title="3.7、localeCompare()"></a>3.7、localeCompare()</h4><ul>
+<li>如果传入的字符串在字母表中应该排在指定的字符串之前，就返回一个正数1；</li>
+<li>如果传入的字符串和指定字符串一样，就返回0；</li>
+<li>如果传入的字符串在字母表中应该排在指定的字符串之后，就返回一个负数-1。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var strVal = &quot;forest&quot;;</span><br><span class="line">console.log(strVal.localeCompare(&quot;about&quot;)); // 1</span><br><span class="line">console.log(strVal.localeCompare(&quot;forest&quot;)); // 0</span><br><span class="line">console.log(strVal.localeCompare(&quot;zoom&quot;)); // -1</span><br></pre></td></tr></table></figure>
+
+<p>下面使用 localeCompare() 写一个实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function DetermineThePosition(str) &#123;</span><br><span class="line">    var result = strVal.localeCompare(str);</span><br><span class="line">    if (result &lt; 0) &#123;</span><br><span class="line">        console.log(strVal + &quot; before &quot; + str);</span><br><span class="line">    &#125; else if (result &gt; 0) &#123;</span><br><span class="line">        console.log(strVal + &quot; after &quot; + str);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(strVal + &quot; is equal to the &quot; + str);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(DetermineThePosition(&quot;about&quot;)); // forest after about</span><br><span class="line">console.log(DetermineThePosition(&quot;forest&quot;)); // forest is equal to the forest</span><br><span class="line">console.log(DetermineThePosition(&quot;zoom&quot;)); // forest before zoom</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-8、fromCharCode"><a href="#3-8、fromCharCode" class="headerlink" title="3.8、fromCharCode()"></a>3.8、fromCharCode()</h4><p>接收一个或多个 Unicode 编码，返回一个字符串，这个方法与实例方法 charCodeAt() 执行的是相反的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(String.fromCharCode(65, 108, 108, 32, 105, 115, 32, 119, 101, 108, 108, 33)); // All is well!</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/29/JavaScript04引用类型之Function类型/" rel="next" title="JavaScript04引用类型之Function类型.md">
+                <i class="fa fa-chevron-left"></i> JavaScript04引用类型之Function类型.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/01/JavaScript06引用类型之单体内置对象/" rel="prev" title="JavaScript06引用类型之单体内置对象.md">
+                JavaScript06引用类型之单体内置对象.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Boolean-类型"><span class="nav-text">一、Boolean 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Number-类型"><span class="nav-text">二、Number 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、String-类型"><span class="nav-text">三、String 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1、字符方法"><span class="nav-text">3.1、字符方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2、字符串操作方法"><span class="nav-text">3.2、字符串操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-1、cancat"><span class="nav-text">3.2.1、cancat()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-2、slice"><span class="nav-text">3.2.2、slice()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-3、substr"><span class="nav-text">3.2.3、substr()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-4、substring"><span class="nav-text">3.2.4、substring()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3、字符串位置方法"><span class="nav-text">3.3、字符串位置方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4、trim-方法"><span class="nav-text">3.4、trim() 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5、字符串大小写转换"><span class="nav-text">3.5、字符串大小写转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6、字符串的模式匹配方法"><span class="nav-text">3.6、字符串的模式匹配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-1、match"><span class="nav-text">3.6.1、match()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-2、search"><span class="nav-text">3.6.2、search()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-3、replace"><span class="nav-text">3.6.3、replace()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-4、split"><span class="nav-text">3.6.4、split()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7、localeCompare"><span class="nav-text">3.7、localeCompare()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8、fromCharCode"><span class="nav-text">3.8、fromCharCode()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

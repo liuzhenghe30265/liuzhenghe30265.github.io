@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、属性类型ESMAScript 中有两种属性，数据属性和访问器属性。 1.1、数据属性 [[value]] 包含属性的值，这个特性的默认值是 undefined； [[configurable]] 可否删除属性，这个特性默认值是 true 可以删除，false 不可以删除； [[writable]] 可否修改属性值，这个特性默认值是 true 可以修改，false 不可以修改； [[enumer">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript07面向对象程序设计之理解对象.md">
+<meta property="og:url" content="http://yoursite.com/2019/07/02/JavaScript07面向对象程序设计之理解对象/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="一、属性类型ESMAScript 中有两种属性，数据属性和访问器属性。 1.1、数据属性 [[value]] 包含属性的值，这个特性的默认值是 undefined； [[configurable]] 可否删除属性，这个特性默认值是 true 可以删除，false 不可以删除； [[writable]] 可否修改属性值，这个特性默认值是 true 可以修改，false 不可以修改； [[enumer">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-05T08:33:20.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript07面向对象程序设计之理解对象.md">
+<meta name="twitter:description" content="一、属性类型ESMAScript 中有两种属性，数据属性和访问器属性。 1.1、数据属性 [[value]] 包含属性的值，这个特性的默认值是 undefined； [[configurable]] 可否删除属性，这个特性默认值是 true 可以删除，false 不可以删除； [[writable]] 可否修改属性值，这个特性默认值是 true 可以修改，false 不可以修改； [[enumer">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/02/JavaScript07面向对象程序设计之理解对象/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>JavaScript07面向对象程序设计之理解对象.md | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/JavaScript07面向对象程序设计之理解对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript07面向对象程序设计之理解对象.md</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T00:00:00+08:00">
+                2019-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript高级程序设计笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript高级程序设计笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、属性类型"><a href="#一、属性类型" class="headerlink" title="一、属性类型"></a>一、属性类型</h3><p>ESMAScript 中有两种属性，数据属性和访问器属性。</p>
+<h4 id="1-1、数据属性"><a href="#1-1、数据属性" class="headerlink" title="1.1、数据属性"></a>1.1、数据属性</h4><ul>
+<li>[[value]] 包含属性的值，这个特性的默认值是 undefined；</li>
+<li>[[configurable]] 可否删除属性，这个特性默认值是 true 可以删除，false 不可以删除；</li>
+<li>[[writable]] 可否修改属性值，这个特性默认值是 true 可以修改，false 不可以修改；</li>
+<li>[[enumerable]] 可否通过 for-in 循环返回属性，这个特性默认值是 true 可以循环。</li>
+</ul>
+<p>要修改属性默认的特性，必须使用 ECMAScript5 的 Object.defineProperty() 方法，这个方法接收三个参数，属性所在的对象、属性名和一个描述符对象，这个描述符对象就是 value、configurable、writable、enumerable 这些数据属性，可以设置其中一个或多个值，用来修改对应的特性值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &quot;liu&quot;,</span><br><span class="line">    age: 25</span><br><span class="line">&#125;;</span><br><span class="line">// configurable</span><br><span class="line">Object.defineProperty(person, &quot;name&quot;, &#123;</span><br><span class="line">    value: &quot;liu&quot;,</span><br><span class="line">    configurable: true</span><br><span class="line">&#125;);</span><br><span class="line">console.log(person.name); // liu</span><br><span class="line">delete person.name;</span><br><span class="line">console.log(person.name); // undefined</span><br><span class="line"></span><br><span class="line">// writeable</span><br><span class="line">Object.defineProperty(person, &quot;age&quot;, &#123;</span><br><span class="line">    value: 25,</span><br><span class="line">    writable: false</span><br><span class="line">&#125;);</span><br><span class="line">console.log(person.age); // 25</span><br><span class="line">person.age = 30;</span><br><span class="line">console.log(person.age); // 25</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2、访问器属性"><a href="#1-2、访问器属性" class="headerlink" title="1.2、访问器属性"></a>1.2、访问器属性</h4><p>访问器属性不包含数据值，他们包含一对 getter 和 setter 函数，在读取访问器属性时，会调用 getter 函数，这个函数会返回有效的值；在写入访问器属性的时候，会调用 setter 函数并传入新值，这个函数负责决定如何处理数据。</p>
+<p>访问器属性有 4 个特性：</p>
+<ul>
+<li>[[configurable]] 表示能否通过 delete 删除属性从而重新定义属性，默认值是 true 可以；</li>
+<li>[[enumerable]] 表示能否通过 for-in 返回属性，默认值是 true 可以；</li>
+<li>[[get]] 在读取属性的时候调用的函数，默认 undefined；</li>
+<li>[[set]] 在写入属性的时候调用的函数，默认 undefined。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">    _year: 2018,</span><br><span class="line">    edition: 1</span><br><span class="line">&#125;;</span><br><span class="line">Object.defineProperty(book, &quot;year&quot;, &#123;</span><br><span class="line">    get: function () &#123;</span><br><span class="line">        return this._year;</span><br><span class="line">    &#125;,</span><br><span class="line">    set: function (newValue) &#123;</span><br><span class="line">        if (newValue &gt; 2018) &#123;</span><br><span class="line">            this._year = newValue;</span><br><span class="line">            this.edition += newValue - 2018;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = 2019;</span><br><span class="line">console.log(book.edition); // 2</span><br></pre></td></tr></table></figure>
+
+<p>上面代码创建了一个 book 对象，并给他定义了两个默认的属性：_year 和 edition。year 前面的下划线是一种<br>常用的记号，用于表示只能通过对象方法访问的属性。而访问器属性 year 则包含一个 getter 和 setter 函数，getter 返回 _year 的值，setter 通过计算来确定正确的版本。因此，把 year 属性修改为 2019 会导致 _year 变成 2018，而 edition 变为 2。这是使用访问器属性的常见方式，即设置一个属性的值会导致其他属性发生变化。</p>
+<p>支持 ECMAScript5 的这个方法的浏览器需要 IE9+（IE8 只是部分实现）。在这个方法之前，要创建访问器属性，一般都使用两个非标准方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__defineGetter__() 和 __defineSetter__()</span><br></pre></td></tr></table></figure>
+
+<p>使用这两个方法，可以重写前面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">    _year: 2018,</span><br><span class="line">    edition: 1</span><br><span class="line">&#125;;</span><br><span class="line">// 定义访问器的旧方法：</span><br><span class="line">book.__defineGetter__(&quot;year&quot;, function () &#123;</span><br><span class="line">    return this._year;</span><br><span class="line">&#125;);</span><br><span class="line">book.__defineSetter__(&quot;year&quot;, function (newValue) &#123;</span><br><span class="line">    if (newValue &gt; 2018) &#123;</span><br><span class="line">        this.__year = newValue;</span><br><span class="line">        this.edition += newValue - 2018;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = 2019;</span><br><span class="line">console.log(book.edition); // 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、定义多个属性"><a href="#二、定义多个属性" class="headerlink" title="二、定义多个属性"></a>二、定义多个属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;&#125;;</span><br><span class="line">Object.defineProperties(book, &#123;</span><br><span class="line">    _year: &#123;</span><br><span class="line">        value: 2018</span><br><span class="line">    &#125;,</span><br><span class="line">    edition: &#123;</span><br><span class="line">        value: 1</span><br><span class="line">    &#125;,</span><br><span class="line">    year: &#123;</span><br><span class="line">        get: function () &#123;</span><br><span class="line">            return this._year;</span><br><span class="line">        &#125;,</span><br><span class="line">        set: function (newValue) &#123;</span><br><span class="line">            if (newValue &gt; 2018) &#123;</span><br><span class="line">                this._year = newValue;</span><br><span class="line">                this.edition += newValue - 2018;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码在 book 对象上定义了两个数据属性（_year 和 edition）和一个访问器属性（year），他们都是在同一时间创建的。</p>
+<h3 id="三、读取属性的特性"><a href="#三、读取属性的特性" class="headerlink" title="三、读取属性的特性"></a>三、读取属性的特性</h3><p>使用 ECMAScript5 的 Object.getOwnPropertyDescriptor() 方法可以取得给定属性的描述符。这个方法接收两个参数：属性所在的对象和要读取其描述符的属性名称。返回值是一个对象，如果是访问器属性，这个对象的属性有 configurable、enumerable、get 和 set；如果是数据属性，这个对象属性有 configurable、enumerable、writeable 和 value。例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;&#125;;</span><br><span class="line">Object.defineProperties(book,&#123;</span><br><span class="line">    _year:&#123;</span><br><span class="line">        value :2018</span><br><span class="line">    &#125;,</span><br><span class="line">    edition:&#123;</span><br><span class="line">        value:1</span><br><span class="line">    &#125;,</span><br><span class="line">    year:&#123;</span><br><span class="line">        get:function()&#123;</span><br><span class="line">            return this._year;</span><br><span class="line">        &#125;,</span><br><span class="line">        set:function(newValue)&#123;</span><br><span class="line">            if(newValue &gt; 2018)&#123;</span><br><span class="line">                this._year = newValue;</span><br><span class="line">                this.edition+=newValue-2018</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">var descriptor = Object.getOwnPropertyDescriptor(book,&quot;_year&quot;);</span><br><span class="line">console.log(descriptor.value); // 2018</span><br><span class="line">console.log(descriptor.configurable); // false</span><br><span class="line">console.log(typeof descriptor.get); // undefined</span><br><span class="line"></span><br><span class="line">var descriptor2 = Object.getOwnPropertyDescriptor(book,&quot;year&quot;);</span><br><span class="line">console.log(descriptor2.value); // undefined</span><br><span class="line">console.log(descriptor2.enumerable); // false</span><br><span class="line">console.log(typeof descriptor2.get); // function</span><br></pre></td></tr></table></figure>
+
+<p>对于数据属性 _year，value 等于最初的值，configurable 是 false，而 get 等于 undefined。对于访问器属性 year，value 等于 undefined，enumerable 是 false，而 get 是一个指向 getter 函数的指针。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/01/JavaScript06引用类型之单体内置对象/" rel="next" title="JavaScript06引用类型之单体内置对象.md">
+                <i class="fa fa-chevron-left"></i> JavaScript06引用类型之单体内置对象.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/03/JavaScript08面向对象程序设计之创建对象01工厂模式/" rel="prev" title="JavaScript08面向对象程序设计之创建对象01工厂模式.md">
+                JavaScript08面向对象程序设计之创建对象01工厂模式.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、属性类型"><span class="nav-text">一、属性类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1、数据属性"><span class="nav-text">1.1、数据属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2、访问器属性"><span class="nav-text">1.2、访问器属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、定义多个属性"><span class="nav-text">二、定义多个属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、读取属性的特性"><span class="nav-text">三、读取属性的特性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-he-32x32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="函数是对象，因此函数名（下边例子中的 sum 和 sum2）也就是一个指向函数对象的指针，不会与某个函数绑定。函数通常是使用函数声明语法定义的： 1234function sum(num1, num2) &amp;#123;    return num1 + num2;&amp;#125;;console.log(sum(1, 2)); // 3  下面是使用函数表达式的方式定义函数： 1234var sum2">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript04引用类型之Function类型.md">
+<meta property="og:url" content="http://yoursite.com/2019/06/29/JavaScript04引用类型之Function类型/index.html">
+<meta property="og:site_name" content="刘政和">
+<meta property="og:description" content="函数是对象，因此函数名（下边例子中的 sum 和 sum2）也就是一个指向函数对象的指针，不会与某个函数绑定。函数通常是使用函数声明语法定义的： 1234function sum(num1, num2) &amp;#123;    return num1 + num2;&amp;#125;;console.log(sum(1, 2)); // 3  下面是使用函数表达式的方式定义函数： 1234var sum2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-05T08:33:20.824Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript04引用类型之Function类型.md">
+<meta name="twitter:description" content="函数是对象，因此函数名（下边例子中的 sum 和 sum2）也就是一个指向函数对象的指针，不会与某个函数绑定。函数通常是使用函数声明语法定义的： 1234function sum(num1, num2) &amp;#123;    return num1 + num2;&amp;#125;;console.log(sum(1, 2)); // 3  下面是使用函数表达式的方式定义函数： 1234var sum2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/29/JavaScript04引用类型之Function类型/">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "b85daeac"
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>JavaScript04引用类型之Function类型.md | 刘政和</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘政和</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/JavaScript04引用类型之Function类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript04引用类型之Function类型.md</h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-29T00:00:00+08:00">
+                2019-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript高级程序设计笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript高级程序设计笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>函数是对象，因此函数名（下边例子中的 sum 和 sum2）也就是一个指向函数对象的指针，不会与某个函数绑定。函数通常是使用函数声明语法定义的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sum(num1, num2) &#123;</span><br><span class="line">    return num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(sum(1, 2)); // 3</span><br></pre></td></tr></table></figure>
+
+<p>下面是使用函数表达式的方式定义函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var sum2 = function (num1, num2) &#123;</span><br><span class="line">    return num1 + num2;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(sum2(2, 3)); // 5</span><br></pre></td></tr></table></figure>
+
+<p>由于函数名仅仅是指向函数的指针，因此函数名与包含对象指针的其他变量没有什么不同，换句话说，一个函数可能有多个名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var sum3 = sum;</span><br><span class="line">console.log(sum3(6, 6)); // 12</span><br></pre></td></tr></table></figure>
+
+<p>注意，<strong>使用不带圆括号的函数名访问的是函数的指针，而非调用函数</strong>，所以 sum3 和 sum 都指向了同一个函数，调用 sum3() 同样可以返回结果。</p>
+<h3 id="一、没有重载"><a href="#一、没有重载" class="headerlink" title="一、没有重载"></a>一、没有重载</h3><p>将函数名想象为一个指针，有助于理解 ECMAScript 中没有函数重载的概念。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function sum4(num) &#123;</span><br><span class="line">    return num += 100;</span><br><span class="line">&#125;;</span><br><span class="line">function sum4(num) &#123;</span><br><span class="line">    return num += 200;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(sum4(100));</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中声明了两个同名函数，结果后面的函数覆盖了前面的函数，上面代码与下面代码其实没有什么区别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var sum5 = function (num) &#123;</span><br><span class="line">    return num += 100;</span><br><span class="line">&#125;;</span><br><span class="line">sum5 = function (num) &#123;</span><br><span class="line">    return num += 200;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(sum5(100)); // 300</span><br></pre></td></tr></table></figure>
+
+<p>在创建第二个函数的时候，实际上覆盖了引用第一个函数的变量 sum5。</p>
+<h3 id="二、函数声明与函数表达式"><a href="#二、函数声明与函数表达式" class="headerlink" title="二、函数声明与函数表达式"></a>二、函数声明与函数表达式</h3><p>解析器在向执行环境加载数据时，对函数声明和函数表达式并非一视同仁，解析器会率先读取函数声明，并使其在执行任何代码之前可用（可以访问）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(sum6(20)); // 30</span><br><span class="line">function sum6(num) &#123;</span><br><span class="line">    return num += 10;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在代码开始执行之前，解析器就已经通过一个名为函数声明提升的过程，读取并将函数声明添加到执行环境中。</p>
+<p>对于函数表达式，必须等到解析器执行到他所在的代码行，才会真正被解释执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(sum7(20)); // sum7 is not a function</span><br><span class="line">var sum7 = function (num) &#123;</span><br><span class="line">    return num += 10;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、作为值的函数"><a href="#三、作为值的函数" class="headerlink" title="三、作为值的函数"></a>三、作为值的函数</h3><p>因为函数名本身就是一个变量，所以函数也可以作为值来使用，可以将一个函数作为参数传递给另一个函数，也可以将一个函数作为另一个函数的返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function callSomeFun(someFun, someArg) &#123;</span><br><span class="line">    return someFun(someArg);</span><br><span class="line">&#125;;</span><br><span class="line">function add10(num) &#123;</span><br><span class="line">    return num += 10;</span><br><span class="line">&#125;;</span><br><span class="line">var result1 = callSomeFun(add10, 20);</span><br><span class="line">console.log(result1); // 30</span><br><span class="line"></span><br><span class="line">function sayName(name) &#123;</span><br><span class="line">    return &quot;Hello &quot; + name;</span><br><span class="line">&#125;;</span><br><span class="line">var result2 = callSomeFun(sayName, &quot;Liu&quot;);</span><br><span class="line">console.log(result2); // Hello Liu</span><br></pre></td></tr></table></figure>
+
+<p>这里要访问的是函数的指针，而不是函数的执行结果，所以在调用 callSomeFun 时，里面传入的第一个参数是不带括号的 add10 和 sayName。</p>
+<p>可以从一个函数中返回另一个函数，假设有一个数组对象，要根据对象的某个属性对数组进行排序，因为 sort 方法要接收两个参数来比较，所以可以定义一个方法，他接收一个属性名，根据这个属性名来创建一个比较函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var data = [&#123; &apos;name&apos;: &apos;Danel&apos;, &apos;age&apos;: 18 &#125;, &#123; &apos;name&apos;: &apos;Andy&apos;, &apos;age&apos;: 24 &#125;];</span><br><span class="line">function sortByPropertyName(propertyName) &#123;</span><br><span class="line">    return function (obj1, obj2) &#123;</span><br><span class="line">        var value1 = obj1[propertyName];</span><br><span class="line">        var value2 = obj2[propertyName];</span><br><span class="line">        if (value1 &gt; value2) &#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125; else if (value1 &lt; value2) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">// console.log(data.sort(sortByPropertyName(&quot;name&quot;))); // [&#123; &apos;name&apos;: &apos;Andy&apos;,&apos;age&apos;:24&#125;, &#123; &apos;name&apos;: &apos;Danel&apos;,&apos;age&apos;:18&#125;]</span><br><span class="line">console.log(data.sort(sortByPropertyName(&quot;age&quot;))); // [&#123; &apos;name&apos;: &apos;Danel&apos;,&apos;age&apos;:18&#125;, &#123; &apos;name&apos;: &apos;Andy&apos;,&apos;age&apos;:24&#125;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、函数内部属性"><a href="#四、函数内部属性" class="headerlink" title="四、函数内部属性"></a>四、函数内部属性</h3><p>在函数内部，有两个特殊的对象：arguments 和 this。</p>
+<h4 id="4-1、arguments"><a href="#4-1、arguments" class="headerlink" title="4.1、arguments"></a>4.1、arguments</h4><p>arguments 包含着传入函数中的所有参数，这个对象还有一个名叫 callee（被召者） 的属性，该属性是一个指针，他指向的就是拥有 arguments 对象的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function argFun() &#123;</span><br><span class="line">    console.log(arguments.callee);</span><br><span class="line">    var args = [];</span><br><span class="line">    for (arg in arguments) &#123;</span><br><span class="line">        args.push(arguments[arg]);</span><br><span class="line">    &#125;;</span><br><span class="line">    return args;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(argFun(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;)); // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span><br><span class="line">console.log(argFun(1, 2, 3, 4)); // [1, 2, 3, 4]</span><br><span class="line">/*</span><br><span class="line">arguments.callee 打印结果：</span><br><span class="line">ƒ argFun() &#123;</span><br><span class="line">    console.log(arguments.callee);</span><br><span class="line">    var args = [];</span><br><span class="line">    for (arg in arguments) &#123;</span><br><span class="line">        args.push(arguments[arg]);</span><br><span class="line">    &#125;;</span><br><span class="line">    return args;</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<p>下面看一个经典的阶乘函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function factorial(num) &#123;</span><br><span class="line">    if (num &lt;= 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;;</span><br><span class="line">    return num * factorial(num - 1);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(factorial(5)); // 120</span><br></pre></td></tr></table></figure>
+
+<p>阶乘函数用到了递归算法，在函数有名字，并且函数的名字以后也不会变的情况下，这样定义没有问题。但是函数的执行与函数名 factorial 紧紧的耦合在了一起，为了消除这种耦合，可以使用 arguments.callee 来做递归：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function factorial2(num) &#123;</span><br><span class="line">    if (num &lt;= 1) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;;</span><br><span class="line">    return num * arguments.callee(num - 1);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(factorial2(5)); // 120</span><br></pre></td></tr></table></figure>
+
+<p>在 factorial2 函数体内，没有再引用函数名 factorial2，这样无论引用函数时使用的什么名字，都可以保证完成递归调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var fac = factorial2;</span><br><span class="line">factorial2 = function () &#123;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(fac(5)); // 120</span><br><span class="line">console.log(factorial2(5)); // 0</span><br></pre></td></tr></table></figure>
+
+<p>变量 fac 获取了 factorial2 的值，实际上是在另一个位置上保存了一个函数的指针，然后又将一个返回 0 的函数赋值给 factorial2 变量，在解除了函数体内的代码和函数名的耦合状态之后，fac 任然能够正常计算阶乘，至于 factorial2 他现在只是一个返回 0 的函数。</p>
+<h4 id="4-2、this"><a href="#4-2、this" class="headerlink" title="4.2、this"></a>4.2、this</h4><p>this 引用的是函数据以执行的环境对象，在全局作用域中调用函数时，this 对象引用的就是 window。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.color = &apos;red&apos;;</span><br><span class="line">var obj = &#123; &apos;color&apos;: &apos;blue&apos; &#125;;</span><br><span class="line">function sayColor() &#123;</span><br><span class="line">    return this.color;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(sayColor()); // red</span><br><span class="line">obj.sayColor = sayColor;</span><br><span class="line">console.log(obj.sayColor()); // blue</span><br></pre></td></tr></table></figure>
+
+<p>上面代码 sayColor 是在全局作用域中定义的，他引用了 this 对象，由于在调用函数之前，this 的值并不确定，因此 this 可能会在代码执行过程中引用不同的对象，当在全局作用域中调用 sayColor 时，this 引用的是全局对象 window，也就是说 this.color 求值会转换为window.color，所以结果会返回“red”。<br>当把这个函数赋给 obj 并调用 obj.sayColor() 的时候，this 引用的是对象 obj，所以 this.color 的求值会转换为 obj.color，结果返回“blue”。</p>
+<p>函数名仅仅是一个指针，即使在不同的环境中执行，全局的 sayColor 和 obj.sayColor 指向的任然是同一个函数。</p>
+<h4 id="4-3、caller（调用者）"><a href="#4-3、caller（调用者）" class="headerlink" title="4.3、caller（调用者）"></a>4.3、caller（调用者）</h4><p>调用当前函数的函数的引用，也就是找谁调用了自己：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function outer() &#123;</span><br><span class="line">    inner();</span><br><span class="line">&#125;;</span><br><span class="line">function inner() &#123;</span><br><span class="line">    console.log(inner.caller); // function outer() &#123; inner(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">outer();</span><br></pre></td></tr></table></figure>
+
+<p>因为 outer() 调用了 inner()，所以 inner.caller 打印的结果就是 outer 这个函数，如果没有函数调用这个函数，就返回 null。</p>
+<p>为了实现更松散的耦合，也可以使用 arguments.callee.caller：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function outer2() &#123;</span><br><span class="line">    inner2();</span><br><span class="line">&#125;;</span><br><span class="line">function inner2() &#123;</span><br><span class="line">    console.log(arguments.callee.caller); // function outer2()&#123; inner2(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">outer2();</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、函数属性和方法"><a href="#五、函数属性和方法" class="headerlink" title="五、函数属性和方法"></a>五、函数属性和方法</h3><p>ECMAScript 中函数是对象，所以函数也有属性和方法。</p>
+<h4 id="5-1、属性"><a href="#5-1、属性" class="headerlink" title="5.1、属性"></a>5.1、属性</h4><p>每个函数都包含两个属性 length 和 prototype。</p>
+<p>length 属性表示函数接收参数的个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fun1() &#123; &#125;;</span><br><span class="line">function fun2(num) &#123; &#125;;</span><br><span class="line">function fun3(a, b) &#123; &#125;;</span><br><span class="line">console.log(fun1.length); // 0</span><br><span class="line">console.log(fun2.length); // 1</span><br><span class="line">console.log(fun3.length); // 2</span><br></pre></td></tr></table></figure>
+
+<p>prototype 属性是 ECMAScript 核心所定义的全部属性中，最耐人寻味的一个属性。对于引用类型而言，prototype 是保存他们所有实例方法的真正存在。也就是说，像 toString()、valueOf() 这些方法也都保存在 prototype 上，只不过是通过各自对象的实例访问罢了。</p>
+<h4 id="5-2、方法"><a href="#5-2、方法" class="headerlink" title="5.2、方法"></a>5.2、方法</h4><p>每个函数都包含两个非继承而来的方法，apply() 和 call()，这两个方法都是在特定的作用域中调用函数，实际上等于设置函数体内 this 对象的值。</p>
+<h5 id="5-2-1、apply"><a href="#5-2-1、apply" class="headerlink" title="5.2.1、apply()"></a>5.2.1、apply()</h5><p>接收两个参数，第一个是在其中运行函数的作用域，第二个是参数数组，可以是 Array 实例，也可以是 arguments 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function sum(sum1, sum2) &#123;</span><br><span class="line">    return sum1 + sum2;</span><br><span class="line">&#125;;</span><br><span class="line">function applySum1(x, y) &#123;</span><br><span class="line">    return sum.apply(this, arguments);</span><br><span class="line">&#125;;</span><br><span class="line">function applySum2(x, y) &#123;</span><br><span class="line">    return sum.apply(this, [x, y]);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(applySum1(1, 2)); // 3</span><br><span class="line">console.log(applySum2(1, 2)); // 3</span><br></pre></td></tr></table></figure>
+
+<p>applySum1 在执行 sum 函数的时候，传入了 this 作为 this 值（因为是在全局作用域中调用的，所以传入的就是 window 对象）和 arguments 对象。applySum2 同样也调用了 sum 函数，但他传入的是 this 和一个参数数组。这两个函数都会正常执行并返回正确的结果。</p>
+<h5 id="5-2-2、call"><a href="#5-2-2、call" class="headerlink" title="5.2.2、call()"></a>5.2.2、call()</h5><p>call() 方法和 apply() 方法作用相同，只是接受参数的方式不同，对于 call() 方法，第一个参数 this 值没有变化，变化的是其余参数都直接传递个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function callSum(x, y) &#123;</span><br><span class="line">    return sum.call(this, x, y);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(callSum(1, 2)); // 3</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，在使用 call() 方法的时候，传递给函数的参数必须逐个列举出来。</p>
+<p>apply() 方法和 call() 方法的结果没有什么不同，只是 call() 方法需要明确传入的每一个参数，而 apply() 方法只需要传入一个 arguments 对象或参数数组。在不给函数传参数的情况下，使用哪种方法都无所谓。</p>
+<p>传递参数并非是 apply() 和 call() 的用武之地，他更强大的作用是能够扩充函数赖以运行的作用域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.color = &quot;red&quot;;</span><br><span class="line">function sayColor() &#123;</span><br><span class="line">    console.log(this.color);</span><br><span class="line">&#125;;</span><br><span class="line">var obj = &#123; color: &apos;blue&apos; &#125;;</span><br><span class="line">sayColor(); // red</span><br><span class="line">sayColor.call(this); // red</span><br><span class="line">sayColor.call(window); // red</span><br><span class="line">sayColor.call(obj); // blue</span><br></pre></td></tr></table></figure>
+
+<p>在 call() 方法中，this 和 window 都指向的是 window，所以返回的都是 red，当运行 sayColor.call(obj) 的时候，函数的执行环境就不一样了，因为此时函数体内的 this 对象指向了 obj，所以结果显示 blue。<br>使用 apply() 和 call() 来扩充作用域最大的好处就是对象不需要与方法有任何耦合关系。</p>
+<h5 id="5-2-3、bind"><a href="#5-2-3、bind" class="headerlink" title="5.2.3、bind()"></a>5.2.3、bind()</h5><p>ECMAScript5 还定义了一个方法：bind()，这个方法会创建一个函数的实例，其 this 值会被绑定到传给 bind() 函数的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.name = &quot;liu&quot;;</span><br><span class="line">function sayName() &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;;</span><br><span class="line">sayName();</span><br><span class="line">var nameObj = &#123; name: &apos;yu&apos; &#125;;</span><br><span class="line">var newSayName = sayName.bind(nameObj);</span><br><span class="line">newSayName(); // yu</span><br></pre></td></tr></table></figure>
+
+<p>上面代码 sayName 函数调用了 bind 方法并传入了 nameObj 对象，创建了 newSayName 函数，newSayName 函数的 this 值等于 nameObj，因此，在全局作用域中调用这个函数，也会得到 yu。</p>
+<p><em>IE9+ 支持 bind() 方法。</em></p>
+<h5 id="5-2-4、toLocaleString-、toString-、valueOf"><a href="#5-2-4、toLocaleString-、toString-、valueOf" class="headerlink" title="5.2.4、toLocaleString()、toString()、valueOf()"></a>5.2.4、toLocaleString()、toString()、valueOf()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun() &#123; &#125;;</span><br><span class="line">console.log(fun.toLocaleString()); // function fun()&#123;&#125;</span><br><span class="line">console.log(fun.toString()); // function fun()&#123;&#125;</span><br><span class="line">console.log(fun.valueOf()); // function fun()&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>toLocaleString()、toString() 和 valueOf() 都返回了函数的代码。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/JavaScript03引用类型之RegExp类型/" rel="next" title="JavaScript03引用类型之RegExp类型.md">
+                <i class="fa fa-chevron-left"></i> JavaScript03引用类型之RegExp类型.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/30/JavaScript05引用类型之基本包装类型/" rel="prev" title="JavaScript05引用类型之基本包装类型.md">
+                JavaScript05引用类型之基本包装类型.md <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/blog_icon.jpg" alt="LiuZhenghe">
+            
+              <p class="site-author-name" itemprop="name">LiuZhenghe</p>
+              <p class="site-description motion-element" itemprop="description">Web Developers</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liuzhenghe30265" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:15901450207@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、没有重载"><span class="nav-text">一、没有重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、函数声明与函数表达式"><span class="nav-text">二、函数声明与函数表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、作为值的函数"><span class="nav-text">三、作为值的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、函数内部属性"><span class="nav-text">四、函数内部属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1、arguments"><span class="nav-text">4.1、arguments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2、this"><span class="nav-text">4.2、this</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3、caller（调用者）"><span class="nav-text">4.3、caller（调用者）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、函数属性和方法"><span class="nav-text">五、函数属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1、属性"><span class="nav-text">5.1、属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2、方法"><span class="nav-text">5.2、方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-1、apply"><span class="nav-text">5.2.1、apply()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-2、call"><span class="nav-text">5.2.2、call()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-3、bind"><span class="nav-text">5.2.3、bind()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-4、toLocaleString-、toString-、valueOf"><span class="nav-text">5.2.4、toLocaleString()、toString()、valueOf()</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiuZhenghe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
