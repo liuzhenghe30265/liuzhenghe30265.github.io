@@ -79,23 +79,27 @@
 
 
 
-<meta name="description" content="Vue2.x-ManualBuildProject 一个基于 Vue2 的搭建的项目，没有使用 vue-cli，手动搭建项目目录结构、webpack 等配置。   一、创建项目结构1、初始化项目npm init，新建 package.json。 2、安装依赖npm 安装 vue、vue-router、vue-loader、webpack、webpack-cli，因为这些只是开发环境所需要的依赖，所">
+<meta name="description" content="Vue2.x-ManualBuildProject 一个基于 Vue2 搭建的项目，没有使用 vue-cli，手动搭建项目目录结构，配置 webpack 等。   包括以下技术框架、插件的安装配置及使用：  Vue Vue-Router 路由 webpack SASS Axios Mockjs element-ui  一、创建项目结构1.1、初始化项目1npm init  新建 package.j">
 <meta name="keywords" content="JavaScript,Vue.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue项目搭建（不使用vue-cli）">
 <meta property="og:url" content="http://yoursite.com/2019/08/23/Vue项目搭建（不使用vue-cli）/index.html">
 <meta property="og:site_name" content="刘政和">
-<meta property="og:description" content="Vue2.x-ManualBuildProject 一个基于 Vue2 的搭建的项目，没有使用 vue-cli，手动搭建项目目录结构、webpack 等配置。   一、创建项目结构1、初始化项目npm init，新建 package.json。 2、安装依赖npm 安装 vue、vue-router、vue-loader、webpack、webpack-cli，因为这些只是开发环境所需要的依赖，所">
+<meta property="og:description" content="Vue2.x-ManualBuildProject 一个基于 Vue2 搭建的项目，没有使用 vue-cli，手动搭建项目目录结构，配置 webpack 等。   包括以下技术框架、插件的安装配置及使用：  Vue Vue-Router 路由 webpack SASS Axios Mockjs element-ui  一、创建项目结构1.1、初始化项目1npm init  新建 package.j">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006y8mN6ly1g69o7i06yrj30d40ps76d.jpg">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/006y8mN6ly1g69pganpqkj31800u04g1.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6ly1g69qg3lnt3j31hg0tajw4.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6ly1g6aig9e4r5j30xu0kajvl.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6ly1g6aiqouoadj31380ladkh.jpg">
-<meta property="og:updated_time" content="2019-08-24T03:21:03.924Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6ly1g6aq8ylxz5j30dg0g2gmr.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/006y8mN6ly1g6aqyltcanj30qy0q8n14.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6ly1g6at8vjausj31050u04gv.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6ly1g6avyufwqvj312w0oqwjk.jpg">
+<meta property="og:updated_time" content="2019-08-24T10:39:20.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue项目搭建（不使用vue-cli）">
-<meta name="twitter:description" content="Vue2.x-ManualBuildProject 一个基于 Vue2 的搭建的项目，没有使用 vue-cli，手动搭建项目目录结构、webpack 等配置。   一、创建项目结构1、初始化项目npm init，新建 package.json。 2、安装依赖npm 安装 vue、vue-router、vue-loader、webpack、webpack-cli，因为这些只是开发环境所需要的依赖，所">
+<meta name="twitter:description" content="Vue2.x-ManualBuildProject 一个基于 Vue2 搭建的项目，没有使用 vue-cli，手动搭建项目目录结构，配置 webpack 等。   包括以下技术框架、插件的安装配置及使用：  Vue Vue-Router 路由 webpack SASS Axios Mockjs element-ui  一、创建项目结构1.1、初始化项目1npm init  新建 package.j">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/006y8mN6ly1g69o7i06yrj30d40ps76d.jpg">
 
 
@@ -381,15 +385,27 @@
 
       
         <h1 id="Vue2-x-ManualBuildProject"><a href="#Vue2-x-ManualBuildProject" class="headerlink" title="Vue2.x-ManualBuildProject"></a>Vue2.x-ManualBuildProject</h1><blockquote>
-<p>一个基于 Vue2 的搭建的项目，没有使用 vue-cli，手动搭建项目目录结构、webpack 等配置。 </p>
+<p>一个基于 Vue2 搭建的项目，没有使用 vue-cli，手动搭建项目目录结构，配置 webpack 等。 </p>
 </blockquote>
-<h2 id="一、创建项目结构"><a href="#一、创建项目结构" class="headerlink" title="一、创建项目结构"></a>一、创建项目结构</h2><h3 id="1、初始化项目"><a href="#1、初始化项目" class="headerlink" title="1、初始化项目"></a>1、初始化项目</h3><p>npm init，新建 package.json。</p>
-<h3 id="2、安装依赖"><a href="#2、安装依赖" class="headerlink" title="2、安装依赖"></a>2、安装依赖</h3><p>npm 安装 vue、vue-router、vue-loader、webpack、webpack-cli，因为这些只是开发环境所需要的依赖，所以使用 –save-dev 安装到开发环境（见 package.json devDependencies）下：</p>
+<p>包括以下技术框架、插件的安装配置及使用：</p>
+<ul>
+<li>Vue</li>
+<li>Vue-Router 路由</li>
+<li>webpack</li>
+<li>SASS</li>
+<li>Axios</li>
+<li>Mockjs</li>
+<li>element-ui</li>
+</ul>
+<h2 id="一、创建项目结构"><a href="#一、创建项目结构" class="headerlink" title="一、创建项目结构"></a>一、创建项目结构</h2><h3 id="1-1、初始化项目"><a href="#1-1、初始化项目" class="headerlink" title="1.1、初始化项目"></a>1.1、初始化项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+<p>新建 package.json。</p>
+<h3 id="1-2、安装依赖"><a href="#1-2、安装依赖" class="headerlink" title="1.2、安装依赖"></a>1.2、安装依赖</h3><p>npm 安装 vue、vue-router、vue-loader、webpack、webpack-cli，因为这些只是开发环境所需要的依赖，所以使用 –save-dev 安装到开发环境（见 package.json devDependencies）下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue vue-router vue-loader webpack webpack-cli --save-dev</span><br></pre></td></tr></table></figure>
 
 <p>webpack 4.x 已经把 cli 单独拎出来了，所以还要安装 webpack-cli。然后因为 webpack 本身其实直接能处理的只有 js 资源，是通过各种 loader 让其他资源可以被 webpack 打包处理的。</p>
 <p>要用 vue 写单文件组件（就是 .vue 文件），所以就还要安装 vue-loader。</p>
-<h3 id="3、创建目录、文件"><a href="#3、创建目录、文件" class="headerlink" title="3、创建目录、文件"></a>3、创建目录、文件</h3><ul>
+<h3 id="1-3、创建目录、文件"><a href="#1-3、创建目录、文件" class="headerlink" title="1.3、创建目录、文件"></a>1.3、创建目录、文件</h3><ul>
 <li>src/assets 存放一些静态文件，例如图片、样式表等；</li>
 <li>src/pages 存放组件；</li>
 <li>src/router 路由配置；</li>
@@ -406,14 +422,14 @@
 <p>index.html</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Vue2.x-ManualBuildProject&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="4、添加配置文件"><a href="#4、添加配置文件" class="headerlink" title="4、添加配置文件"></a>4、添加配置文件</h3><p>新建 webpack.config.js，配置 webpack：</p>
+<h2 id="二、基本配置"><a href="#二、基本配置" class="headerlink" title="二、基本配置"></a>二、基本配置</h2><h3 id="2-1、添加配置文件"><a href="#2-1、添加配置文件" class="headerlink" title="2.1、添加配置文件"></a>2.1、添加配置文件</h3><p>新建 webpack.config.js，配置 webpack：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;); // 系统路径模块</span><br><span class="line">const htmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); // 引入模板渲染插件</span><br><span class="line">const VueLoaderPlugin = require(&apos;vue-loader/lib/plugin&apos;); // 将你定义过的其它规则复制并应用到 .vue 文件里相应语言的块</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: path.join(__dirname, &apos;./src/main.js&apos;), // 项目总入口js文件</span><br><span class="line">    // 输出文件</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.join(__dirname, &apos;dist&apos;), // 所有的文件都输出到 dist 目录下</span><br><span class="line">        filename: &apos;bundle-[hash].js&apos; // 输出文件的名称加上hash值</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [&#123;</span><br><span class="line">            // 使用 vue-loader 解析 .vue 文件</span><br><span class="line">            test: /\.vue$/,</span><br><span class="line">            loader: &apos;vue-loader&apos;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            test: /\.css$/,</span><br><span class="line">            // 要加上 style-loader 才能正确解析 .vue 文件里的 &lt;style&gt; 标签内容</span><br><span class="line">            use: [&apos;style-loader&apos;, &apos;css-loader&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new htmlWebpackPlugin(&#123;</span><br><span class="line">            filename: &apos;index.html&apos;, // 生成的文件名称</span><br><span class="line">            template: &apos;index.html&apos;, // 指定用 index.html 做模版</span><br><span class="line">            inject: &apos;body&apos; // 指定插入的 &lt;script&gt; 标签在 body 底部</span><br><span class="line">        &#125;),</span><br><span class="line">        new VueLoaderPlugin()</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>因添加了一些引用 style-loader、css-loader，所以也需要安装：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin style-loader css-loader vue-template-compiler --save-dev</span><br></pre></td></tr></table></figure>
 
 <p>安装并引入 html-webpack-plugin 的目的是在打包项目的时候，在 dist 文件夹下也会生成 index.html 文件，也会添加上对出口文件的引用。</p>
-<h3 id="5、开启本地服务"><a href="#5、开启本地服务" class="headerlink" title="5、开启本地服务"></a>5、开启本地服务</h3><p>webpack-dev-server 可以在本地启动一个服务器，而且当有任何文件修改的时候会自动重新打包，并且刷新浏览器页面。此外 devServer 还有很多其他配置项，让我们可以更方便的开发。</p>
+<h3 id="2-1、开启本地服务"><a href="#2-1、开启本地服务" class="headerlink" title="2.1、开启本地服务"></a>2.1、开启本地服务</h3><p>webpack-dev-server 可以在本地启动一个服务器，而且当有任何文件修改的时候会自动重新打包，并且刷新浏览器页面。此外 devServer 还有很多其他配置项，让我们可以更方便的开发。</p>
 <p>安装 webpack-dev-server，配置本地开发环境。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack-dev-server cross-env --save-dev</span><br></pre></td></tr></table></figure>
 
@@ -422,13 +438,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">&quot;build&quot;: &quot;webpack --config webpack.config.js&quot;,</span><br><span class="line">&quot;build&quot;: &quot;cross-env NODE_ENV=production webpack --config webpack.config.js&quot;,</span><br><span class="line">&quot;dev&quot;: &quot;cross-env NODE_ENV=development webpack-dev-server --inline --hot --open --config webpack.config.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>执行 npm run dev，项目成功启动后会自动打开浏览器。</p>
-<h3 id="6、添加构建脚本"><a href="#6、添加构建脚本" class="headerlink" title="6、添加构建脚本"></a>6、添加构建脚本</h3><p>在 package.json 文件的 scripts 属性里添加 build 脚本:</p>
+<h3 id="2-3、添加构建脚本"><a href="#2-3、添加构建脚本" class="headerlink" title="2.3、添加构建脚本"></a>2.3、添加构建脚本</h3><p>在 package.json 文件的 scripts 属性里添加 build 脚本:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">&quot;build&quot;: &quot;webpack --config webpack.config.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
-<h3 id="7、打包项目测试"><a href="#7、打包项目测试" class="headerlink" title="7、打包项目测试"></a>7、打包项目测试</h3><p>完成以上配置后运行 npm run build 来构建项目，可以看到在当前目录下生成了一个 dist 目录，目录下有一个 bundle.js 和 index.html 文件，这就是打包好的项目。</p>
+<h3 id="2-4、打包项目测试"><a href="#2-4、打包项目测试" class="headerlink" title="2.4、打包项目测试"></a>2.4、打包项目测试</h3><p>完成以上配置后运行 npm run build 来构建项目，可以看到在当前目录下生成了一个 dist 目录，目录下有一个 bundle.js 和 index.html 文件，这就是打包好的项目。</p>
 <p>当前项目目录结构：</p>
 <p><img src="http://ww4.sinaimg.cn/large/006y8mN6ly1g69o7i06yrj30d40ps76d.jpg" alt></p>
-<h3 id="8、添加图片、CSS-预处理器等-loader"><a href="#8、添加图片、CSS-预处理器等-loader" class="headerlink" title="8、添加图片、CSS 预处理器等 loader"></a>8、添加图片、CSS 预处理器等 loader</h3><p>图片 loader 用的是 url-loader，它依赖于 file-loader，比 file-loader 多了一个可以把小于一定大小的图片直接转化成 base64 的形式插入到 html 页面，可以减少网络请求。</p>
+<h3 id="2-5、添加图片、CSS-预处理器等-loader"><a href="#2-5、添加图片、CSS-预处理器等-loader" class="headerlink" title="2.5、添加图片、CSS 预处理器等 loader"></a>2.5、添加图片、CSS 预处理器等 loader</h3><p>图片 loader 用的是 url-loader，它依赖于 file-loader，比 file-loader 多了一个可以把小于一定大小的图片直接转化成 base64 的形式插入到 html 页面，可以减少网络请求。</p>
 <p>CSS 预处理器 SASS。</p>
 <p>安装依赖：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install file-loader url-loader node-sass sass-loader --save-dev</span><br></pre></td></tr></table></figure>
@@ -448,7 +464,7 @@
 <p>刷新页面，能看到如下效果：</p>
 <p><img src="http://ww2.sinaimg.cn/large/006y8mN6ly1g69pganpqkj31800u04g1.jpg" alt></p>
 <p>为了做测试，我在 webpack.config.js 中将 url-loader 的 limit 设置为 500k，所以当图片小于 500k 的时候会自动转换为 base64 编码的 url。</p>
-<h3 id="9、添加-postcss-loader-autoprefixer，自动添加-css-浏览器前缀"><a href="#9、添加-postcss-loader-autoprefixer，自动添加-css-浏览器前缀" class="headerlink" title="9、添加 postcss-loader + autoprefixer，自动添加 css 浏览器前缀"></a>9、添加 postcss-loader + autoprefixer，自动添加 css 浏览器前缀</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install postcss-loader autoprefixer --save-dev</span><br></pre></td></tr></table></figure>
+<h3 id="2-6、添加-postcss-loader-autoprefixer，自动添加-css-浏览器前缀"><a href="#2-6、添加-postcss-loader-autoprefixer，自动添加-css-浏览器前缀" class="headerlink" title="2.6、添加 postcss-loader + autoprefixer，自动添加 css 浏览器前缀"></a>2.6、添加 postcss-loader + autoprefixer，自动添加 css 浏览器前缀</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install postcss-loader autoprefixer --save-dev</span><br></pre></td></tr></table></figure>
 
 <p>新增 postcss 配置文件 postcss.config.js：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const autoprefixer = require(&apos;autoprefixer&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        autoprefixer(&#123;</span><br><span class="line">            browsers: [&apos;last 5 versions&apos;]</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -465,7 +481,7 @@
 <p>刷新页面，能看到如下效果：</p>
 <p><img src="http://ww1.sinaimg.cn/large/006y8mN6ly1g69qg3lnt3j31hg0tajw4.jpg" alt></p>
 <p>css3 样式被加上了浏览器前缀。</p>
-<h3 id="10、添加-babel-loader，转译-es6-代码为-es5-代码"><a href="#10、添加-babel-loader，转译-es6-代码为-es5-代码" class="headerlink" title="10、添加 babel-loader，转译 es6 代码为 es5 代码"></a>10、添加 babel-loader，转译 es6 代码为 es5 代码</h3><p>先在 main.js 中添加一段代码做测试：</p>
+<h3 id="2-7、添加-babel-loader，转译-es6-代码为-es5-代码"><a href="#2-7、添加-babel-loader，转译-es6-代码为-es5-代码" class="headerlink" title="2.7、添加 babel-loader，转译 es6 代码为 es5 代码"></a>2.7、添加 babel-loader，转译 es6 代码为 es5 代码</h3><p>先在 main.js 中添加一段代码做测试：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 测试 babel-loader</span><br><span class="line">class Person &#123;</span><br><span class="line">    constructor(name, age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        console.log(`Hello, my name is $&#123;this.name&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const person = new Person(&quot;LiuZhenghe&quot;, 25);</span><br><span class="line">person.sayHello();</span><br></pre></td></tr></table></figure>
 
 <p>npm run build 后，在服务中打开 dist 下的 index.html，在调试器中查看 bundle.js，查看上面添加的这段代码：</p>
@@ -482,20 +498,72 @@
 
 <p>完成以上配置后，刷新页面可以看到 ES6 代码已转译为 ES5 代码：</p>
 <p><img src="http://ww1.sinaimg.cn/large/006y8mN6ly1g6aiqouoadj31380ladkh.jpg" alt></p>
-<h3 id="11、清除旧的-bundle-js"><a href="#11、清除旧的-bundle-js" class="headerlink" title="11、清除旧的 bundle.js"></a>11、清除旧的 bundle.js</h3><p>每次修改文件，npm run build 之后，都会生成一个新的 bundle-[hash].js 文件，添加 clean-webpack-plugin，每次 build 之前可以自动先清除输出文件夹。</p>
+<h3 id="2-8、清除旧的-bundle-js"><a href="#2-8、清除旧的-bundle-js" class="headerlink" title="2.8、清除旧的 bundle.js"></a>2.8、清除旧的 bundle.js</h3><p>每次修改文件，npm run build 之后，都会生成一个新的 bundle-[hash].js 文件，添加 clean-webpack-plugin，每次 build 之前可以自动先清除输出文件夹。</p>
 <p>安装 clean-webpack-plugin：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install clean-webpack-plugin --save-d</span><br></pre></td></tr></table></figure>
 
 <p>修改 webpack.config.js，引入 clean-webpack-plugin 并在 plugins 数组添加一项：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line">const &#123; CleanWebpackPlugin &#125; = require(&quot;clean-webpack-plugin&quot;); // 清除输出文件夹</span><br><span class="line">// ...</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    // ...</span><br><span class="line">    new CleanWebpackPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h3 id="12、添加可以自动解析的扩展"><a href="#12、添加可以自动解析的扩展" class="headerlink" title="12、添加可以自动解析的扩展"></a>12、添加可以自动解析的扩展</h3><p>import 的时候可以不用写后缀也能正确引用文件了，例如：</p>
+<h3 id="2-9、添加可以自动解析的扩展"><a href="#2-9、添加可以自动解析的扩展" class="headerlink" title="2.9、添加可以自动解析的扩展"></a>2.9、添加可以自动解析的扩展</h3><p>import 的时候可以不用写后缀也能正确引用文件了，例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import App from &apos;./App&apos;;</span><br></pre></td></tr></table></figure>
 
 <p>打开 webpack.config.js，添加 resolve：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">    extensions: [&apos;.wasm&apos;, &apos;.mjs&apos;, &apos;.js&apos;, &apos;.json&apos;, &apos;.vue&apos;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>以上就完成了一个简单的 Vue 工程的搭建，代码见 <a href="https://github.com/liuzhenghe30265/Vue2.x-ManualBuildProject/tree/initProject" target="_blank" rel="noopener">initProject 分支</a>。</p>
+<h2 id="三、路由配置"><a href="#三、路由配置" class="headerlink" title="三、路由配置"></a>三、路由配置</h2><p>在 src/router/pages 目录下创建首页、列表页、详情页模板，并添加一些信息：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006y8mN6ly1g6aq8ylxz5j30dg0g2gmr.jpg" alt></p>
+<p>在 src/router 目录下新建 index.js 文件，添加首页、列表页、详情页的路由信息。</p>
+<p>src/router/index.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;;</span><br><span class="line">import Router from &apos;vue-router&apos;;</span><br><span class="line">import Home from &apos;../pages/Home&apos;;</span><br><span class="line">import List from &apos;../pages/List&apos;;</span><br><span class="line">import Details from &apos;../pages/Details&apos;;</span><br><span class="line"></span><br><span class="line">Vue.use(Router);</span><br><span class="line"></span><br><span class="line">export default new Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">        &#123;</span><br><span class="line">            path: &apos;/&apos;,</span><br><span class="line">            name: &apos;Home&apos;,</span><br><span class="line">            component: Home</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: &apos;/list&apos;,</span><br><span class="line">            name: &apos;List&apos;,</span><br><span class="line">            component: List</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: &apos;/details&apos;,</span><br><span class="line">            name: &apos;Details&apos;,</span><br><span class="line">            component: Details</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在 main.js 中引入路由配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line">import router from &apos;./router/index&apos;;</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
+
+<p>在 App.vue 中添加 router-link：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">    &lt;router-link to=&quot;/&quot;&gt;首页&lt;/router-link&gt;</span><br><span class="line">    &lt;router-link to=&quot;/list&quot;&gt;列表页&lt;/router-link&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
+
+<p>刷新页面，测试路由是否配置成功。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006y8mN6ly1g6aqyltcanj30qy0q8n14.jpg" alt></p>
+<p>以上代码在分支  <a href="https://github.com/liuzhenghe30265/Vue2.x-ManualBuildProject/tree/router" target="_blank" rel="noopener">router</a> 上。</p>
+<h2 id="四、使用-Mock-js-模拟请求数据"><a href="#四、使用-Mock-js-模拟请求数据" class="headerlink" title="四、使用 Mock.js 模拟请求数据"></a>四、使用 Mock.js 模拟请求数据</h2><p>Mock.js 可以通过随机数据，模拟各种场景；不需要修改既有代码，就可以拦截 Ajax 请求，返回模拟的响应数据；支持生成随机的文本、数字、布尔值、日期、邮箱、链接、图片、颜色等；支持支持扩展更多数据类型，支持自定义函数和正则。</p>
+<p><a href="http://mockjs.com/examples.html#" target="_blank" rel="noopener">Mock.js 官网</a>。</p>
+<p>安装 mockjs：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mockjs --save</span><br></pre></td></tr></table></figure>
+
+<p>创建 src/mock 目录，并新建 mock.js 文件，随机生成一些测试数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import Mock from &apos;mockjs&apos;; // 引入 mockjs</span><br><span class="line"></span><br><span class="line">// 随机生成新闻列表数据</span><br><span class="line">let newsList = Mock.mock(&#123;</span><br><span class="line">    &apos;data|20&apos;: [</span><br><span class="line">        &#123;</span><br><span class="line">            id: &apos;@id&apos;,</span><br><span class="line">            title: &apos;@cparagraph(1, 3)&apos;,</span><br><span class="line">            date: &apos;@date(&quot;yyyy-MM-dd&quot;)&apos;,</span><br><span class="line">            imageURL: Mock.Random.image(&apos;200x200&apos;, &apos;#fff&apos;, &apos;#333&apos;, &apos;Mock.js&apos;),</span><br><span class="line">            viewCount: &apos;@integer(10, 10000)&apos;</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default [</span><br><span class="line">    Mock.mock(&apos;/newslist&apos;, newsList), // 新闻列表数据接口</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>在 main.js 中引入配置好的 mockjs。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &apos;./mock/mock.js&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>安装 axios，它是一个易用、简洁且高效的 http 库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save</span><br></pre></td></tr></table></figure>
+
+<p>然后在 List.vue 中使用 axios 请求 mockjs 的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        list</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import axios from &apos;axios&apos;; </span><br><span class="line">export default &#123;</span><br><span class="line">    name : &quot;List&quot;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        getMockjsData()&#123;</span><br><span class="line">            axios.get(&apos;/newslist&apos;).then((result)=&gt;&#123;</span><br><span class="line">                let data = result.data.data;</span><br><span class="line">                console.log(data);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        this.getMockjsData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>刷新浏览器，成功如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006y8mN6ly1g6at8vjausj31050u04gv.jpg" alt></p>
+<p>以上代码在分支 <a href="https://github.com/liuzhenghe30265/Vue2.x-ManualBuildProject/tree/mockjs" target="_blank" rel="noopener">mockjs</a> 上。</p>
+<h2 id="五、element-ui-的使用"><a href="#五、element-ui-的使用" class="headerlink" title="五、element-ui 的使用"></a>五、element-ui 的使用</h2><p>安装 element-ui：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-ui --save</span><br></pre></td></tr></table></figure>
+
+<p>在 main.js 中引入并使用 element-ui：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import ElementUI from &apos;element-ui&apos;; // 引入 element-ui</span><br><span class="line">import &apos;element-ui/lib/theme-chalk/index.css&apos;;</span><br><span class="line">Vue.use(ElementUI); // 使用 element-ui</span><br></pre></td></tr></table></figure>
+
+<p>打开 webpack.config.js，在 rules 下添加下面配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(eot|svg|ttf|woff|woff2)$/,</span><br><span class="line">    loader: &apos;file-loader&apos;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>不添加可能会出现如下报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./node_modules/element-ui/lib/theme-chalk/fonts/element-icons.ttf 1:0</span><br><span class="line">// ...</span><br></pre></td></tr></table></figure>
+
+<p>打开 <a href="https://element.eleme.cn/#/zh-CN/component/installation" target="_blank" rel="noopener">Element 官网</a>，复制组件到 App.vue 中，如果可以正常显示出来，说明 element-ui 引入没有问题，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button type=&quot;primary&quot;&gt;button&lt;/el-button&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ww1.sinaimg.cn/large/006y8mN6ly1g6avyufwqvj312w0oqwjk.jpg" alt></p>
+<p>然后就可以使用 element-ui 对页面进行布局了，见分支 <a href="https://github.com/liuzhenghe30265/Vue2.x-ManualBuildProject/tree/element" target="_blank" rel="noopener">element</a>。</p>
 
       
     </div>
@@ -686,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue2-x-ManualBuildProject"><span class="nav-text">Vue2.x-ManualBuildProject</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、创建项目结构"><span class="nav-text">一、创建项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、初始化项目"><span class="nav-text">1、初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、安装依赖"><span class="nav-text">2、安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、创建目录、文件"><span class="nav-text">3、创建目录、文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、添加配置文件"><span class="nav-text">4、添加配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、开启本地服务"><span class="nav-text">5、开启本地服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、添加构建脚本"><span class="nav-text">6、添加构建脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、打包项目测试"><span class="nav-text">7、打包项目测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、添加图片、CSS-预处理器等-loader"><span class="nav-text">8、添加图片、CSS 预处理器等 loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、添加-postcss-loader-autoprefixer，自动添加-css-浏览器前缀"><span class="nav-text">9、添加 postcss-loader + autoprefixer，自动添加 css 浏览器前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、添加-babel-loader，转译-es6-代码为-es5-代码"><span class="nav-text">10、添加 babel-loader，转译 es6 代码为 es5 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、清除旧的-bundle-js"><span class="nav-text">11、清除旧的 bundle.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、添加可以自动解析的扩展"><span class="nav-text">12、添加可以自动解析的扩展</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue2-x-ManualBuildProject"><span class="nav-text">Vue2.x-ManualBuildProject</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、创建项目结构"><span class="nav-text">一、创建项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、初始化项目"><span class="nav-text">1.1、初始化项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、安装依赖"><span class="nav-text">1.2、安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3、创建目录、文件"><span class="nav-text">1.3、创建目录、文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、基本配置"><span class="nav-text">二、基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、添加配置文件"><span class="nav-text">2.1、添加配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、开启本地服务"><span class="nav-text">2.1、开启本地服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、添加构建脚本"><span class="nav-text">2.3、添加构建脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、打包项目测试"><span class="nav-text">2.4、打包项目测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5、添加图片、CSS-预处理器等-loader"><span class="nav-text">2.5、添加图片、CSS 预处理器等 loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6、添加-postcss-loader-autoprefixer，自动添加-css-浏览器前缀"><span class="nav-text">2.6、添加 postcss-loader + autoprefixer，自动添加 css 浏览器前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7、添加-babel-loader，转译-es6-代码为-es5-代码"><span class="nav-text">2.7、添加 babel-loader，转译 es6 代码为 es5 代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8、清除旧的-bundle-js"><span class="nav-text">2.8、清除旧的 bundle.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9、添加可以自动解析的扩展"><span class="nav-text">2.9、添加可以自动解析的扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、路由配置"><span class="nav-text">三、路由配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、使用-Mock-js-模拟请求数据"><span class="nav-text">四、使用 Mock.js 模拟请求数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、element-ui-的使用"><span class="nav-text">五、element-ui 的使用</span></a></li></ol></li></ol></div>
             
 
           </div>
