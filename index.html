@@ -530,9 +530,11 @@ Build Setup1234567891011# install dependenciesnpm install# serve
       
         
           
-          json-server 的使用
-一、创建 json-server 服务创建 db.json 并添加一些，模拟数据，例：
-123456789101112131415&#123;    &quot;people&quot;: [&#123;            &quot;id&quot;: 0,  
+          json-server 是一个 Node 模块，运行 Express 服务器，可以指定一个 json 文件作为 api 的数据源。
+一、初始化项目1npm init
+
+二、配置 package.json在 package.json 中的 scripts 属性中添加：
+1&quot;start&quo
           ...
           <!--noindex-->
           <div class="post-button text-center">
