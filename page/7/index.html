@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/01Node.js安装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/Node.js应用程序自动重启/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiuZhenghe">
@@ -302,7 +302,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/02/01Node.js安装/" itemprop="url">01Node.js安装</a></h1>
+                <a class="post-title-link" href="/2019/01/02/Node.js应用程序自动重启/" itemprop="url">Node.js应用程序自动重启</a></h1>
         
 
         <div class="post-meta">
@@ -378,18 +378,14 @@
         
           
           
-前言
+在调试 Node.js 应用程序的时候，只要修改了 js 文件，就需要先 Ctrl + C 停止运行，再重新运行，修改后的 js 文件才会生效。
 
-“Node.js 从基础到实战” 系列文章中，讲解了 Node.js 从安装到项目实战及项目部署整个过程所需要的技术。
-文章包括以下内容：
-
-Node.js 基础模块(http，url，fs，path，events，util，querystring 等)。
-创建 Web 服务器。
-非阻塞 
+有没有办法修改项目文件并保存后，Node.js 应用程序可以自动重启呢？
+下面介绍两种方式 supervisor  和 nodemon 来实现这种需求
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/01Node.js安装/#more" rel="contents">
+            <a class="btn" href="/2019/01/02/Node.js应用程序自动重启/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -440,7 +436,7 @@ Node.js 基础模块(http，url，fs，path，events，util，querystring 等)�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/12Node.jsWeb开发博客网站/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/jQuery_折叠效果/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiuZhenghe">
@@ -459,7 +455,7 @@ Node.js 基础模块(http，url，fs，path，events，util，querystring 等)�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/02/12Node.jsWeb开发博客网站/" itemprop="url">12Node.jsWeb开发博客网站</a></h1>
+                <a class="post-title-link" href="/2019/01/02/jQuery_折叠效果/" itemprop="url">jQuery_折叠效果</a></h1>
         
 
         <div class="post-meta">
@@ -535,15 +531,21 @@ Node.js 基础模块(http，url，fs，path，events，util，querystring 等)�
         
           
           
-下面开始用 Node.js 进行 Web 开发。
+使用 jQuery 实现一个折叠效果。
 
-我是通过《Node.js开发指南》这本书来学习 Node.js Web 开发的，书中使用的 Express 框架是 2.5.8，而我的是 4.14.1，所以遇到了许多问题，在文章中我都有提到并讲解。
-☞GitHub 地址
-一、快速开始1、建立项目
+效果图：
+
+在线预览：jquery_fold
+下载
+兼容性：
+
+demo 图标：
+源码：
+12345678910111213141516171819202122232425262728293031323334353637383940414243&lt;!D
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/12Node.jsWeb开发博客网站/#more" rel="contents">
+            <a class="btn" href="/2019/01/02/jQuery_折叠效果/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -594,7 +596,7 @@ Node.js 基础模块(http，url，fs，path，events，util，querystring 等)�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/Photoshop制作反色图标/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/Photoshop快速切图工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiuZhenghe">
@@ -613,7 +615,7 @@ Node.js 基础模块(http，url，fs，path，events，util，querystring 等)�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/02/Photoshop制作反色图标/" itemprop="url">Photoshop制作反色图标</a></h1>
+                <a class="post-title-link" href="/2019/01/02/Photoshop快速切图工具/" itemprop="url">Photoshop快速切图工具</a></h1>
         
 
         <div class="post-meta">
@@ -688,631 +690,14 @@ Node.js 基础模块(http，url，fs，path，events，util，querystring 等)�
       
         
           
-          效果图：
-1. 新建透明图层并拖入图标
-2. 栅格化图层
-3. 复制图层（Ctrl + J）
-4. 创建剪切蒙版（Ctrl + Alt + G）
-5. 改变颜色
-Alt + Delete 填充前景色
-Ctrl + Delete 填充背景色
-
-
-6. 合并图层选中两个副本，合并图层（Ctrl + E）
+          1. 下载 Photoshop 切图动作格式文件Photoshop 切图动作格式文件下载
+提取码：sac3 
+2. 添加 Photoshop 切图动作格式文件将下载的文件解压得到两个文件（存图.atn、网页切割.atn），选中两个文件直接拖到 Photoshop 菜单栏中。
+Alt + F9 查看动
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/Photoshop制作反色图标/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/推荐您使用Markdown来编辑文章/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LiuZhenghe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog_icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="刘政和">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/推荐您使用Markdown来编辑文章/" itemprop="url">推荐您使用Markdown来编辑文章</a></h1>
-        
-
-        <div class="post-meta">
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
-                2019-01-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-什么是Markdown？
-
-Markdown : 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。
-简单地说就是通过一些符号使你的文章排版更加清晰、简洁。
-我第一次接触它是在有道云笔记上，从那之后便一直使用它来做笔记，写文章。
-它的语法非常简单，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/推荐您使用Markdown来编辑文章/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/LeanCloud使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LiuZhenghe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog_icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="刘政和">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/LeanCloud使用/" itemprop="url">LeanCloud使用</a></h1>
-        
-
-        <div class="post-meta">
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
-                2019-01-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、什么是 BaaS在说 LeanCloud 之前，先了解一下 BaaS。
-BaaS（后端即服务：Backend as a Service）公司为移动应用开发者提供整合云后端的边界服务。
-如果你是一个前端开发，可以把这样的平台当做自己的服务器，来存储数据等。这样在不懂后端技术的情况下，依然可以请求数
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/LeanCloud使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/02Node.js基础模块（http，url）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LiuZhenghe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog_icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="刘政和">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/02Node.js基础模块（http，url）/" itemprop="url">02Node.js基础模块（http，url）</a></h1>
-        
-
-        <div class="post-meta">
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
-                2019-01-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、http 模块http.js
-1234567891011const http = require(&apos;http&apos;);const hostname = &apos;127.0.0.1&apos;;const port = 3000;const server = http.crea
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/02Node.js基础模块（http，url）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/用Nodejs编写RESTfulAPI接口给前端调用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LiuZhenghe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog_icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="刘政和">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/02/用Nodejs编写RESTfulAPI接口给前端调用/" itemprop="url">用Nodejs编写RESTfulAPI接口给前端调用</a></h1>
-        
-
-        <div class="post-meta">
-
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
-                2019-01-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、初始化项目1npm init
-
-生成 package.json。
-二、安装依赖
-express（node.js Web 应用框架）。
-body-parser：node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。12npm install express -s
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/用Nodejs编写RESTfulAPI接口给前端调用/#more" rel="contents">
+            <a class="btn" href="/2019/01/02/Photoshop快速切图工具/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1518,7 +903,7 @@ body-parser：node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/jQuery_无缝滚动轮播效果插件封装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/jQuery_选项卡效果插件封装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiuZhenghe">
@@ -1537,7 +922,7 @@ body-parser：node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/02/jQuery_无缝滚动轮播效果插件封装/" itemprop="url">jQuery_无缝滚动轮播效果插件封装</a></h1>
+                <a class="post-title-link" href="/2019/01/02/jQuery_选项卡效果插件封装/" itemprop="url">jQuery_选项卡效果插件封装</a></h1>
         
 
         <div class="post-meta">
@@ -1613,22 +998,25 @@ body-parser：node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的
         
           
           
-使用 jQuery 封装一个无缝滚动轮播效果插件。
+使用 jQuery 实现一个选项卡效果。
+
+这个插件可以实现三种选项卡效果：
+
+鼠标点击切换。
+鼠标移入切换，（这种方式可以给切换导航添加链接地址）。
+自动切换。
 
 效果图：
 
-
-
-在线预览：jQuery_LKMarqueeSlideshow
-GitHub下载地址
+在线预览：jquery_LTabs
+下载
 兼容性：
-插件参数说明：
-speed：滚动速度，类型：number。
-slidesPerView：同时显示的 slide 数量，类型：numbe
+
+HTML12345678910111213141516171819
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/jQuery_无缝滚动轮播效果插件封装/#more" rel="contents">
+            <a class="btn" href="/2019/01/02/jQuery_选项卡效果插件封装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1679,7 +1067,7 @@ slidesPerView：同时显示的 slide 数量，类型：numbe
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/jQuery_渐隐式轮播效果插件封装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/移动端开发rem单位使用问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiuZhenghe">
@@ -1698,7 +1086,7 @@ slidesPerView：同时显示的 slide 数量，类型：numbe
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/02/jQuery_渐隐式轮播效果插件封装/" itemprop="url">jQuery_渐隐式轮播效果插件封装</a></h1>
+                <a class="post-title-link" href="/2019/01/02/移动端开发rem单位使用问题/" itemprop="url">移动端开发rem单位使用问题</a></h1>
         
 
         <div class="post-meta">
@@ -1774,21 +1162,627 @@ slidesPerView：同时显示的 slide 数量，类型：numbe
         
           
           
-使用 jQuery 封装一个渐隐式轮播效果插件。
+前言
 
-效果图：
-
-在线预览：jQuery_LKFadeSlideshow
-下载
-兼容性：
-插件参数说明：
-autoPlay：自动切换的时间间隔（单位ms），不设定该参数slide不会自动切换。
-speed：切换速度（单位ms）。
-initialItem
+PC 端页面开发与移动端页面开发：
+PC 端页面开发需要考虑更多的兼容性问题，ie、谷歌、火狐等浏览器各自内核不同（ie 的天下）。  
+移动端页面开发基本不用考虑这种浏览器间的兼容问题，手机上的浏览器绝大部分是webkit内核的（webkit 的天下），但是需要考虑屏幕分辨率。  
+原生
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/02/jQuery_渐隐式轮播效果插件封装/#more" rel="contents">
+            <a class="btn" href="/2019/01/02/移动端开发rem单位使用问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/01Node.js安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/02/01Node.js安装/" itemprop="url">01Node.js安装</a></h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+前言
+
+“Node.js 从基础到实战” 系列文章中，讲解了 Node.js 从安装到项目实战及项目部署整个过程所需要的技术。
+文章包括以下内容：
+
+Node.js 基础模块(http，url，fs，path，events，util，querystring 等)。
+创建 Web 服务器。
+非阻塞 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/01Node.js安装/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/用Nodejs编写RESTfulAPI接口给前端调用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/02/用Nodejs编写RESTfulAPI接口给前端调用/" itemprop="url">用Nodejs编写RESTfulAPI接口给前端调用</a></h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、初始化项目1npm init
+
+生成 package.json。
+二、安装依赖
+express（node.js Web 应用框架）。
+body-parser：node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。12npm install express -s
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/用Nodejs编写RESTfulAPI接口给前端调用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/03Node.js模块化CommonJS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/02/03Node.js模块化CommonJS/" itemprop="url">03Node.js模块化CommonJS</a></h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、什么是 CommonJS？CommonJS 就是为 JS 的表现来制定规范，因为 JS 没有模块系统，标准库较少，缺乏包管理工具，所以 CommonJS 应运而生，它希望 JS 可以在任何地方运行，而不只是在浏览器中，从而达到 Java、C#、PHP 这些后端语言具备开发大型应用的能力。
+二、C
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/03Node.js模块化CommonJS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/02/02Node.js基础模块（http，url）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiuZhenghe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/blog_icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘政和">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/02/02Node.js基础模块（http，url）/" itemprop="url">02Node.js基础模块（http，url）</a></h1>
+        
+
+        <div class="post-meta">
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
+                2019-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、http 模块http.js
+1234567891011const http = require(&apos;http&apos;);const hostname = &apos;127.0.0.1&apos;;const port = 3000;const server = http.crea
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/02Node.js基础模块（http，url）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1878,7 +1872,7 @@ initialItem
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
