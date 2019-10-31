@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/10/31/JavaScript%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%9A6.%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/</loc>
+    
+    <lastmod>2019-10-31T02:33:15.513Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/07/18/JavaScript%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%9A6.%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7%20copy/</loc>
+    
+    <lastmod>2019-10-31T02:32:07.039Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/about/index.html</loc>
     
-    <lastmod>2019-10-15T23:21:20.194Z</lastmod>
+    <lastmod>2019-10-16T03:58:45.056Z</lastmod>
     
   </url>
   
@@ -61,13 +75,6 @@
     <loc>http://yoursite.com/2019/07/16/JavaScript%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%9A4.%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/</loc>
     
     <lastmod>2019-07-18T12:25:19.054Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/07/18/JavaScript%E7%BB%83%E4%B9%A0%E9%A2%98%EF%BC%9A6.%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/</loc>
-    
-    <lastmod>2019-07-18T12:21:57.073Z</lastmod>
     
   </url>
   
